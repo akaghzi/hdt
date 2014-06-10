@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :lists
+
+  resources :units
+
+  resources :brands
+
+  resources :items
+
+  resources :item_categories
+
+  resources :list_types
+
   root 'welcome#index'
   get 'welcome/help'
   get 'welcome/aboutus'

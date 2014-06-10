@@ -6,6 +6,9 @@
 <body>
 	<%= render :partial => 'layouts/header' %>
 	<div class="container">
+		<div class="pull-right">
+			<%#= all errors go here %>
+		</div>
 		<%= yield %>
 	</div>
 	<%= render :partial => 'layouts/footer' %>

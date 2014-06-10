@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @list.user %>
+</p>
+
+<p>
+  <strong>List type:</strong>
+  <%= @list.list_type %>
+</p>
+
+<p>
+  <strong>Item category:</strong>
+  <%= @list.item_category %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @list.unit %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @list.store %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @list.brand %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @list.name %>
+</p>
+
+<p>
+  <strong>Identifier:</strong>
+  <%= @list.identifier %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @list.price %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @list.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_list_path(@list) %> |
+<%= link_to 'Back', lists_path %>

@@ -1,5 +1,13 @@
-<hr /><ul class="nav nav-pills">
+<hr />
+<ul class="nav nav-pills">
 	<li><%= link_to "contact us", new_contact_path %></li>
 	<li><%= link_to "help", welcome_help_path %></li>
 	<li class="pull-right">Clear Edge Techonolgies Inc.</li>
 </ul>
+<hr />
+<% if Rails.env == 'development' && user_signed_in? %>
+	ID: <%= current_user.id %><br />
+	fname: <%= current_user.first_name %><br />
+	lname: <%= current_user.last_name %><br />
+	email: <%= current_user.email %><br />
+<% end %>

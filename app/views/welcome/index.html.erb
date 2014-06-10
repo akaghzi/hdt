@@ -1,11 +1,24 @@
-<div class="jumbotron">
-<%= image_tag "list.jpg", class: "image-rounded", alt: "list.jpg" %>	
-<p>
-	Never let your honey forget about the things that are important
-</p>
-<p>
-	<%= link_to "Signin", new_user_session_path, class: "btn btn-primary btn-lg" %>
-	Have not signed up as yet, 
-	<%= link_to "Signup", new_user_registration_path, class: "link" %>
-</p>
+<% if user_signed_in? %>
+<span class="pull-right">
+	<%= current_user.last_sign_in_at.strftime("%d-%h-%Y %H:%M:%S") %>
+</span>
+<div class="lead">
+	<p>
+		Welcome <%= current_user.full_name %>
+	</p>
+	<%#= image_tag "list.jpg", class: "image-rounded", alt: "list.jpg" %>
+	<%= link_to "shopping list", lists_path, class: "btn btn-primary btn-sm"%>
 </div>
+<% else %>
+<div class="jumbotron">
+	<%= image_tag "list.jpg", class: "image-rounded", alt: "list.jpg" %>	
+	<p>
+		Never let your honey forget about the things that are important
+	</p>
+	<p>
+		<%= link_to "Signin", new_user_session_path, class: "btn btn-primary btn-lg" %>
+		Have not signed up as yet, 
+		<%= link_to "Signup", new_user_registration_path, class: "link" %>
+	</p>
+</div>
+<% end %>

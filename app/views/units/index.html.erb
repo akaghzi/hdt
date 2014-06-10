@@ -1,0 +1,19 @@
+<h3 class="text-muted">
+	Units:
+</h3>
+<div class="table">
+<table class="table-hover">
+    <% @units.each do |unit| %>
+      <tr>
+        <td><%= unit.name %></td>
+        <td><%= link_to 'Show', unit %></td>
+        <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
+        <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+</table>
+</div>
+
+<br>
+
+<%= link_to 'New Unit', new_unit_path, class: "btn btn-primary btn-sm" %>
