@@ -7,8 +7,11 @@ class List < ActiveRecord::Base
   belongs_to :brand
   
   validates :user_id, :list_type_id, :item_category_id, :unit_id, :store_id, :brand_id, :name, :quantity, presence: true
-  
+  # validates :quantity, length: {in: 0.1..1000}
+  # validates :price, length: {in 0.01..100000}
+
   def self.search(query)
     where("name like ?","%#{query}%".downcase)
   end
+
 end

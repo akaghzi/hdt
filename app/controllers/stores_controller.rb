@@ -9,7 +9,6 @@ class StoresController < ApplicationController
     else
       @stores = Store.order("name")
     end
-
   end
 
   # GET /stores/1
