@@ -1,9 +1,14 @@
 <hr />
 <ul class="nav nav-pills">
+	<li><a href="<%= root_path %>">Home</a></li>
 	<li><a href="<%= lists_path %>">Shopping Lists</a></li>
 	<li><a href="<%= stores_path %>">Stores</a></li>
 	<li><a href="<%= brands_path %>">Brands</a></li>
+				<% if user_signed_in? %>
 	<li><%= link_to "Contact Us", new_contact_path %></li>
+	<% else %>
+	<li><%= link_to "About Us", welcome_aboutus_path %></li>
+	<% end %>
 	<li><%= link_to "Help", welcome_help_path %></li>
 	<ul class="nav navbar-nav navbar-right">
 		<li class="divider"></li>

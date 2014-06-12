@@ -10,7 +10,7 @@
 				<%= f.label :email %>
 			</div>
 			<div class="col-sm-4">
-				<%= f.email_field :email, autofocus: true, class: "form-control" %>
+				<%= f.email_field :email, autofocus: true, class: "form-control input-lg" %>
 			</div>
 		</div>
 
@@ -19,7 +19,7 @@
 				<%= f.label :password %>
 			</div>
 			<div class="col-sm-4">
-				<%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+				<%= f.password_field :password, autocomplete: "off", class: "form-control input-lg" %>
 			</div>
 		</div>
 
@@ -29,14 +29,14 @@
 				<%= f.label :remember_me %>
 			</div>
 			<div class="col-sm-4">
-				<%= f.check_box :remember_me, class: "form-control" %>
+				<%= f.check_box :remember_me, class: "form-control input-lg" %>
 			</div>
 		</div>
 		<% end -%>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<%= f.submit "submit", class: "btn btn-primary btn-lg" %>
+				<%= f.submit "submit", class: "btn btn-primary" %>
 			</div>
 		</div>
 

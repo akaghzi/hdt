@@ -20,7 +20,7 @@
 			<%= f.label :name %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.text_field :name, class: "form-control" %>
+			<%= f.text_field :name, class: "form-control input-lg" %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -28,7 +28,7 @@
 			<%= f.label "UPC" %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.text_field :identifier, class: "form-control" %>
+			<%= f.text_field :identifier, class: "form-control input-lg" %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -36,7 +36,7 @@
 			<%= f.label :price %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.number_field :price, minimum: "0.01", class: "form-control" %>
+			<%= f.number_field :price, minimum: "0.01", class: "form-control input-lg" %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -44,7 +44,7 @@
 			<%= f.label :quantity %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.number_field :quantity, minimum: "0.1", class: "form-control" %>
+			<%= f.number_field :quantity, minimum: "0.1", class: "form-control input-lg" %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -52,7 +52,7 @@
 			<%= f.label :favorite %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.check_box :favorite, class: "form-control" %>
+			<%= f.check_box :favorite, class: "form-control input-lg" %>
 		</div>
 	</div>
 	<!-- <div class="form-group">
@@ -68,7 +68,7 @@
 			<%= f.label :item_category_id %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.collection_select(:item_category_id, ItemCategory.all, :id, :name, class: "form-control") %>
+			<%= f.collection_select(:item_category_id, ItemCategory.all, :id, :name, class: "form-control input-lg") %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -76,7 +76,7 @@
 			<%= f.label :unit_id %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.collection_select(:unit_id, Unit.order("name"), :id, :name, class: "form-control") %>
+			<%= f.collection_select(:unit_id, Unit.order("name"), :id, :name, class: "form-control input-lg") %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -84,7 +84,7 @@
 			<%= f.label :store_id %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.collection_select(:store_id, Store.order("name"), :id, :name, class: "form-control") %>
+			<%= f.collection_select(:store_id, Store.order("name"), :id, :name, class: "form-control input-lg") %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -92,14 +92,13 @@
 			<%= f.label :brand_id %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.collection_select(:brand_id, Brand.order("name"),:id, :name, class: "form-control") %>
+			<%= f.collection_select(:brand_id, Brand.order("name"),:id, :name, class: "form-control input-lg") %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
 			<%= link_to "Cancel", lists_path, class: "btn btn-warning btn-sm"%>
-			
 		</div>
 	</div>
 	<% end %>	

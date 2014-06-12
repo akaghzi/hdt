@@ -1,11 +1,15 @@
 class ContactsController < ApplicationController
-  skip_before_filter :authenticate_user!
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    if current_user.admin && current_user.approved
+      @contacts = Contact.all
+      @catalogowner = true
+    else
+      redirect_to root_path, alert: "you are not authorized to access the requested resource."
+    end
   end
 
   # GET /contacts/1

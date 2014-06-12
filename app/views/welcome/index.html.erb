@@ -1,21 +1,56 @@
 <% if user_signed_in? %>
-<div class="lead">
+<div class="row jumbotron text-muted text-center">
 	<p>
 		Welcome <%= current_user.full_name %>
 	</p>
-	<%#= image_tag "list.jpg", class: "image-rounded", alt: "list.jpg" %>
-	<%= link_to "shopping list", lists_path, class: "btn btn-primary btn-sm"%>
+	<div class=col-sm-4>
+		<p>
+			Shopping
+		</p>
+		<%= link_to image_tag("shopping-guy.jpg", class: "img-responsive img-circle", alt: "shopping-guy.jpg"), lists_path %>
+	</div>
+	<div class=col-sm-4>
+		<p>
+			Tasks
+		</p>
+		<%= link_to image_tag("list.jpg", class: "img-responsive img-circle", alt: "list.jpg"), lists_path %>
+	</div>
+	<div class=col-sm-4>
+		<p>
+			History
+		</p>
+		<%= link_to image_tag("history.jpg", class: "img-responsive img-circle", alt: "history.jpg"), lists_path %>
+	</div>	
 </div>
 <% else %>
-<div class="jumbotron">
-	<%= image_tag "list.jpg", class: "image-rounded", alt: "list.jpg" %>	
+<div class="jumbotron text-muted text-center">
+	<div class="row">
 	<p>
 		Never let your honey forget about the things that are important
 	</p>
-	<p>
+	<div class=col-sm-4>
+		<p>
+			Shopping
+		</p>
+		<%= link_to image_tag("shopping-guy.jpg", class: "img-responsive img-circle", alt: "shopping-guy.jpg"), lists_path %>
+	</div>
+	<div class=col-sm-4>
+		<p>
+			Tasks
+		</p>
+		<%= link_to image_tag("list.jpg", class: "img-responsive img-circle", alt: "list.jpg"), lists_path %>
+	</div>
+	<div class=col-sm-4>
+		<p>
+			History
+		</p>
+		<%= link_to image_tag("history.jpg", class: "img-responsive img-circle", alt: "history.jpg"), lists_path %>
+	</div>
+</div>
+	<div class="row lead">
 		<%= link_to "Signin", new_user_session_path, class: "btn btn-primary btn-lg" %>
 		Have not signed up as yet, 
 		<%= link_to "Signup", new_user_registration_path, class: "link" %>
-	</p>
+	</div>	
 </div>
 <% end %>
