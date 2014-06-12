@@ -5,9 +5,11 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     if params[:search]
-      @lists = List.where(user_id: current_user.id).search(params[:search]).order("name")
+      @basketedlists = List.basketed.where(user_id: current_user.id).search(params[:search]).order("name")
+      @unbasketedlists = List.unbasketed.where(user_id: current_user.id).search(params[:search]).order("name")
     else
-      @lists = List.where(user_id: current_user.id).order("name")
+      @basketedlists = List.basketed.where(user_id: current_user.id).order("name")
+      @unbasketedlists = List.unbasketed.where(user_id: current_user.id).order("name")
     end
   end
 
@@ -18,7 +20,7 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
-    @list = List.new(user_id: current_user.id, store_id: current_user.store_id,list_type_id: 1)
+    @list = List.new(user_id: current_user.id, store_id: current_user.store_id,list_type_id: 1, inbasket: false)
   end
 
   # GET /lists/1/edit
@@ -64,16 +66,34 @@ class ListsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def putinbasket
+    list = List.find_by(id: params[:list_id], user_id: current_user.id, inbasket: false)
+    list.update(inbasket: true)
+    redirect_to lists_path, notice: "Item successfully tranferred to basket"
+  end
+
+  def takeoutofbasket
+    list = List.find_by(id: params[:list_id], user_id: current_user.id, inbasket: true)
+    list.update(inbasket: false)
+    redirect_to lists_path, alert: "Item successfully removed to basket"
+  end
+
+  def pay
+    list = List.find_by(id: params[:list_id], user_id: current_user.id, inbasket: true)
+    list.update(inbasket: nil)
+    redirect_to lists_path, notice: "Item successfully paid for and removed to basket"
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
-      @list = List.find(params[:id])
+      @list = List.find_by(id: params[:id], user_id: current_user.id, inbasket: false)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
       params.require(:list).permit(:user_id, :list_type_id, :item_category_id, :unit_id, :store_id, :brand_id, :name, 
-                                  :identifier, :price, :quantity, :favorite)
+                                  :identifier, :price, :quantity, :favorite, :inbasket)
     end
 end

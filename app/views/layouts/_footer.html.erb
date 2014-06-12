@@ -4,24 +4,24 @@
 	<li><a href="<%= lists_path %>">Shopping Lists</a></li>
 	<li><a href="<%= stores_path %>">Stores</a></li>
 	<li><a href="<%= brands_path %>">Brands</a></li>
-				<% if user_signed_in? %>
+	<% if user_signed_in? %>
 	<li><%= link_to "Contact Us", new_contact_path %></li>
 	<% else %>
 	<li><%= link_to "About Us", welcome_aboutus_path %></li>
 	<% end %>
 	<li><%= link_to "Help", welcome_help_path %></li>
+	<% if user_signed_in? %>
 	<ul class="nav navbar-nav navbar-right">
 		<li class="divider"></li>
 		<li><%= link_to "Signout", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %></li>
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<% if user_signed_in? %>
 				<li><a href="<%= edit_user_registration_path(current_user) %>">Edit</a></li>
-				<% end %>
 			</ul>
 		</li>
 	</ul>	
+	<% end %>
 </ul>
 <hr />
 <p class="pull-right">Clear Edge Techonolgies Inc.</p>

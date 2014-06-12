@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
 
-  resources :lists
+  root 'welcome#index'
+  get 'welcome/help'
+  get 'welcome/aboutus'
+
+  resources :contacts
+  resources :contact_reasons
+  devise_for :users
+  resources :stores
+  resources :lists do
+    get 'putinbasket', to: "lists#putinbasket"
+    get 'takeoutofbasket', to: "lists#takeoutofbasket"
+    get 'pay', to: "lists#pay"
+  end
 
   resources :units
 
@@ -12,14 +24,6 @@ Rails.application.routes.draw do
 
   resources :list_types
 
-  root 'welcome#index'
-  get 'welcome/help'
-  get 'welcome/aboutus'
-
-  resources :contacts
-  resources :contact_reasons
-  devise_for :users
-  resources :stores
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

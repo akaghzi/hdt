@@ -22,6 +22,14 @@
 		<% end %>
 	</div>	
 </div>	
+<h4 class="text-info">
+	Wish list items:
+</h4>
+<% if @unbasketedlists.blank? %>
+<p>
+	There are no items in the list.
+</p>
+<% else %>
 <table class="table table-striped">
 	<tr>
 		<th>Name</th>
@@ -35,7 +43,7 @@
 		<th>Identifier</th>
 		<th>Action</th>
 	</tr>
-	<% @lists.each do |list| %>
+	<% @unbasketedlists.each do |list| %>
 	<tr>
 		<td><%= link_to list.name, edit_list_path(list), class: "link" %></td>
 		<td><%= list.unit.name %></td>
@@ -46,10 +54,53 @@
 		<td><%= list.store.name %></td>
 		<td><%= list.brand.name %></td>
 		<td><%= list.identifier %></td>
-		<td><%= link_to 'Destroy', list, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td>
+			<%= link_to 'PutnBasket', list_putinbasket_path(list), class: "btn btn-info btn-xs" %>
+			<%= link_to 'Destroy', list, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
+		</td>
 	</tr>
 	<% end %>
 </table>
+<% end %>
 <%= link_to 'Add item', new_list_path, class: "btn btn-primary btn-sm" %>
-			<%= link_to "Cancel", root_path, class: "btn btn-warning btn-sm"%>
-
+<h4 class="text-success">
+	In basket items:
+</h4>
+<% if @basketedlists.blank? %>
+<p>
+	There are no items in the basket.
+</p>
+<% else %>
+<table class="table table-striped">
+	<tr>
+		<th>Name</th>
+		<th>Unit</th>
+		<th>Quantity</th>
+		<th>Price</th>
+		<th>List type</th>
+		<th>Item category</th>
+		<th>Store</th>
+		<th>Brand</th>
+		<th>Identifier</th>
+		<th>Action</th>
+	</tr>
+	<% @basketedlists.each do |list| %>
+	<tr>
+		<td><%= list.name %></td>
+		<td><%= list.unit.name %></td>
+		<td><%= list.quantity %></td>
+		<td><%= list.price %></td>
+		<td><%= list.list_type.name %></td>
+		<td><%= list.item_category.name %></td>
+		<td><%= list.store.name %></td>
+		<td><%= list.brand.name %></td>
+		<td><%= list.identifier %></td>
+		<td>
+			<%= link_to 'Pay', list_pay_path(list), class: "btn btn-success btn-xs" %>
+			<%= link_to 'TakeoutBasket', list_takeoutofbasket_path(list), class: "btn btn-warning btn-xs" %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+<% end %>
+<%= link_to "Cancel", root_path, class: "btn btn-warning btn-sm"%>
