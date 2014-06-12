@@ -5,6 +5,11 @@ class UnitsController < ApplicationController
   # GET /units.json
   def index
     @units = Unit.all
+    if current_user.admin && current_user.approved
+      @catalogowner = true
+    else
+      redirect_to root_path, alert: "you are not authorized to access the requested resource."
+    end
   end
 
   # GET /units/1
@@ -15,6 +20,12 @@ class UnitsController < ApplicationController
   # GET /units/new
   def new
     @unit = Unit.new
+    if current_user.admin && current_user.approved
+      @catalogowner = true
+    else
+      redirect_to root_path, alert: "you are not authorized to access the requested resource."
+    end
+    
   end
 
   # GET /units/1/edit
@@ -53,18 +64,23 @@ class UnitsController < ApplicationController
 
   # DELETE /units/1
   # DELETE /units/1.json
-  def destroy
-    @unit.destroy
-    respond_to do |format|
-      format.html { redirect_to units_url, notice: 'Unit was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @unit.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to units_url, notice: 'Unit was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_unit
       @unit = Unit.find(params[:id])
+      if current_user.admin && current_user.approved
+        @catalogowner = true
+      else
+        redirect_to root_path, alert: "you are not authorized to access the requested resource."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

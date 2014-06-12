@@ -46,7 +46,7 @@ class StoresController < ApplicationController
   def update
     respond_to do |format|
       if @store.update(store_params)
-        format.html { redirect_to @store, notice: 'Store was successfully updated.' }
+        format.html { redirect_to stores_path, notice: 'Store was successfully updated.' }
         format.json { render :show, status: :ok, location: @store }
       else
         format.html { render :edit }
@@ -68,9 +68,12 @@ class StoresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_store
-      # if current_user.admin
         @store = Store.find(params[:id])
-      # end
+        if current_user.admin && current_user.approved
+          @catalogowner = true
+        else
+          redirect_to root_path, alert: "you are not authorized to access the requested resource."
+        end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

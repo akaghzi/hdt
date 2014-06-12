@@ -1,7 +1,8 @@
-<%= form_for(@contact_reason) do |f| %>
+<div class="form-horizontal" role="form">
+	<%= form_for(@contact_reason) do |f| %>
   <% if @contact_reason.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@contact_reason.errors.count, "error") %> prohibited this contact_reason from being saved:</h2>
+      <h2><%= pluralize(@contact_reason.errors.count, "error") %> prohibited this brand from being saved:</h2>
 
       <ul>
       <% @contact_reason.errors.full_messages.each do |message| %>
@@ -10,12 +11,18 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+	<div class="form-group">
+		<div class="col-sm-2 form-label">
+			<%= f.label :name %><br>
+		</div>
+		<div class="col-sm-4">
+			<%= f.text_field :name, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit "submit", class: "btn btn-primary btn-sm" %>
+		</div>
+	</div>
+	<% end %>	
+</div>

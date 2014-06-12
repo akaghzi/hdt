@@ -5,4 +5,9 @@ class ListType < ActiveRecord::Base
   
   before_save {|list_type|list_type.name = name.titleize}
   before_save {|list_type|list_type.description = description.titleize}
+  
+  def self.search(query)
+    where("name like ?","%#{query}%".downcase)
+  end
+  
 end

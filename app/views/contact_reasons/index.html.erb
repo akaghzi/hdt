@@ -1,25 +1,42 @@
-<h1>Listing contact_reasons</h1>
+<div class="row">
+	<div class="col-sm-2">
+<h3 class="text-muted">
+	Contact Reasons:
+</h3>
+		
+	</div>
+	<div class-"form-inline" role="form">
+		<%= form_tag(@contact_reason, method: "get", ) do %>
+		<div class="form-group">
+			<div class="col-sm-3">
+				<div class="input-group">
+				
+				<%= text_field_tag :search, params[:search], autofocus: true, placeholder: "contact reason", class: "form-control" %>
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-search"></i>
+					</span>
+				</div>				
+				
+			</div>
+				
+		</div>
+		<div class="form-group">
+			<%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+		</div>
+		<% end %>
+	</div>		
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<table class="table table-striped">
     <% @contact_reasons.each do |contact_reason| %>
       <tr>
         <td><%= contact_reason.name %></td>
         <td><%= link_to 'Show', contact_reason %></td>
         <td><%= link_to 'Edit', edit_contact_reason_path(contact_reason) %></td>
-        <td><%= link_to 'Destroy', contact_reason, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Contact reason', new_contact_reason_path %>
+<%= link_to 'Add contact_reason', new_contact_reason_path, class: "btn btn-primary btn-sm" %>

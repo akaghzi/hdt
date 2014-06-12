@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 20140610055750) do
     t.integer  "store_id"
     t.string   "first_name"
     t.string   "last_name"
+    t.boolean  "admin"
+    t.boolean  "approved"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false

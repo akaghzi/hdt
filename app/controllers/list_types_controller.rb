@@ -15,6 +15,11 @@ class ListTypesController < ApplicationController
   # GET /list_types/new
   def new
     @list_type = ListType.new
+    if current_user.admin && current_user.approved
+      @catalogowner = true
+    else
+      redirect_to root_path, alert: "you are not authorized to access the requested resource."
+    end
   end
 
   # GET /list_types/1/edit
@@ -65,6 +70,11 @@ class ListTypesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_list_type
       @list_type = ListType.find(params[:id])
+      if current_user.admin && current_user.approved
+        @catalogowner = true
+      else
+        redirect_to root_path, alert: "you are not authorized to access the requested resource."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

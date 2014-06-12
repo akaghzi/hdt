@@ -4,7 +4,12 @@ class ItemCategoriesController < ApplicationController
   # GET /item_categories
   # GET /item_categories.json
   def index
-    @item_categories = ItemCategory.all
+    if params[:search]
+      @item_categories = ItemCategory.search(params[:search]).order("name")
+    else
+      @item_categories = ItemCategory.order("name")
+    end
+    
   end
 
   # GET /item_categories/1
@@ -15,6 +20,12 @@ class ItemCategoriesController < ApplicationController
   # GET /item_categories/new
   def new
     @item_category = ItemCategory.new
+    if current_user.admin && current_user.approved
+      @catalogowner = true
+    else
+      redirect_to root_path, alert: "you are not authorized to access the requested resource."
+    end
+    
   end
 
   # GET /item_categories/1/edit
@@ -65,6 +76,11 @@ class ItemCategoriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item_category
       @item_category = ItemCategory.find(params[:id])
+      if current_user.admin && current_user.approved
+        @catalogowner = true
+      else
+        redirect_to root_path, alert: "you are not authorized to access the requested resource."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

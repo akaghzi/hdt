@@ -1,6 +1,29 @@
-<h3 class="text-muted">
-	Categories:
-</h3>
+<div class="row">
+	<div class="col-sm-2">
+		<h3 class="text-muted">
+			Categories:
+		</h3>
+	</div>
+	<div class-"form-inline" role="form">
+		<%= form_tag(@item_category, method: "get", ) do %>
+		<div class="form-group">
+			<div class="col-sm-3">
+				<div class="input-group">
+					<%= text_field_tag :search, params[:search], autofocus: true, placeholder: "item category name", class: "form-control" %>
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-search"></i>
+					</span>
+				</div>				
+			</div>
+				
+		</div>
+		<div class="form-group">
+			<%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+		</div>
+		<% end %>
+	</div>		
+</div>
+
 <table class="table table-striped">
 	<tr>
 		<th>Name</th>
@@ -14,4 +37,5 @@
 	<% end %>
 </table>	
 <br />
-<%= link_to 'New Item category', new_item_category_path, class: "btn btn-primary btn-sm" %>
+<%= link_to 'Add Item category', new_item_category_path, class: "btn btn-primary btn-sm" %>
+<%= link_to "Cancel", root_path, class: "btn btn-warning btn-sm"%>

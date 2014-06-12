@@ -18,7 +18,7 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
-    @list = List.new(user_id: current_user.id, store_id: current_user.store_id)
+    @list = List.new(user_id: current_user.id, store_id: current_user.store_id,list_type_id: 1)
   end
 
   # GET /lists/1/edit

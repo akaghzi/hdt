@@ -1,7 +1,4 @@
 <% if user_signed_in? %>
-<span class="pull-right">
-	<%= current_user.last_sign_in_at.strftime("%d-%h-%Y %H:%M:%S") %>
-</span>
 <div class="lead">
 	<p>
 		Welcome <%= current_user.full_name %>

@@ -14,6 +14,7 @@
 	<% end %>
 
 	<%= f.hidden_field :user_id %>
+	<%= f.hidden_field :list_type_id %>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
 			<%= f.label :name %>
@@ -54,14 +55,14 @@
 			<%= f.check_box :favorite, class: "form-control" %>
 		</div>
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<div class="col-sm-2 control-label">
-			<%= f.label :list_type_id %>
+			<%#= f.label :list_type_id %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.collection_select(:list_type_id, ListType.all, :id, :name, class: "form-control") %>
+			<%#= f.collection_select(:list_type_id, ListType.all, :id, :name, class: "form-control") %>
 		</div>
-	</div>
+	</div> -->
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
 			<%= f.label :item_category_id %>
@@ -95,9 +96,11 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-2 control-label">
-			<%= f.submit "submit", class: "btn btn-primary btn-sm" %>
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
+			<%= link_to "Cancel", lists_path, class: "btn btn-warning btn-sm"%>
+			
 		</div>
 	</div>
-	<% end %>
+	<% end %>	
 </div>

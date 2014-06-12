@@ -9,7 +9,12 @@
 		<%= form_tag(@store, method: "get", ) do %>
 		<div class="form-group">
 			<div class="col-sm-3">
-				<%= text_field_tag :search, params[:search], autofocus: true, placeholder: "store name", class: "form-control" %>
+				<div class="input-group">
+					<%= text_field_tag :search, params[:search], autofocus: true, placeholder: "store name", class: "form-control" %>
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-search"></i>
+					</span>
+				</div>				
 			</div>
 				
 		</div>
@@ -29,4 +34,6 @@
 	</tr>
 	<% end %>
 </table>
+<i class="text-danger">Add your favorite store here if it is not listed already</i>
 <%= link_to 'Add store', new_store_path, class: "btn btn-primary btn-sm" %>
+<%= link_to "Cancel", root_path, class: "btn btn-warning btn-sm"%>

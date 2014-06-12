@@ -1,4 +1,4 @@
-<div class="form-horitontal" role="form">
+<div class="form-horizontal" role="form">
 	<h3 class="text-muted">
 		Profile:
 	</h2>
@@ -7,11 +7,11 @@
 	<%= devise_error_messages! %>
 
 	<div class="form-group">
-		<div class="col-sm-2">
+		<div class="col-sm-2 control-label">
 			<%= f.label :email %>
 		</div>
-		<div class="input-group input-group-lg">
-			<%= current_user.email %>
+		<div class="col-sm-4">
+			<h5 class="text-info"><%= current_user.email %><h5>
 		</div>
 	</div>
 
@@ -21,44 +21,46 @@
 
 	<div class="form-group">
 		<i class="text-danger">(leave blank if you don't want to change it)</i>
-		<div class="col-sm-2">
+		<div class="col-sm-2 control-label">
 			<%= f.label :password %> 
 		</div>
-		<div class="input-group input-group-lg">
+		<div class="col-sm-4">
 			<%= f.password_field :password, autocomplete: "off", class: "form-control"  %>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<div class="col-sm-2">
+		<div class="col-sm-2 control-label">
 			<%= f.label :password_confirmation %>
 		</div>
-		<div class="input-group input-group-lg">
+		<div class="col-sm-4">
 			<%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control"  %>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<div class="col-sm-2">
-			<%= f.label :store_id %>
+		<div class="col-sm-2 control-label">
+			<%= f.label "Default store" %>
 		</div>
-		<div class="input-group input-group-lg">
-			<%= f.collection_select :store_id, Store.order("name"), :id, :name, autofocus: true %>
+		<div class="col-sm-4">
+			<%= f.collection_select(:store_id, Store.order("name"), :id, :name, autofocus: true, class: "form-control") %>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<i class="text-danger">(we need your current password to confirm your changes)</i>
-		<div class="col-sm-2">
+		<div class="col-sm-2 control-label">
 			<%= f.label :current_password %> 
 		</div>
-		<div class="input-group input-group-lg">
+		<div class="col-sm-4">
 			<%= f.password_field :current_password, autocomplete: "off", class: "form-control"  %>
 		</div>
 	</div>
 
-	<div>
-		<%= f.submit "Update", class: "btn btn-primary btn-sm" %>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit "submit", class: "btn btn-primary btn-sm" %>
+		</div>
 	</div>
 	<% end %>
 
