@@ -81,19 +81,25 @@ class ListsController < ApplicationController
 
   def pay
     list = List.find_by(id: params[:list_id], user_id: current_user.id, inbasket: true)
-    list.update(inbasket: nil)
-    redirect_to lists_path, notice: "Item successfully paid for and removed to basket"
+    if list.price.nil?
+      flash[:alert] = "You did not enter a valid price for the item"
+      list.update(inbasket: nil)
+      redirect_to lists_path
+    else
+      list.update(inbasket: nil)
+      redirect_to lists_path, notice: "Item successfully paid for and removed to basket"
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_list
-      @list = List.find_by(id: params[:id], user_id: current_user.id, inbasket: false)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_list
+    @list = List.find_by(id: params[:id], user_id: current_user.id)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def list_params
-      params.require(:list).permit(:user_id, :list_type_id, :item_category_id, :unit_id, :store_id, :brand_id, :name, 
-                                  :identifier, :price, :quantity, :favorite, :inbasket)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def list_params
+    params.require(:list).permit(:user_id, :list_type_id, :item_category_id, :unit_id, :store_id, :brand_id, :name, 
+    :identifier, :price, :quantity, :favorite, :inbasket)
+  end
 end
