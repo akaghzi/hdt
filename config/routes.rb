@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :lists do
     get 'putinbasket', to: "lists#putinbasket"
     get 'takeoutofbasket', to: "lists#takeoutofbasket"
-    get 'pay', to: "lists#pay"
+    get 'complete', to: "lists#complete"
   end
 
   resources :units

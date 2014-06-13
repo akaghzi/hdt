@@ -7,9 +7,11 @@ class ListsController < ApplicationController
     if params[:search]
       @basketedlists = List.basketed.where(user_id: current_user.id).search(params[:search]).order("name")
       @unbasketedlists = List.unbasketed.where(user_id: current_user.id).search(params[:search]).order("name")
+      @completedlists = List.completed.where(user_id: current_user.id).search(params[:search]).order("name")
     else
       @basketedlists = List.basketed.where(user_id: current_user.id).order("name")
       @unbasketedlists = List.unbasketed.where(user_id: current_user.id).order("name")
+      @completedlists = List.completed.where(user_id: current_user.id).order("name")
     end
   end
 
@@ -79,7 +81,7 @@ class ListsController < ApplicationController
     redirect_to lists_path, alert: "Item successfully removed to basket"
   end
 
-  def pay
+  def complete
     list = List.find_by(id: params[:list_id], user_id: current_user.id, inbasket: true)
     if list.price.nil?
       flash[:alert] = "You did not enter a valid price for the item"
@@ -87,7 +89,7 @@ class ListsController < ApplicationController
       redirect_to lists_path
     else
       list.update(inbasket: nil)
-      redirect_to lists_path, notice: "Item successfully paid for and removed to basket"
+      redirect_to lists_path, notice: "Item successfully paid for and removed from basket"
     end
   end
 

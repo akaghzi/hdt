@@ -23,7 +23,11 @@
 			<%= f.label :name %>
 		</div>
 		<div class="col-sm-4">
+			<% if params[:action] == 'edit' && (@list.inbasket == true || @list.inbasket.nil?) %>
+			<h4><%= @list.name.downcase %></h4>
+			<% else %>
 			<%= f.text_field :name, class: "form-control input-lg" %>
+			<% end %>
 		</div>
 	</div>
 	<!-- <div class="form-group">

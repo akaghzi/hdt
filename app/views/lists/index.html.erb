@@ -62,7 +62,7 @@
 		<!-- <td><%#= list.brand.name %></td> -->
 		<!-- <td><%#= list.identifier %></td> -->
 		<td>
-			<%= link_to 'Basket', list_putinbasket_path(list), class: "btn btn-info btn-xs" %>
+			<%= link_to 'Basket', list_putinbasket_path(list), class: "btn btn-info btn-xs", role: "button" %>
 			<%= link_to 'Delete', list, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>
@@ -77,7 +77,7 @@
 </table>
 
 <% end %>
-<%= link_to 'Add item', new_list_path, class: "btn btn-primary btn-sm" %>
+<%= link_to 'Add item', new_list_path, class: "btn btn-primary btn-sm", role: "button" %>
 <h4 class="text-success">
 	In basket items:
 </h4>
@@ -118,8 +118,61 @@
 		<!-- <td><%#= list.brand.name %></td> -->
 		<!-- <td><%#= list.identifier %></td> -->
 		<td>
-			<%= link_to 'Pay', list_pay_path(list), data: {confirm: "Are you sure?"}, class: "btn btn-success btn-xs" %>
+			<%= link_to 'Complete', list_complete_path(list), data: {confirm: "Are you sure?"}, class: "btn btn-success btn-xs" %>
 			<%= link_to 'Unbasket', list_takeoutofbasket_path(list), class: "btn btn-warning btn-xs" %>
+		</td>
+	</tr>
+	<% totalprice = totalprice + list.price.to_f %>
+	<% end %>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><strong>Total</strong></td>
+		<td><strong><%= totalprice.to_f %></strong></td>
+	</tr>
+</table>
+<% end %>
+<h4 class="text-warning">
+	Completed items [last 30 days]:
+</h4>
+<% if @completedlists.blank? %>
+<p>
+	There are no items in the basket.
+</p>
+<% else %>
+<table class="table table-responsive table-striped">
+	<tr>
+		<th>Name</th>
+		<th>Unit</th>
+		<th>Quantity</th>
+		<th>Price</th>
+		<!-- <th>List type</th> -->
+		<th>Item category</th>
+		<th>Store</th>
+		<!-- <th>Brand</th> -->
+		<!-- <th>Identifier</th> -->
+		<th>Action</th>
+	</tr>
+	<% totalprice = 0.00 %>
+	<% @completedlists.each do |list| %>
+	<tr>
+		<td><%= link_to list.name, edit_list_path(list), class: "link" %></td>
+		<td><%= list.unit.name %></td>
+		<td><%= list.quantity %></td>
+		<td>
+			<% if list.price.nil? %>
+			<span class="badge">?</span>
+			<% else %>
+			<%= list.price %>
+			<% end %>
+		</td>
+		<!-- <td><%#= list.list_type.name %></td> -->
+		<td><%= list.item_category.name %></td>
+		<td><%= list.store.name %></td>
+		<!-- <td><%#= list.brand.name %></td> -->
+		<!-- <td><%#= list.identifier %></td> -->
+		<td>
+			<%= link_to 'Fix data', edit_list_path(list), class: "btn btn-default btn-xs" %>
 		</td>
 	</tr>
 	<% totalprice = totalprice + list.price.to_f %>
