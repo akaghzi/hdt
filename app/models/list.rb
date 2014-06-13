@@ -12,7 +12,7 @@ class List < ActiveRecord::Base
   
   scope :basketed, -> {where(inbasket: true)}
   scope :unbasketed, -> {where(inbasket: false)}
-  scope :completed, -> {where("inbasket is null and updated_at <= ?", Date.today+30.days)}
+  scope :completed, -> {where("inbasket is ? and complete = ? and updated_at <= ?", nil, true, Date.today+30.days)}
 
   before_save {|list|list.name=name.downcase}
 

@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140610055750) do
     t.decimal  "quantity"
     t.boolean  "favorite"
     t.boolean  "inbasket",         default: false
+    t.boolean  "complete",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

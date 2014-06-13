@@ -13,6 +13,7 @@ class CreateLists < ActiveRecord::Migration
       t.decimal :quantity
       t.boolean :favorite
       t.boolean :inbasket, default: false, index: true
+      t.boolean :complete, default: false, index: true
 
       t.timestamps
     end
