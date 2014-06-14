@@ -1,0 +1,79 @@
+<h3 class="text-muted">
+	History last 30 days:
+</h3>
+<div class="col-sm-4">
+	<div class="text-info">
+		<h4>
+			Summary by item:
+		</h4>
+	</div>
+	<table class="table table-striped">
+		<tr>
+			<th>Item</th>
+			<th>Total</th>
+		</tr>
+		<% @last30daysbyitem.each do | item| %>
+		<tr>
+			<td><%= item.name %></td>
+			<td><%= item.totalprice %></td>
+		</tr>
+		<% end %>	
+	</table>
+</div>
+<div class="col-sm-4">
+	<div class="text-info">
+		<h4>
+			Summary by store:
+		</h4>
+	</div>
+	<table class="table table-striped">
+		<tr>
+			<th>Store</th>
+			<th>Total</th>
+		</tr>
+		<% @last30daysbystore.each do | store| %>
+		<tr>
+			<td><%= store.store.name %></td>
+			<td><%= store.totalprice %></td>
+		</tr>
+		<% end %>	
+	</table>
+</div>
+<div class="col-sm-4">
+	<div class="text-info">
+		<h4>
+			Summary by category:
+		</h4>
+	</div>
+	<table class="table table-striped">
+		<tr>
+			<th>Category</th>
+			<th>Total</th>
+		</tr>
+		<% @last30daysbycategory.each do | category| %>
+		<tr>
+			<td><%= category.item_category.name %></td>
+			<td><%= category.totalprice %></td>
+		</tr>
+		<% end %>	
+	</table>
+</div>
+<div class="col-sm-4">
+	<div class="text-info">
+		<h4>
+			Summary by brand:
+		</h4>
+	</div>
+	<table class="table table-striped">
+		<tr>
+			<th>Brand</th>
+			<th>Total</th>
+		</tr>
+		<% @last30daysbybrand.each do | brand| %>
+		<tr>
+			<td><%= brand.brand.name %></td>
+			<td><%= brand.totalprice %></td>
+		</tr>
+		<% end %>	
+	</table>
+</div>
