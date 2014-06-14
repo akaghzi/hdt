@@ -5,7 +5,7 @@
 		</h3>
 	</div>
 	<div class-"form-inline" role="form">
-		<%= form_tag(@list, method: "get", ) do %>
+		<%= form_tag(@list_item, method: "get", ) do %>
 		<div class="form-group">
 			<div class="col-sm-4">
 				<div class="input-group">
@@ -24,7 +24,7 @@
 </h4>
 <% if @unbasketedlists.blank? %>
 <p>
-	There are no items in the list.
+	There are no items in the list_item.
 </p>
 <% else %>
 <table class="table table-striped">
@@ -41,29 +41,29 @@
 		<th>Action</th>
 	</tr>
 	<% totalprice = 0.00 %>
-	<% @unbasketedlists.each do |list| %>
+	<% @unbasketedlists.each do |list_item| %>
 	<tr>
-		<td><%= link_to list.name, edit_list_path(list), class: "link" %></td>
-		<td><%= list.unit.name %></td>
-		<td><%= list.quantity %></td>
+		<td><%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %></td>
+		<td><%= list_item.unit.name %></td>
+		<td><%= list_item.quantity %></td>
 		<td>
-			<% if list.price.nil? %>
+			<% if list_item.price.nil? %>
 			<span class="badge">?</span>
 			<% else %>
-			<%= list.price %>
+			<%= list_item.price %>
 			<% end %>
 		</td>
-		<!-- <td><%#= list.list_type.name %></td> -->
-		<td><%= list.item_category.name %></td>
-		<td><%= list.store.name %></td>
-		<!-- <td><%#= list.brand.name %></td> -->
-		<!-- <td><%#= list.identifier %></td> -->
+		<!-- <td><%#= list_item.list_type.name %></td> -->
+		<td><%= list_item.item_category.name %></td>
+		<td><%= list_item.store.name %></td>
+		<!-- <td><%#= list_item.brand.name %></td> -->
+		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to 'Basket', list_putinbasket_path(list), class: "btn btn-info btn-xs", role: "button" %>
-			<%= link_to 'Delete', list, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to 'Basket', list_item_putinbasket_path(list_item), class: "btn btn-info btn-xs", role: "button" %>
+			<%= link_to 'Delete', list_item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>
-	<% totalprice = totalprice + list.price.to_f %>
+	<% totalprice = totalprice + list_item.price.to_f %>
 	<% end %>
 	<tr>
 		<td></td>
@@ -74,7 +74,7 @@
 </table>
 
 <% end %>
-<%= link_to 'Add item', new_list_path, class: "btn btn-primary btn-sm", role: "button" %>
+<%= link_to 'Add item', new_list_item_path, class: "btn btn-primary btn-sm", role: "button" %>
 <h4 class="text-success">
 	In basket items:
 </h4>
@@ -97,29 +97,29 @@
 		<th>Action</th>
 	</tr>
 	<% totalprice = 0.00 %>
-	<% @basketedlists.each do |list| %>
+	<% @basketedlists.each do |list_item| %>
 	<tr>
-		<td><%= link_to list.name, edit_list_path(list), class: "link" %></td>
-		<td><%= list.unit.name %></td>
-		<td><%= list.quantity %></td>
+		<td><%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %></td>
+		<td><%= list_item.unit.name %></td>
+		<td><%= list_item.quantity %></td>
 		<td>
-			<% if list.price.nil? %>
+			<% if list_item.price.nil? %>
 			<span class="badge">?</span>
 			<% else %>
-			<%= list.price %>
+			<%= list_item.price %>
 			<% end %>
 		</td>
-		<!-- <td><%#= list.list_type.name %></td> -->
-		<td><%= list.item_category.name %></td>
-		<td><%= list.store.name %></td>
-		<!-- <td><%#= list.brand.name %></td> -->
-		<!-- <td><%#= list.identifier %></td> -->
+		<!-- <td><%#= list_item.list_type.name %></td> -->
+		<td><%= list_item.item_category.name %></td>
+		<td><%= list_item.store.name %></td>
+		<!-- <td><%#= list_item.brand.name %></td> -->
+		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to 'Complete', list_complete_path(list), data: {confirm: "Are you sure?"}, class: "btn btn-success btn-xs" %>
-			<%= link_to 'Unbasket', list_takeoutofbasket_path(list), class: "btn btn-warning btn-xs" %>
+			<%= link_to 'Complete', list_item_complete_path(list_item), data: {confirm: "Are you sure?"}, class: "btn btn-success btn-xs" %>
+			<%= link_to 'Unbasket', list_item_takeoutofbasket_path(list_item), class: "btn btn-warning btn-xs" %>
 		</td>
 	</tr>
-	<% totalprice = totalprice + list.price.to_f %>
+	<% totalprice = totalprice + list_item.price.to_f %>
 	<% end %>
 	<tr>
 		<td></td>
@@ -134,7 +134,7 @@
 </h4>
 <% if @completedlists.blank? %>
 <p>
-	There are no items in the completed list.
+	There are no items in the completed list_item.
 </p>
 <% else %>
 <table class="table table-responsive table-striped">
@@ -151,29 +151,29 @@
 		<th>Action</th>
 	</tr>
 	<% totalprice = 0.00 %>
-	<% @completedlists.each do |list| %>
+	<% @completedlists.each do |list_item| %>
 	<tr>
-		<td><%= link_to list.name, edit_list_path(list), class: "link" %></td>
-		<td><%= list.unit.name %></td>
-		<td><%= list.quantity %></td>
+		<td><%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %></td>
+		<td><%= list_item.unit.name %></td>
+		<td><%= list_item.quantity %></td>
 		<td>
-			<% if list.price.nil? %>
+			<% if list_item.price.nil? %>
 			<!-- <i class="text-danger glyphicon glyphicon-question-sign"></i> -->
 			<span class="badge">?</span>
 			<% else %>
-			<%= list.price %>
+			<%= list_item.price %>
 			<% end %>
 		</td>
-		<!-- <td><%#= list.list_type.name %></td> -->
-		<td><%= list.item_category.name %></td>
-		<td><%= list.store.name %></td>
-		<!-- <td><%#= list.brand.name %></td> -->
-		<!-- <td><%#= list.identifier %></td> -->
+		<!-- <td><%#= list_item.list_type.name %></td> -->
+		<td><%= list_item.item_category.name %></td>
+		<td><%= list_item.store.name %></td>
+		<!-- <td><%#= list_item.brand.name %></td> -->
+		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to 'Fix data', edit_list_path(list), class: "btn btn-default btn-xs" %>
+			<%= link_to 'Fix data', edit_list_item_path(list_item), class: "btn btn-default btn-xs" %>
 		</td>
 	</tr>
-	<% totalprice = totalprice + list.price.to_f %>
+	<% totalprice = totalprice + list_item.price.to_f %>
 	<% end %>
 	<tr>
 		<td></td>

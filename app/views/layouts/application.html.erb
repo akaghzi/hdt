@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<%= render :partial => 'layouts/head' %>
+	<%= render partial: "layouts/head" %>
 </head>
 <body>
-	<%= render :partial => 'layouts/header' %>
+	<header>
+		<%= render partial: "layouts/header" %>
+	</header>
 	<div class="container">
-		<div class="pull-right">
-			<% if notice %>
-			<p class="text-success"><%= notice %></p>
-			<% end %>
-			<% if alert %>
-			<p class="text-danger"><%= alert %></p>
-			<% end %>
-		</div>
-		<%= yield %>
+		<div class="row">
+			<div class"col-sm-12">
+				<%= bootstrap_flash %>
+				<%= yield %>
+			</div><!-- span-->				
+		</div><!--/row-->
+		<hr />
+		<footer class="footer">
+			<%= render partial: "layouts/footer" %>
+		</footer>
 	</div>
-	<%= render :partial => 'layouts/footer' %>
 </body>
 </html>

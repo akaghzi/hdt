@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   resources :contact_reasons
   devise_for :users
   resources :stores
-  resources :lists do
-    get 'putinbasket', to: "lists#putinbasket"
-    get 'takeoutofbasket', to: "lists#takeoutofbasket"
-    get 'complete', to: "lists#complete"
+  resources :list_items do
+    get 'putinbasket', to: "list_items#putinbasket"
+    get 'takeoutofbasket', to: "list_items#takeoutofbasket"
+    get 'complete', to: "list_items#complete"
   end
 
   resources :units

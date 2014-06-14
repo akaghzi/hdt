@@ -1,6 +1,6 @@
-class CreateLists < ActiveRecord::Migration
+class CreateListItems < ActiveRecord::Migration
   def change
-    create_table :lists do |t|
+    create_table :list_items do |t|
       t.references :user, index: true
       t.references :list_type, index: true
       t.references :item_category, index: true

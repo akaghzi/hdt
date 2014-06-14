@@ -51,14 +51,7 @@ ActiveRecord::Schema.define(version: 20140610055750) do
     t.datetime "updated_at"
   end
 
-  create_table "list_types", force: true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lists", force: true do |t|
+  create_table "list_items", force: true do |t|
     t.integer  "user_id"
     t.integer  "list_type_id"
     t.integer  "item_category_id"
@@ -76,12 +69,19 @@ ActiveRecord::Schema.define(version: 20140610055750) do
     t.datetime "updated_at"
   end
 
-  add_index "lists", ["brand_id"], name: "index_lists_on_brand_id", using: :btree
-  add_index "lists", ["item_category_id"], name: "index_lists_on_item_category_id", using: :btree
-  add_index "lists", ["list_type_id"], name: "index_lists_on_list_type_id", using: :btree
-  add_index "lists", ["store_id"], name: "index_lists_on_store_id", using: :btree
-  add_index "lists", ["unit_id"], name: "index_lists_on_unit_id", using: :btree
-  add_index "lists", ["user_id"], name: "index_lists_on_user_id", using: :btree
+  add_index "list_items", ["brand_id"], name: "index_list_items_on_brand_id", using: :btree
+  add_index "list_items", ["item_category_id"], name: "index_list_items_on_item_category_id", using: :btree
+  add_index "list_items", ["list_type_id"], name: "index_list_items_on_list_type_id", using: :btree
+  add_index "list_items", ["store_id"], name: "index_list_items_on_store_id", using: :btree
+  add_index "list_items", ["unit_id"], name: "index_list_items_on_unit_id", using: :btree
+  add_index "list_items", ["user_id"], name: "index_list_items_on_user_id", using: :btree
+
+  create_table "list_types", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stores", force: true do |t|
     t.string   "name"
@@ -97,6 +97,9 @@ ActiveRecord::Schema.define(version: 20140610055750) do
 
   create_table "users", force: true do |t|
     t.integer  "store_id"
+    t.integer  "brand_id"
+    t.integer  "unit_id"
+    t.integer  "item_category_id"
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin"
@@ -122,10 +125,13 @@ ActiveRecord::Schema.define(version: 20140610055750) do
     t.datetime "locked_at"
   end
 
+  add_index "users", ["brand_id"], name: "index_users_on_brand_id", using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["item_category_id"], name: "index_users_on_item_category_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["store_id"], name: "index_users_on_store_id", using: :btree
+  add_index "users", ["unit_id"], name: "index_users_on_unit_id", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
 end

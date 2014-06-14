@@ -1,12 +1,12 @@
 <div class="form-horizontal" role="form">
-	<%= form_for(@list) do |f| %>
-	<% if @list.errors.any? %>
-	<div class="text-danger">
+	<%= form_for(@list_item) do |f| %>
+	<% if @list_item.errors.any? %>
+	<div class="alert alert-danger">
 		<h4>
-			<%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:
+			<%= pluralize(@list_item.errors.count, "error") %> prohibited this list from being saved:
 		</h4>
 		<ul>
-			<% @list.errors.full_messages.each do |message| %>
+			<% @list_item.errors.full_messages.each do |message| %>
 			<li><%= message %></li>
 			<% end %>
 		</ul>
@@ -17,13 +17,13 @@
 	<%= f.hidden_field :list_type_id %>
 	<%= f.hidden_field :inbasket %>
 	
-	<div class="form-group">
+	<div class="form-group has-feedback">
 		<div class="col-sm-2 control-label">
 			<%= f.label :name %>
 		</div>
 		<div class="col-sm-4">
-			<% if params[:action] == 'edit' && (@list.inbasket == true || @list.inbasket.nil?) %>
-			<h4><%= @list.name.downcase %></h4>
+			<% if params[:action] == 'edit' && (@list_item.inbasket == true || @list_item.inbasket.nil?) %>
+			<p class="form-control-static"><%= @list_item.name.downcase %></p>
 			<% else %>
 			<%= f.text_field :name, class: "form-control input-lg" %>
 			<% end %>
@@ -32,7 +32,7 @@
 	<% if params[:action] == 'edit' %>	
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
-			<%= f.label "UPC" %>
+			<%= f.label "UPCode" %>
 		</div>
 		<div class="col-sm-4">
 			<%= f.text_field :identifier, class: "form-control input-lg" %>
@@ -77,38 +77,38 @@
 		<div class="col-sm-2 control-label">
 			<%= f.label :item_category_id %>
 		</div>
-		<div class="col-sm-4">
-			<%= f.collection_select(:item_category_id, ItemCategory.all, :id, :name, class: "form-control input-lg") %>
+		<div class="col-sm-4 input-lg">
+			<%= f.collection_select(:item_category_id, ItemCategory.all, :id, :name) %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
 			<%= f.label :unit_id %>
 		</div>
-		<div class="col-sm-4">
-			<%= f.collection_select(:unit_id, Unit.order("name"), :id, :name, class: "form-control input-lg") %>
+		<div class="col-sm-4 input-lg">
+			<%= f.collection_select(:unit_id, Unit.order("name"), :id, :name) %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
 			<%= f.label :store_id %>
 		</div>
-		<div class="col-sm-4">
-			<%= f.collection_select(:store_id, Store.order("name"), :id, :name, class: "form-control input-lg") %>
+		<div class="col-sm-4 input-lg">
+			<%= f.collection_select(:store_id, Store.order("name"), :id, :name) %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
 			<%= f.label :brand_id %>
 		</div>
-		<div class="col-sm-4">
-			<%= f.collection_select(:brand_id, Brand.order("name"),:id, :name, class: "form-control input-lg") %>
+		<div class="col-sm-4 input-lg">
+			<%= f.collection_select :brand_id, Brand.order("name"),:id, :name %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
-			<%= link_to "Cancel", lists_path, class: "btn btn-warning btn-sm"%>
+			<%= link_to "Cancel", list_items_path, class: "btn btn-warning btn-sm"%>
 		</div>
 	</div>
 	<% end %>	

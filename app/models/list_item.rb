@@ -1,4 +1,4 @@
-class List < ActiveRecord::Base
+class ListItem < ActiveRecord::Base
   belongs_to :user
   belongs_to :list_type
   belongs_to :item_category
@@ -14,7 +14,7 @@ class List < ActiveRecord::Base
   scope :unbasketed, -> {where(inbasket: false)}
   scope :completed, -> {where("inbasket is ? and complete = ? and updated_at <= ?", nil, true, Date.today+30.days)}
 
-  before_save {|list|list.name=name.downcase}
+  before_save {|list_item|list_item.name=name.downcase}
 
   def self.search(query)
     where("name like ?","%#{query}%".downcase)
