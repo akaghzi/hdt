@@ -35,7 +35,7 @@
 			<%= f.label "UPCode" %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.text_field :identifier, class: "form-control input-lg" %>
+			<%= f.text_field :identifier, class: "form-control" %>
 		</div>
 	</div>
 	<% else %>
@@ -46,7 +46,7 @@
 			<%= f.label :price %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.number_field :price, min: 0.1, step: 0.01, class: "form-control input-lg" %>
+			<%= f.number_field :price, min: 0.1, step: 0.01, class: "form-control" %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -54,7 +54,7 @@
 			<%= f.label :quantity %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.number_field :quantity, min: 0.1, step: 0.1, class: "form-control input-lg" %>
+			<%= f.number_field :quantity, min: 0.1, step: 0.1, class: "form-control" %>
 		</div>
 	</div>
 	<div class="form-group">
@@ -62,7 +62,7 @@
 			<%= f.label :favorite %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.check_box :favorite, class: "form-control input-lg" %>
+			<%= f.check_box :favorite, class: "form-control" %>
 		</div>
 	</div>
 	<!-- <div class="form-group">
@@ -77,32 +77,32 @@
 		<div class="col-sm-2 control-label">
 			<%= f.label :item_category_id %>
 		</div>
-		<div class="col-sm-4 input-lg">
-			<%= f.collection_select(:item_category_id, ItemCategory.all, :id, :name) %>
+		<div class="col-sm-4">
+			<%= f.collection_select :item_category_id, ItemCategory.all, :id, :name, {prompt: "select an option"}, {class: "form-control"} %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
 			<%= f.label :unit_id %>
 		</div>
-		<div class="col-sm-4 input-lg">
-			<%= f.collection_select(:unit_id, Unit.order("name"), :id, :name) %>
+		<div class="col-sm-4">
+			<%= f.collection_select(:unit_id, Unit.order("name"), :id, :name, {prompt: "select an option"}, {class: "form-control"}) %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
 			<%= f.label :store_id %>
 		</div>
-		<div class="col-sm-4 input-lg">
-			<%= f.collection_select(:store_id, Store.order("name"), :id, :name) %>
+		<div class="col-sm-4">
+			<%= f.collection_select(:store_id, Store.order("name"), :id, :name, {prompt: "select an option"}, {class: "form-control"}) %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
 			<%= f.label :brand_id %>
 		</div>
-		<div class="col-sm-4 input-lg">
-			<%= f.collection_select :brand_id, Brand.order("name"),:id, :name %>
+		<div class="col-sm-4">
+			<%= f.collection_select :brand_id, Brand.order("name"),:id, :name, {prompt: "select an option"}, {class: "form-control"} %>
 		</div>
 	</div>
 	<div class="form-group">

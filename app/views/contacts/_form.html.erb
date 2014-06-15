@@ -16,7 +16,7 @@
 			<%= f.label :ContactReason_id %>
 		</div>
 		<div class="col-sm-4">
-			<%= f.collection_select(:ContactReason_id, ContactReason.order("name"), :id, :name, class: "form-control") %>
+			<%= f.collection_select(:ContactReason_id, ContactReason.all, :id, :name, {prompt: "select an option"}, {class: "form-control"}) %>
 		</div>
 	</div>
 	<div class="form-group">
