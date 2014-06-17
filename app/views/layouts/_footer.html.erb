@@ -1,31 +1,20 @@
 <hr />
 <ul class="nav nav-pills">
-	<li><a href="<%= root_path %>">Home</a></li>
+	<% if user_signed_in? %>
 	<li><a href="<%= list_items_path %>">Shopping Lists</a></li>
+	<li><%= link_to "Favorite items", favorite_items_path %></li>
 	<li><a href="<%= stores_path %>">Stores</a></li>
 	<li><a href="<%= brands_path %>">Brands</a></li>
-	<% if user_signed_in? %>
 	<li><%= link_to "Contact Us", new_contact_path %></li>
 	<% else %>
 	<li><%= link_to "About Us", welcome_aboutus_path %></li>
 	<% end %>
 	<li><%= link_to "Help", welcome_help_path %></li>
-	<% if user_signed_in? %>
-	<ul class="nav navbar-nav navbar-right">
-		<li class="divider"></li>
-		<li><%= link_to "Signout", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><a href="<%= edit_user_registration_path(current_user) %>">Edit</a></li>
-			</ul>
-		</li>
-	</ul>	
-	<% end %>
 </ul>
 <hr />
-<p class="pull-right">Clear Edge Techonolgies Inc.</p>
-<% if Rails.env == 'development' && user_signed_in? %>
+<p class="text-muted pull-right">Clear Edge Techonolgies Inc. | 810-1001 13 Avenue South West, Calgary Alberta, Canada T2R0L5 | Phone: +1(403)274-9657 | Eamil: <a href="mailto:info@honey-do-thisnet">info@honey-do-this.net</a></p>
+<p>
+	<% if Rails.env == 'development' && user_signed_in? %>
 ID: <%= current_user.id %><br />
 fname: <%= current_user.first_name %><br />
 lname: <%= current_user.last_name %><br />
@@ -33,4 +22,5 @@ email: <%= current_user.email %><br />
 admin: <%= current_user.admin %><br />
 approved: <%= current_user.approved %><br />
 Last login: <%= current_user.last_sign_in_at.strftime("%d-%h-%Y %H:%M:%S") %>	
+</p>
 <% end %>

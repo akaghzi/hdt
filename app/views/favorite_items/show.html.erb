@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @favorite_item.user %>
+</p>
+
+<p>
+  <strong>Item category:</strong>
+  <%= @favorite_item.item_category %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @favorite_item.unit %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @favorite_item.store %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @favorite_item.brand %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @favorite_item.name %>
+</p>
+
+<p>
+  <strong>Identifier:</strong>
+  <%= @favorite_item.identifier %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @favorite_item.price %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @favorite_item.quantity %>
+</p>
+
+<p>
+  <strong>Imported at:</strong>
+  <%= @favorite_item.imported_at %>
+</p>
+
+<%= link_to 'Edit', edit_favorite_item_path(@favorite_item) %> |
+<%= link_to 'Back', favorite_items_path %>

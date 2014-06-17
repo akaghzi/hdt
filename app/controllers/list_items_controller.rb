@@ -6,11 +6,11 @@ class ListItemsController < ApplicationController
   def index
     if params[:search]
       @basketedlists = ListItem.basketed.where(user_id: current_user.id).search(params[:search]).order("name")
-      @unbasketedlists = ListItem.unbasketed.where(user_id: current_user.id).search(params[:search]).order("name")
+      @unbasketedlists = ListItem.unbasketed.where(user_id: current_user.id).search(params[:search]).order("item_category_id, name")
       @completedlists = ListItem.completed.where(user_id: current_user.id).search(params[:search]).order("name")
     else
       @basketedlists = ListItem.basketed.where(user_id: current_user.id).order("name")
-      @unbasketedlists = ListItem.unbasketed.where(user_id: current_user.id).order("name")
+      @unbasketedlists = ListItem.unbasketed.where(user_id: current_user.id).order("item_category_id, name")
       @completedlists = ListItem.completed.where(user_id: current_user.id).order("name")
     end
   end
@@ -38,7 +38,7 @@ class ListItemsController < ApplicationController
 
     respond_to do |format|
       if @list_item.save
-        format.html { redirect_to list_items_path, notice: 'ListItem was successfully created.' }
+        format.html { redirect_to list_items_path, notice: 'List item was successfully added.' }
         format.json { render :show, status: :created, location: @list_item }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class ListItemsController < ApplicationController
   def update
     respond_to do |format|
       if @list_item.update(list_item_params)
-        format.html { redirect_to list_items_path, notice: 'ListItem was successfully updated.' }
+        format.html { redirect_to list_items_path, notice: 'List item was successfully updated.' }
         format.json { render :show, status: :ok, location: @list_item }
       else
         format.html { render :edit }
@@ -111,7 +111,7 @@ class ListItemsController < ApplicationController
       redirect_to list_items_path, notice: "Item successfully paid for and removed from basket"
     end
   end
-
+  
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_list_item

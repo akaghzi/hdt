@@ -1,26 +1,27 @@
-<% if user_signed_in? && (current_user.admin && current_user.approved) %>
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="<%= root_path %>">Home</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-						<li><a href="<%= item_categories_path %>">Categories</a></li>
-						<li><a href="<%= list_types_path %>">List types</a></li>
-						<li><a href="<%= units_path %>">Units</a></li>
-						<li><a href="<%= contact_reasons_path %>">Contact Reasons</a></li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
-</nav>
-<% end %>
+<%= nav_bar fixed: "top", inverse: true, brand: "Honey do this", brand_link: root_path, responsive: true do%>
+	<%= menu_group do %>
+		<% if user_signed_in? && current_user.admin && current_user.approved %>
+			<%= drop_down "Catalog" do %>
+				<%#= menu_item "Countries", countries_path %>
+				<%#= menu_item "Provinces", provinces_path %>
+				<%#= menu_item "Roles", roles_path %>
+				<%#= menu_item "Priorities", priorities_path %>
+				<%#= menu_item "Companies", companies_path %>
+				<%#= menu_item "Cities", cities_path %>
+				<%#= menu_item "Systems", systems_path %>
+				<%#= menu_item "Subsystems", subsystems_path %>
+			 <% end %> <!--drop_down -->
+		    <%#= menu_item "Buildings", buildings_path %>
+		<% end %><!--if-->
+	<% end %> <!-- menu_group -->
+	<%= menu_group pull: "right" do %>
+		<% if user_signed_in? %>
+			<%= drop_down glyph("user") do %>
+				<%= menu_item "Profile", edit_user_registration_path %>
+				<%= menu_item "Sign Off", destroy_user_session_path, method: :delete, data: {confirm: "are you sure?"} %>
+			 <% end %> <!--drop_down -->
+		<% else %>
+			<%= menu_item glyph("user"), new_user_session_path %>		
+		<% end %> <!--if -->
+	<% end %> <!--menu_group -->
+<% end %> <!--nav_bar-->

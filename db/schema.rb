@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610055750) do
+ActiveRecord::Schema.define(version: 20140617043439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,27 @@ ActiveRecord::Schema.define(version: 20140610055750) do
   end
 
   add_index "contacts", ["ContactReason_id"], name: "index_contacts_on_ContactReason_id", using: :btree
+
+  create_table "favorite_items", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "item_category_id"
+    t.integer  "unit_id"
+    t.integer  "store_id"
+    t.integer  "brand_id"
+    t.string   "name"
+    t.string   "identifier"
+    t.decimal  "price"
+    t.decimal  "quantity"
+    t.date     "imported_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorite_items", ["brand_id"], name: "index_favorite_items_on_brand_id", using: :btree
+  add_index "favorite_items", ["item_category_id"], name: "index_favorite_items_on_item_category_id", using: :btree
+  add_index "favorite_items", ["store_id"], name: "index_favorite_items_on_store_id", using: :btree
+  add_index "favorite_items", ["unit_id"], name: "index_favorite_items_on_unit_id", using: :btree
+  add_index "favorite_items", ["user_id"], name: "index_favorite_items_on_user_id", using: :btree
 
   create_table "item_categories", force: true do |t|
     t.string   "name"

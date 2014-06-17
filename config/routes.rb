@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root 'welcome#index'
   get 'welcome/help'
   get 'welcome/aboutus'
@@ -15,6 +14,10 @@ Rails.application.routes.draw do
     get 'takeoutofbasket', to: "list_items#takeoutofbasket"
     get 'complete', to: "list_items#complete"
   end
+  resources :favorite_items do
+    get 'copyitem', to: "favorite_items#copyitem"
+  end
+  match 'copyallitems', to: "favorite_items#copyallitems", via: :get
 
   resources :units
 

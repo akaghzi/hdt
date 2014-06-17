@@ -44,6 +44,50 @@
 				<%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control input-lg" %>
 			</div>
 		</div>
+		
+		<div class"well">
+			<h3>
+				Time saving options you should use:
+			</h3>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">
+					<%= f.label "Default store" %>
+				</div>
+				<div class="col-sm-4">
+					<%= f.collection_select :store_id, Store.order("name"), :id, :name, {prompt: "select an option"}, {class: "form-control"} %>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">
+					<%= f.label "Default brand" %>
+				</div>
+				<div class="col-sm-4">
+					<%= f.collection_select(:brand_id, Brand.order("name"), :id, :name, {prompt: "select an option"}, {class: "form-control"}) %>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">
+					<%= f.label "Default Category" %>
+				</div>
+				<div class="col-sm-4">
+					<%= f.collection_select :item_category_id, ItemCategory.order("name"), :id, :name, {prompt: "select an option"}, {class: "form-control"} %>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">
+					<%= f.label "Default unit of measure" %>
+				</div>
+				<div class="col-sm-4">
+					<%= f.collection_select :unit_id, Unit.order("name"), :id, :name, {prompt: "select an option"}, {class: "form-control"} %>
+				</div>
+			</div>
+			
+		</div>
+
+		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<%= f.submit "submit", class: "btn btn-primary btn-sm" %>
