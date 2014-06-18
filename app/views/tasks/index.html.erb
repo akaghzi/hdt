@@ -34,7 +34,12 @@
 	</tr>
 	<% @incompletetasks.each do |task| %>
 	<tr>
-		<td><%= link_to task.name.titleize, task_path(task) %></td>
+		<td>
+			<%= link_to task.name.titleize, task_path(task) %>
+			<% if task.target_date < Date.today %>
+			<i class="text-danger glyphicon glyphicon-fire"></i>
+			<% end %>
+		</td>
 		<td><%= task.target_date.strftime("%d-%h-%Y") %></td>
 		<td><%= task.detail %></td>
 	</tr>
