@@ -3,6 +3,7 @@
 	<% if user_signed_in? %>
 	<li><a href="<%= list_items_path %>">Shopping Lists</a></li>
 	<li><%= link_to "Favorite items", favorite_items_path %></li>
+	<li><%= link_to "Tasks", tasks_path %></li>
 	<li><a href="<%= stores_path %>">Stores</a></li>
 	<li><a href="<%= brands_path %>">Brands</a></li>
 	<li><%= link_to "Contact Us", new_contact_path %></li>

@@ -7,6 +7,7 @@ class CreateListItems < ActiveRecord::Migration
       t.references :unit, index: true
       t.references :store, index: true
       t.references :brand, index: true
+      t.references :task, index: true
       t.string :name
       t.string :identifier
       t.decimal :price

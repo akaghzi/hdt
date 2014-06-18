@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root 'welcome#index'
   get 'welcome/help'
   get 'welcome/aboutus'
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
     get 'copyitem', to: "favorite_items#copyitem"
   end
   match 'copyallitems', to: "favorite_items#copyallitems", via: :get
+
+  resources :tasks
 
   resources :units
 

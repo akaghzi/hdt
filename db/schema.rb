@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617043439) do
+ActiveRecord::Schema.define(version: 20140618055202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140617043439) do
     t.integer  "unit_id"
     t.integer  "store_id"
     t.integer  "brand_id"
+    t.integer  "task_id"
     t.string   "name"
     t.string   "identifier"
     t.decimal  "price"
@@ -94,6 +95,7 @@ ActiveRecord::Schema.define(version: 20140617043439) do
   add_index "list_items", ["item_category_id"], name: "index_list_items_on_item_category_id", using: :btree
   add_index "list_items", ["list_type_id"], name: "index_list_items_on_list_type_id", using: :btree
   add_index "list_items", ["store_id"], name: "index_list_items_on_store_id", using: :btree
+  add_index "list_items", ["task_id"], name: "index_list_items_on_task_id", using: :btree
   add_index "list_items", ["unit_id"], name: "index_list_items_on_unit_id", using: :btree
   add_index "list_items", ["user_id"], name: "index_list_items_on_user_id", using: :btree
 
@@ -109,6 +111,18 @@ ActiveRecord::Schema.define(version: 20140617043439) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tasks", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "detail"
+    t.date     "target_date"
+    t.boolean  "complete",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
 
   create_table "units", force: true do |t|
     t.string   "name"
