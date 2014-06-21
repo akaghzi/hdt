@@ -40,18 +40,6 @@
 			<%= f.text_field :identifier, class: "form-control" %>
 		</div>
 	</div>
-	<% if @list_item.inbasket? || @list_item.complete? %>
-		<%= f.hidden_field :quantity %>		
-	<% else %>
-		<div class="form-group">
-			<div class="col-sm-2 control-label">
-				<%= f.label :quantity %>
-			</div>
-			<div class="col-sm-4">
-				<%= f.number_field :quantity, min: 0.1, step: 0.1, class: "form-control" %>
-			</div>
-		</div>
-	<% end %>
 	
 	<% else %>
 	<%= f.hidden_field :identifier %>
@@ -64,6 +52,18 @@
 		</div>
 	</div> -->
 		
+	<% end %>
+	<% if @list_item.inbasket? || @list_item.complete? %>
+		<%= f.hidden_field :quantity %>		
+	<% else %>
+		<div class="form-group">
+			<div class="col-sm-2 control-label">
+				<%= f.label :quantity %>
+			</div>
+			<div class="col-sm-4">
+				<%= f.number_field :quantity, min: 0.1, step: 0.1, class: "form-control" %>
+			</div>
+		</div>
 	<% end %>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
