@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140622064546) do
     t.integer  "vendor_id"
     t.text     "job_detail"
     t.integer  "price"
+    t.boolean  "complete",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

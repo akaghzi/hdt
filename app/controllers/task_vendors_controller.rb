@@ -77,6 +77,6 @@ class TaskVendorsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def task_vendor_params
-    params.require(:task_vendor).permit(:task_id, :vendor_id, :job_detail, :price)
+    params.require(:task_vendor).permit(:task_id, :vendor_id, :job_detail, :complete, :price)
   end
 end

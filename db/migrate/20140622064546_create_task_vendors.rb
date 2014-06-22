@@ -5,6 +5,7 @@ class CreateTaskVendors < ActiveRecord::Migration
       t.references :vendor, index: true
       t.text :job_detail
       t.integer :price
+      t.boolean :complete, default: false
 
       t.timestamps
     end
