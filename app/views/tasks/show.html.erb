@@ -54,7 +54,7 @@
 	<%= link_to "Cancel", tasks_path, class: "btn btn-warning btn-sm" %>
 </p>
 
-<h4 class="text-info">
+<h4 class="text-success">
 	Needed labor:
 </h4>
 <% if @task_vendors.blank? %>
@@ -71,7 +71,7 @@
 	</tr>
 	<% @task_vendors.each do |task_vendor| %>
 	<tr>
-		<!-- <td><%#= link_to task_vendor.vendor.name.titleize, edit_vendor_path(task_vendor.vendor_id) %></td> -->
+		<!-- <td><%#= link_to rental.vendor.name.titleize, edit_vendor_path(rental.vendor_id) %></td> -->
 		<td>
 			<%= task_vendor.vendor.name.titleize %>
 		</td>
@@ -104,5 +104,58 @@
 
 <p>
 	<%= link_to "Add item", new_task_vendor_path(task_id: @task.id), class: "btn btn-primary btn-sm" %>
+	<%= link_to "Cancel", tasks_path, class: "btn btn-warning btn-sm" %>
+</p>
+
+<h4 class="text-warning">
+	Needed equipment[rental]:
+</h4>
+<% if @rentals.blank? %>
+<p>There are no required rental equipment listed yet.</p>
+<% else %>
+<table class="table table-responsive table-striped">
+	<tr>
+		<th>Item</th>
+		<th>Store</th>
+		<th>Price</th>
+		<th>Status</th>
+		<th>Actions</th>
+	</tr>
+	<% @rentals.each do |rental| %>
+	<tr>
+		<!-- <td><%#= link_to rental.vendor.name.titleize, edit_vendor_path(rental.vendor_id) %></td> -->
+		<td>
+			<%= rental.name.titleize %>
+		</td>
+		<td>
+			<%= rental.store.name.titleize %>
+		</td>
+		<td>
+			<%= rental.price %>
+		</td>
+		<td>
+			<% if rental.complete %>
+			Complete
+			<i class="text-success glyphicon glyphicon-ok"></i>
+			<% else %>
+			Incomplete
+			<% end %>
+		</td>
+    <td>
+			<% if rental.complete %>
+			<%= link_to 'Show', rental_path(rental), class: "btn btn-info btn-xs" %>	
+			<% else %>
+			<%= link_to 'Edit', edit_rental_path(rental), class: "btn btn-default btn-xs" %>	
+			<%#= link_to 'Complete', rental_complete_path(rental), class: "btn btn-success btn-xs" %>
+			<%= link_to 'Delete', rental, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
+			<% end %>
+		</td>
+</tr>
+  <% end %>
+</table>
+<% end %>
+
+<p>
+	<%= link_to "Add item", new_rental_path(task_id: @task.id), class: "btn btn-primary btn-sm" %>
 	<%= link_to "Cancel", tasks_path, class: "btn btn-warning btn-sm" %>
 </p>

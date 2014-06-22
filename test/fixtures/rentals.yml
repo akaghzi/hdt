@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_id: 
+  store_id: 
+  name: MyString
+  description: MyString
+  price: MyString
+  complete: false
+
+two:
+  task_id: 
+  store_id: 
+  name: MyString
+  description: MyString
+  price: MyString
+  complete: false

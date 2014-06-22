@@ -18,6 +18,7 @@ class TasksController < ApplicationController
   def show
     @materials = ListItem.where(task_id: @task.id)
     @task_vendors = TaskVendor.where(task_id: @task.id)
+    @rentals = Rental.where(task_id: @task.id)
   end
 
   # GET /tasks/new
