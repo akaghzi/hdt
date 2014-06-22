@@ -69,6 +69,12 @@ class TaskVendorsController < ApplicationController
     end
   end
 
+  def complete
+    task_vendor = TaskVendor.find(params[:task_vendor_id])
+    task_vendor.update(complete: true)
+    redirect_to task_path(task_vendor.task_id)
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_task_vendor

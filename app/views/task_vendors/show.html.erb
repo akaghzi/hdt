@@ -1,19 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Task:</strong>
-  <%= @task_vendor.task %>
-</p>
-
-<p>
-  <strong>Vendor:</strong>
-  <%= @task_vendor.vendor %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @task_vendor.price %>
-</p>
-
-<%= link_to 'Edit', edit_task_vendor_path(@task_vendor) %> |
-<%= link_to 'Back', task_vendors_path %>
+<h3 class="text-muted">
+	<%= @task_vendor.task.name.titleize%>
+</h3>
+<dl class="dl-horizontal">
+	<dt>Vendor</dt>
+	<dd><%= @task_vendor.vendor.name.titleize %>
+	<dt>Phone</dt>
+	<dd><%= @task_vendor.vendor.phone %>
+	<dt>Job detail</dt>
+	<dd><%= @task_vendor.job_detail %>
+	<dt>Price</dt>
+	<dd><%= @task_vendor.price %>
+</dl>
+<%= link_to "Back", task_path(@task_vendor.task_id), class: "btn btn-warning btn-sm" %>

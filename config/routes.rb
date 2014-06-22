@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
 
-  resources :task_vendors
+  resources :task_vendors do
+    get 'complete', to: "task_vendors#complete"
+  end
 
   resources :vendors
 
