@@ -20,19 +20,53 @@
 		<% end %>
 	</div>	
 </div>	
-
+<h3 class="text-info">
+	Incomplete tasks:
+</h3>
 <% if @incompletetasks.blank? %>
 <p>
-	There are not tasks defined as yet.
+	There are no tasks defined as yet.
 </p>
 <% else %>
 <table class="table table-striped">
 	<tr>
 		<th>Task</th>
-		<th>Taret date</th>
+		<th>Target date</th>
 		<th>Detail</th>
+		<th>Action</th>
 	</tr>
 	<% @incompletetasks.each do |task| %>
+	<tr>
+		<td>
+			<%= link_to task.name.titleize, task_path(task) %>
+			<% if task.target_date < Date.today %>
+			<i class="text-danger glyphicon glyphicon-fire"></i>
+			<% end %>
+		</td>
+		<td><%= task.target_date.strftime("%d-%h-%Y") %></td>
+		<td><%= task.detail %></td>
+		<td><%= link_to "Edit", edit_task_path(task), class: "btn btn-default btn-xs"%>
+	</tr>
+	<% end %>
+</table>
+<% end %>
+<%= link_to 'Add task', new_task_path, class: "btn btn-primary btn-sm" %>
+<%= link_to "Cancel", root_path, class: "btn btn-warning btn-sm"%>
+<h3 class="text-success">
+	Incomplete tasks:
+</h3>
+<% if @completedtasks.blank? %>
+<p>
+	There are no completed tasks yet.
+</p>
+<% else %>
+<table class="table table-striped">
+	<tr>
+		<th>Task</th>
+		<th>Target date</th>
+		<th>Detail</th>
+	</tr>
+	<% @completedtasks.each do |task| %>
 	<tr>
 		<td>
 			<%= link_to task.name.titleize, task_path(task) %>
@@ -46,5 +80,3 @@
 	<% end %>
 </table>
 <% end %>
-<%= link_to 'Add task', new_task_path, class: "btn btn-primary btn-sm" %>
-<%= link_to "Cancel", root_path, class: "btn btn-warning btn-sm"%>

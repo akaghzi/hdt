@@ -22,9 +22,14 @@ class ListItemsController < ApplicationController
 
   # GET /lists/new
   def new
-    @list_item = ListItem.new(user_id: current_user.id, store_id: current_user.store_id, brand_id: current_user.brand_id, 
-                              item_category_id: current_user.item_category_id, unit_id: current_user.unit_id, 
-                              list_type_id: 1, inbasket: false)
+    @list_item = ListItem.new(user_id: current_user.id, 
+                              store_id: current_user.store_id, 
+                              brand_id: current_user.brand_id, 
+                              item_category_id: current_user.item_category_id, 
+                              unit_id: current_user.unit_id, 
+                              list_type_id: 1, 
+                              inbasket: false,
+                              task_id: params[:task_id] )
   end
 
   # GET /lists/1/edit
@@ -38,6 +43,9 @@ class ListItemsController < ApplicationController
 
     respond_to do |format|
       if @list_item.save
+        if @list_item.task_id
+          format.html { redirect_to task_path(@list_item.task_id), notice: 'List item was successfully added.' }
+        end
         format.html { redirect_to list_items_path, notice: 'List item was successfully added.' }
         format.json { render :show, status: :created, location: @list_item }
       else
@@ -52,6 +60,9 @@ class ListItemsController < ApplicationController
   def update
     respond_to do |format|
       if @list_item.update(list_item_params)
+          if @list_item.task_id
+            format.html { redirect_to task_path(@list_item.task_id), notice: 'List item was successfully updated.' }
+          end
         format.html { redirect_to list_items_path, notice: 'List item was successfully updated.' }
         format.json { render :show, status: :ok, location: @list_item }
       else

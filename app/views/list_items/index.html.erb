@@ -48,6 +48,9 @@
 			<% if list_item.favorite %>
 			  <i class="text-danger glyphicon glyphicon-heart"></i>
 			<% end %>
+			<% if list_item.task_id %>
+			  <i class="text-danger glyphicon glyphicon-wrench"></i>
+			<% end %>
 		</td>
 		<td><%= list_item.unit.name %></td>
 		<td><%= list_item.quantity %></td>

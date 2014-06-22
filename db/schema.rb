@@ -117,7 +117,10 @@ ActiveRecord::Schema.define(version: 20140618055202) do
     t.string   "name"
     t.text     "detail"
     t.date     "target_date"
-    t.boolean  "complete",    default: false
+    t.decimal  "material_cost", default: 0.0
+    t.decimal  "rental_cost",   default: 0.0
+    t.decimal  "labor_cost",    default: 0.0
+    t.boolean  "complete",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
