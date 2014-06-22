@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @task_vendor.task %>
+</p>
+
+<p>
+  <strong>Vendor:</strong>
+  <%= @task_vendor.vendor %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @task_vendor.price %>
+</p>
+
+<%= link_to 'Edit', edit_task_vendor_path(@task_vendor) %> |
+<%= link_to 'Back', task_vendors_path %>

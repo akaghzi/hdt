@@ -15,12 +15,16 @@
 <% else %>
 <table class="table table-responsive table-striped">
 	<tr>
-		<th>Item name</th>
+		<th>Item</th>
+		<th>Brand</th>
+		<th>Price</th>
 		<th>Actions</th>
 	</tr>
 	<% @materials.each do |material| %>
 	<tr>
 		<td><%= material.name %></td>
+		<td><%= material.brand.name %></td>
+		<td><%= material.price %></td>
     <td>
 			<%= link_to 'Edit', edit_list_item_path(material), class: "btn btn-default btn-xs" %>	
 			<%= link_to 'Delete', material, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
@@ -32,5 +36,39 @@
 
 <p>
 	<%= link_to "Add item", new_list_item_path(task_id: @task.id), class: "btn btn-primary btn-sm" %>
+	<%= link_to "Cancel", tasks_path, class: "btn btn-warning btn-sm" %>
+</p>
+
+<h4 class="text-info">
+	Needed labor:
+</h4>
+<% if @task_vendors.blank? %>
+<p>There are no required labor listed yet.</p>
+<% else %>
+<table class="table table-responsive table-striped">
+	<tr>
+		<th>Item</th>
+		<th>Phone</th>
+		<th>Email</th>
+		<th>Price</th>
+		<th>Actions</th>
+	</tr>
+	<% @task_vendors.each do |task_vendor| %>
+	<tr>
+		<td><%= task_vendor.vendor.name %></td>
+		<td><%= task_vendor.vendor.phone %></td>
+		<td><%= task_vendor.vendor.email %></td>
+		<td><%= task_vendor.price %></td>
+    <td>
+			<%= link_to 'Edit', edit_task_vendor_path(task_vendor), class: "btn btn-default btn-xs" %>	
+			<%= link_to 'Delete', task_vendor, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
+		</td>
+</tr>
+  <% end %>
+</table>
+<% end %>
+
+<p>
+	<%= link_to "Add item", new_task_vendor_path(task_id: @task.id), class: "btn btn-primary btn-sm" %>
 	<%= link_to "Cancel", tasks_path, class: "btn btn-warning btn-sm" %>
 </p>

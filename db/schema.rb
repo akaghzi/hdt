@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618055202) do
+ActiveRecord::Schema.define(version: 20140622064546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,17 @@ ActiveRecord::Schema.define(version: 20140618055202) do
     t.datetime "updated_at"
   end
 
+  create_table "task_vendors", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "vendor_id"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "task_vendors", ["task_id"], name: "index_task_vendors_on_task_id", using: :btree
+  add_index "task_vendors", ["vendor_id"], name: "index_task_vendors_on_vendor_id", using: :btree
+
   create_table "tasks", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -171,5 +182,18 @@ ActiveRecord::Schema.define(version: 20140618055202) do
   add_index "users", ["store_id"], name: "index_users_on_store_id", using: :btree
   add_index "users", ["unit_id"], name: "index_users_on_unit_id", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "vendors", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "email"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vendors", ["user_id"], name: "index_vendors_on_user_id", using: :btree
 
 end

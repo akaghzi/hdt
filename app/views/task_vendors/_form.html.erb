@@ -1,0 +1,38 @@
+<div class="form-horizontal" role="form">
+	<%= form_for(@task_vendor) do |f| %>
+	<% if @task_vendor.errors.any? %>
+	<div class="text-danger">
+		<h2><%= pluralize(@task_vendor.errors.count, "error") %> prohibited this task_vendor from being saved:</h2>
+		<ul>
+			<% @task_vendor.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<%= f.hidden_field :task_id %>
+	
+	<div class="form-group">
+		<div class="col-sm-2 form-label">
+			<%= f.label :vendor_id %>
+		</div>
+		<div class="col-sm-4">
+			<%= f.collection_select :vendor_id, @vendors, :id, :name , {prompt: "select an option" }, {class: "form-control"} %>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-2 form-label">
+			<%= f.label :price %>
+		</div>
+		<div class="col-sm-4">
+			<%= f.number_field :price, step: 1, minimum: 1, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
+			<%= link_to "Cancel", task_path(@task_vendor.task_id), class: "btn btn-warning btn-sm"%>
+		</div>
+	</div>
+	<% end %>
+</div>

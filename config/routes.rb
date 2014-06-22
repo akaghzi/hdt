@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  resources :task_vendors
+
+  resources :vendors
+
   root 'welcome#index'
   get 'welcome/help'
   get 'welcome/aboutus'

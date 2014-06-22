@@ -1,5 +1,8 @@
 <%= nav_bar fixed: "top", inverse: true, brand: "Honey do this", brand_link: root_path, responsive: true do%>
 	<%= menu_group do %>
+				<%= menu_item "Shopping list", list_items_path %>
+				<%= menu_item "Task list", tasks_path %>
+				<%= menu_item "History", last30days_path %>
 		<% if user_signed_in? && current_user.admin && current_user.approved %>
 			<%= drop_down "Catalog" do %>
 				<%#= menu_item "Countries", countries_path %>
