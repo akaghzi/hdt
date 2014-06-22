@@ -28,6 +28,7 @@
 		<td>Name</td>
 		<td>Phone</td>
 		<td>Email</td>
+		<td>Description</td>
 		<td>Action</td>
 	</tr>
 	<% @vendors.each do |vendor| %>
@@ -40,6 +41,9 @@
 		</td>
 		<td>
 			<%= vendor.email.downcase %>
+		</td>
+		<td>
+			<%= vendor.description %>
 		</td>
 		<td>
 			<%= link_to "Edit", edit_vendor_path(vendor), class: "btn btn-default btn-xs" %>

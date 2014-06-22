@@ -23,15 +23,20 @@
 	</tr>
 	<% @materials.each do |item| %>
 	<tr>
-		<td><%= item.name.titleize %></td>
+		<td>
+			<%= item.name.titleize %>
+		</td>
 		<td><%= item.brand.name.titleize %></td>
 		<td>
 			<% if item.inbasket %>
 			In basket
+			<i class="text-success glyphicon glyphicon-lock"></i>
 			<% elsif item.complete %>
 			Purchased
+<i class="text-success glyphicon glyphicon-ok"></i>			
 			<% else %>
 			In wish list
+			<i class="text-success glyphicon glyphicon-list"></i>
 			<% end %>
 		</td>
 		<td><%= item.price %></td>
@@ -67,13 +72,18 @@
 	<% @task_vendors.each do |task_vendor| %>
 	<tr>
 		<!-- <td><%#= link_to task_vendor.vendor.name.titleize, edit_vendor_path(task_vendor.vendor_id) %></td> -->
-		<td><%= task_vendor.vendor.name.titleize %></td>
+		<td>
+			<%= task_vendor.vendor.name.titleize %>
+		</td>
 		<td><%= task_vendor.vendor.phone %></td>
 		<td><%= task_vendor.job_detail %></td>
-		<td><%= task_vendor.price %></td>
+		<td>
+			<%= task_vendor.price %>
+		</td>
 		<td>
 			<% if task_vendor.complete %>
 			Complete
+			<i class="text-success glyphicon glyphicon-ok"></i>
 			<% else %>
 			Incomplete
 			<% end %>
