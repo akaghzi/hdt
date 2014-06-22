@@ -18,16 +18,26 @@
 		<th>Item</th>
 		<th>Brand</th>
 		<th>Price</th>
+		<th>Status<th>
 		<th>Actions</th>
 	</tr>
-	<% @materials.each do |material| %>
+	<% @materials.each do |item| %>
 	<tr>
-		<td><%= material.name %></td>
-		<td><%= material.brand.name %></td>
-		<td><%= material.price %></td>
+		<td><%= item.name.titleize %></td>
+		<td><%= item.brand.name.titleize %></td>
+		<td>
+			<% if item.inbasket %>
+			In basket
+			<% elsif item.complete %>
+			Purchased
+			<% else %>
+			In wish list
+			<% end %>
+		</td>
+		<td><%= item.price %></td>
     <td>
-			<%= link_to 'Edit', edit_list_item_path(material), class: "btn btn-default btn-xs" %>	
-			<%= link_to 'Delete', material, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
+			<%= link_to 'Edit', edit_list_item_path(item), class: "btn btn-default btn-xs" %>	
+			<%= link_to 'Delete', item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
 		</td>
 </tr>
   <% end %>
@@ -49,15 +59,16 @@
 	<tr>
 		<th>Item</th>
 		<th>Phone</th>
-		<th>Email</th>
+		<th>Job detail</th>
 		<th>Price</th>
 		<th>Actions</th>
 	</tr>
 	<% @task_vendors.each do |task_vendor| %>
 	<tr>
-		<td><%= task_vendor.vendor.name %></td>
+		<!-- <td><%#= link_to task_vendor.vendor.name.titleize, edit_vendor_path(task_vendor.vendor_id) %></td> -->
+		<td><%= task_vendor.vendor.name.titleize %></td>
 		<td><%= task_vendor.vendor.phone %></td>
-		<td><%= task_vendor.vendor.email %></td>
+		<td><%= task_vendor.job_detail %></td>
 		<td><%= task_vendor.price %></td>
     <td>
 			<%= link_to 'Edit', edit_task_vendor_path(task_vendor), class: "btn btn-default btn-xs" %>	

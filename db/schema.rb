@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20140622064546) do
   create_table "task_vendors", force: true do |t|
     t.integer  "task_id"
     t.integer  "vendor_id"
+    t.text     "job_detail"
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
