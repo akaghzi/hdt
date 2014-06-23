@@ -4,7 +4,7 @@ class RentalsController < ApplicationController
   # GET /rentals
   # GET /rentals.json
   def index
-    @rentals = Rental.all
+    @rentals = Rental.joins(:task).where("tasks.user_id = ?",  current_user.id)
   end
 
   # GET /rentals/1
@@ -65,6 +65,7 @@ class RentalsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_rental
       @rental = Rental.find_by(id: params[:id])
+      # check_access
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

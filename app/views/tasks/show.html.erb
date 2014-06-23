@@ -33,19 +33,19 @@
 			<i class="text-success glyphicon glyphicon-lock"></i>
 			<% elsif item.complete %>
 			Purchased
-<i class="text-success glyphicon glyphicon-ok"></i>			
+			<i class="text-success glyphicon glyphicon-ok"></i>			
 			<% else %>
 			In wish list
 			<i class="text-success glyphicon glyphicon-list"></i>
 			<% end %>
 		</td>
 		<td><%= item.price %></td>
-    <td>
+		<td>
 			<%= link_to 'Edit', edit_list_item_path(item), class: "btn btn-default btn-xs" %>	
 			<%= link_to 'Delete', item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
 		</td>
-</tr>
-  <% end %>
+	</tr>
+	<% end %>
 </table>
 <% end %>
 
@@ -88,7 +88,7 @@
 			Incomplete
 			<% end %>
 		</td>
-    <td>
+		<td>
 			<% if task_vendor.complete %>
 			<%= link_to 'Show', task_vendor_path(task_vendor), class: "btn btn-info btn-xs" %>	
 			<% else %>
@@ -97,8 +97,8 @@
 			<%= link_to 'Delete', task_vendor, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
 			<% end %>
 		</td>
-</tr>
-  <% end %>
+	</tr>
+	<% end %>
 </table>
 <% end %>
 
@@ -141,7 +141,7 @@
 			Incomplete
 			<% end %>
 		</td>
-    <td>
+		<td>
 			<% if rental.complete %>
 			<%= link_to 'Show', rental_path(rental), class: "btn btn-info btn-xs" %>	
 			<% else %>
@@ -150,8 +150,8 @@
 			<%= link_to 'Delete', rental, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
 			<% end %>
 		</td>
-</tr>
-  <% end %>
+	</tr>
+	<% end %>
 </table>
 <% end %>
 

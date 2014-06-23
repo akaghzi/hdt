@@ -4,6 +4,7 @@ class ListItemsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
+    @totalprice = 0.00
     if params[:search]
       @basketedlists = ListItem.basketed.where(user_id: current_user.id).search(params[:search]).order("name")
       @unbasketedlists = ListItem.unbasketed.where(user_id: current_user.id).search(params[:search]).order("item_category_id, name")

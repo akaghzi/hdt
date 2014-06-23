@@ -117,7 +117,11 @@
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
-			<%= link_to "Cancel", list_items_path, class: "btn btn-warning btn-sm"%>
+			<% if @list_item.task_id %>
+			  <%= link_to "Cancel", task_path(@list_item.task_id), class: "btn btn-warning btn-sm"%>
+			<% else %>
+			  <%= link_to "Cancel", list_items_path, class: "btn btn-warning btn-sm"%>
+			<% end %>
 		</div>
 	</div>
 	<% end %>	
