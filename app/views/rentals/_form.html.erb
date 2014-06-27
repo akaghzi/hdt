@@ -1,7 +1,7 @@
 <div class="form-horizontal" role="form">
 	<%= form_for(@rental) do |f| %>
 	<% if @rental.errors.any? %>
-	<div class="text-danger">
+	<div class="alert alert-danger">
 		<h4>
 			<%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:
 		</h4>

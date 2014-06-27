@@ -1,8 +1,8 @@
 <div class="form-horizontal" role="form">
 	<%= form_for(@store) do |f| %>
 	<% if @store.errors.any? %>
-	<div class="text-danger">
-		<h2><%= pluralize(@store.errors.count, "error") %> prohibited this store from being saved:</h2>
+	<div class="alert alert-danger">
+		<h4><%= pluralize(@store.errors.count, "error") %> prohibited this store from being saved:</h4>
 		<ul>
 			<% @store.errors.full_messages.each do |message| %>
 			<li><%= message %></li>

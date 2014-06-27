@@ -19,7 +19,11 @@ class TaskVendorsController < ApplicationController
 
   # GET /task_vendors/new
   def new
-    @vendors = Vendor.where(user_id: current_user.id).order("name")
+    begin
+      @vendors = Vendor.where(user_id: current_user.id).order("name")
+    rescue
+      redirect_to new_vendor_path(user_id: current_user.id), alert: "There is no vendor listed as yet"
+    end
     @task_vendor = TaskVendor.new(task_id: params[:task_id])
   end
 
@@ -32,12 +36,18 @@ class TaskVendorsController < ApplicationController
   # POST /task_vendors.json
   def create
     @task_vendor = TaskVendor.new(task_vendor_params)
-
+    # task_id = @task_vendor.task_id
+    # logger.debug "************* task vendor #{task_id} **********"
     respond_to do |format|
       if @task_vendor.save
+        # logger.debug "************* task vendor create 2 **********"
         format.html { redirect_to task_path(@task_vendor.task_id), notice: 'Task vendor was successfully created.' }
         format.json { render :show, status: :created, location: @task_vendor }
       else
+        # logger.debug "************* task vendor create 3 **********"
+        # @task_vendor = TaskVendor.new(task_id: task_id)
+        @vendors = Vendor.where(user_id: current_user.id).order("name")
+        
         format.html { render :new }
         format.json { render json: @task_vendor.errors, status: :unprocessable_entity }
       end

@@ -1,8 +1,8 @@
 <div class="form-horizontal" role="form">
 	<%= form_for(@task_vendor) do |f| %>
 	<% if @task_vendor.errors.any? %>
-	<div class="text-danger">
-		<h2><%= pluralize(@task_vendor.errors.count, "error") %> prohibited this task_vendor from being saved:</h2>
+	<div class="alert alert-danger">
+		<h4><%= pluralize(@task_vendor.errors.count, "error") %> prohibited this task_vendor from being saved:</h4>
 		<ul>
 			<% @task_vendor.errors.full_messages.each do |message| %>
 			<li><%= message %></li>
@@ -10,6 +10,7 @@
 		</ul>
 	</div>
 	<% end %>
+	
 	<%= f.hidden_field :task_id %>
 	
 	<div class="form-group">
