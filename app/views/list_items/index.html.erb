@@ -45,10 +45,10 @@
 		<td>
 			<%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %>
 			<% if list_item.favorite %>
-			  <i class="text-danger glyphicon glyphicon-heart"></i>
+			  <i class="glyphicon glyphicon-heart"></i>
 			<% end %>
 			<% if list_item.task_id %>
-			  <i class="text-danger glyphicon glyphicon-wrench"></i>
+					<%= link_to glyph(:wrench), task_path(list_item.task_id), class: "text-danger" %>
 			<% end %>
 		</td>
 		<td><%= list_item.unit.name %></td>
