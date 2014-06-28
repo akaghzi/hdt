@@ -61,6 +61,12 @@ class RentalsController < ApplicationController
     end
   end
 
+  def complete
+    rental = Rental.find(params[:rental_id])
+    rental.update(complete: true)
+    redirect_to task_path(rental.task_id), notice: "Rental item successfully completed."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rental

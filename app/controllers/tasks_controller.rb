@@ -6,10 +6,10 @@ class TasksController < ApplicationController
   def index
     if params[:search]
       @incompletetasks = Task.incomplete.where(user_id: current_user.id).search(params[:search]).order("name")
-      @completetasks = Task.completed.where(user_id: current_user.id).search(params[:search]).order("name")
+      @completedtasks = Task.completed.where(user_id: current_user.id).search(params[:search]).order("name")
     else
       @incompletetasks = Task.incomplete.where(user_id: current_user.id).order("name")
-      @completetasks = Task.completed.where(user_id: current_user.id).order("name")
+      @completedtasks = Task.completed.where(user_id: current_user.id).order("name")
     end
   end
 
@@ -70,14 +70,47 @@ class TasksController < ApplicationController
     end
   end
 
+  def complete
+    @task = Task.find(params[:task_id])
+    # check for unpurchased items
+    items = ListItem.where(task_id: @task.id, complete: [false,nil]).count
+    if items >= 1
+      redirect_to task_path(@task), alert: "Some required materials are not purchased as yet"
+    else
+      # check for incomplete labor work
+      taskvendors = TaskVendor.where(task_id: @task.id, complete: [false,nil]).count
+      if taskvendors >= 1
+        redirect_to task_path(@task), alert: "Some required labor work is incomplete"
+      else
+        # check for incomplete rentals
+        rentals = Rental.where(task_id: @task.id, complete: [false,nil]).count
+        if rentals >= 1
+          redirect_to task_path(@task), alert: "Some rental equipment is incomplete"
+        end
+      end
+    end
+    begin
+      materialcost = ListItem.where(task_id: @task.id).sum("price")
+      laborcost = TaskVendor.where(task_id: @task.id).sum("price")
+      rentalcost = Rental.where(task_id: @task.id).sum("price")
+      @task.update(complete: true, material_cost: materialcost, labor_cost: laborcost, rental_cost: rentalcost)
+      redirect_to tasks_path, notice: "Task successfully completed."
+    rescue
+      logger.error "material cost: #{materialcost}"
+      logger.error "labor cost: #{laborcost}"
+      logger.error "rental cost: #{rentalcost}"
+      redirect_to task_path(@task), alert: "Something went wrong"
+    end
+  end
+  
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find_by(id: params[:id], user_id: current_user.id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find_by(id: params[:id], user_id: current_user.id)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def task_params
-      params.require(:task).permit(:user_id, :name, :detail, :target_date, :complete)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def task_params
+    params.require(:task).permit(:user_id, :name, :detail, :target_date, :complete)
+  end
 end

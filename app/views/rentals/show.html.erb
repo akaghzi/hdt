@@ -2,12 +2,12 @@
 
 <p>
   <strong>Task:</strong>
-  <%= @rental.task %>
+  <%= @rental.task.name %>
 </p>
 
 <p>
   <strong>Store:</strong>
-  <%= @rental.store %>
+  <%= @rental.store.name %>
 </p>
 
 <p>
@@ -25,10 +25,4 @@
   <%= @rental.price %>
 </p>
 
-<p>
-  <strong>Complete:</strong>
-  <%= @rental.complete %>
-</p>
-
-<%= link_to 'Edit', edit_rental_path(@rental) %> |
-<%= link_to 'Back', rentals_path %>
+<%= link_to 'Back', task_path(@rental.task_id) %>

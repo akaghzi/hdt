@@ -1,5 +1,6 @@
 <h3 class="text-muted">
 	<%= @task.name.titleize %>
+	<%= link_to "Complete", task_complete_path(@task), data: {confirm: "are you sure?"}, class: "btn btn-success btn-lg" %>
 </h3>
 <dl class="dl-horizontal">
 	<dt>Target Date</dt>
@@ -93,7 +94,7 @@
 			<%= link_to 'Show', task_vendor_path(task_vendor), class: "btn btn-info btn-xs" %>	
 			<% else %>
 			<%= link_to 'Edit', edit_task_vendor_path(task_vendor), class: "btn btn-default btn-xs" %>	
-			<%= link_to 'Complete', task_vendor_complete_path(task_vendor), class: "btn btn-success btn-xs" %>	
+			<%= link_to 'Complete', task_vendor_complete_path(task_vendor), data: {confirm: "are you sure?"}, class: "btn btn-success btn-xs" %>	
 			<%= link_to 'Delete', task_vendor, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
 			<% end %>
 		</td>
@@ -146,7 +147,7 @@
 			<%= link_to 'Show', rental_path(rental), class: "btn btn-info btn-xs" %>	
 			<% else %>
 			<%= link_to 'Edit', edit_rental_path(rental), class: "btn btn-default btn-xs" %>	
-			<%#= link_to 'Complete', rental_complete_path(rental), class: "btn btn-success btn-xs" %>
+			<%= link_to 'Complete', rental_complete_path(rental), data: {confirm: "are you sure?"}, class: "btn btn-success btn-xs" %>
 			<%= link_to 'Delete', rental, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
 			<% end %>
 		</td>

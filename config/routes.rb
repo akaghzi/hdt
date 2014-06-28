@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+  get 'welcome/help'
+  get 'welcome/aboutus'
+  get 'last30days', to: "last30days#index"
 
-
-  resources :rentals
+  resources :rentals do
+    match 'complete', to:  "rentals#complete", via: :get
+  end
 
   resources :task_vendors do
     get 'complete', to: "task_vendors#complete"
@@ -9,15 +14,11 @@ Rails.application.routes.draw do
 
   resources :vendors
 
-  root 'welcome#index'
-  get 'welcome/help'
-  get 'welcome/aboutus'
-  get 'last30days', to: "last30days#index"
-
   resources :contacts
   resources :contact_reasons
   devise_for :users
   resources :stores
+  
   resources :list_items do
     get 'putinbasket', to: "list_items#putinbasket"
     get 'takeoutofbasket', to: "list_items#takeoutofbasket"
@@ -28,7 +29,9 @@ Rails.application.routes.draw do
   end
   match 'copyallitems', to: "favorite_items#copyallitems", via: :get
 
-  resources :tasks
+  resources :tasks do
+    match 'complete', to: "tasks#complete", via: :get
+  end
 
   resources :units
 

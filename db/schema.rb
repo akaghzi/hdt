@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(version: 20140622212636) do
     t.integer  "store_id"
     t.string   "name"
     t.string   "description"
-    t.string   "price"
-    t.boolean  "complete"
+    t.decimal  "price",       default: 1.0
+    t.boolean  "complete",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

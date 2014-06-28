@@ -5,8 +5,8 @@ class CreateRentals < ActiveRecord::Migration
       t.references :store, index: true
       t.string :name
       t.string :description
-      t.string :price
-      t.boolean :complete
+      t.decimal :price, default: 1
+      t.boolean :complete, default: false
 
       t.timestamps
     end
