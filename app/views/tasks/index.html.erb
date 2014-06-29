@@ -63,8 +63,11 @@
 <table class="table table-striped">
 	<tr>
 		<th>Task</th>
-		<th>Target date</th>
-		<th>Detail</th>
+		<th>Completed date</th>
+		<th>Material</th>
+		<th>Labor</th>
+		<th>Rental</th>
+		<th>Total cost</th>
 	</tr>
 	<% @completedtasks.each do |task| %>
 	<tr>
@@ -74,8 +77,11 @@
 			<i class="text-danger glyphicon glyphicon-fire"></i>
 			<% end %>
 		</td>
-		<td><%= task.target_date.strftime("%d-%h-%Y") %></td>
-		<td><%= task.detail %></td>
+		<td><%= task.updated_at.strftime("%d-%h-%Y") %></td>
+		<td><%= number_with_precision(task.material_cost, precision: 2) %></td>
+		<td><%= number_with_precision(task.labor_cost, precision: 2) %></td>
+		<td><%= number_with_precision(task.rental_cost, precision: 2) %></td>
+		<td><%= number_with_precision((task.material_cost+task.labor_cost+task.rental_cost), precision: 2) %></td>
 	</tr>
 	<% end %>
 </table>

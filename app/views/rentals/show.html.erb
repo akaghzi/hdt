@@ -1,28 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Task:</strong>
-  <%= @rental.task.name %>
-</p>
-
-<p>
-  <strong>Store:</strong>
-  <%= @rental.store.name %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @rental.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @rental.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @rental.price %>
-</p>
-
-<%= link_to 'Back', task_path(@rental.task_id) %>
+<h3 class="text-muted">
+	<%= @rental.task.name.titleize %>:
+</h3>
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @rental.name.titleize %></dd>
+	<dt>Store</dt>
+	<dd><%= @rental.store.name.titleize %></dd>
+	<dt>Total Price</dt>
+	<dd><%= @rental.price %></dd>
+</dl>
+<%= link_to 'Back', task_path(@rental.task_id) , class: "btn btn-warning btn-sm" %>

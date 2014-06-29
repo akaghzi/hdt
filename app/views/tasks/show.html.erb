@@ -1,6 +1,8 @@
 <h3 class="text-muted">
 	<%= @task.name.titleize %>
+	<% if @task.complete == false %>
 	<%= link_to "Complete", task_complete_path(@task), data: {confirm: "are you sure?"}, class: "btn btn-success btn-lg" %>
+	<% end %>
 </h3>
 <dl class="dl-horizontal">
 	<dt>Target Date</dt>
@@ -40,21 +42,25 @@
 			<i class="text-success glyphicon glyphicon-list"></i>
 			<% end %>
 		</td>
-		<td><%= item.price %></td>
+		<td><%= number_with_precision(item.price, precision: 2) %></td>
 		<td>
+			<% if item.complete %>
+			<%= link_to 'Show', list_item_path(item), class: "btn btn-info btn-xs" %>	
+			<% else %>
 			<%= link_to 'Edit', edit_list_item_path(item), class: "btn btn-default btn-xs" %>	
 			<%= link_to 'Delete', item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>	
+			<% end %>
 		</td>
 	</tr>
 	<% end %>
 </table>
 <% end %>
-
+<% if @task.complete == false %>
 <p>
 	<%= link_to "Add item", new_list_item_path(task_id: @task.id), class: "btn btn-primary btn-sm" %>
 	<%= link_to "Cancel", tasks_path, class: "btn btn-warning btn-sm" %>
 </p>
-
+<% end %>
 <h4 class="text-success">
 	Needed labor:
 </h4>
@@ -79,7 +85,7 @@
 		<td><%= task_vendor.vendor.phone %></td>
 		<td><%= task_vendor.job_detail %></td>
 		<td>
-			<%= task_vendor.price %>
+			<%= number_with_precision(task_vendor.price, precision: 2) %>
 		</td>
 		<td>
 			<% if task_vendor.complete %>
@@ -102,12 +108,12 @@
 	<% end %>
 </table>
 <% end %>
-
+<% if @task.complete == false %>
 <p>
 	<%= link_to "Add item", new_task_vendor_path(task_id: @task.id), class: "btn btn-primary btn-sm" %>
 	<%= link_to "Cancel", tasks_path, class: "btn btn-warning btn-sm" %>
 </p>
-
+<% end %>
 <h4 class="text-warning">
 	Needed equipment[rental]:
 </h4>
@@ -132,7 +138,7 @@
 			<%= rental.store.name.titleize %>
 		</td>
 		<td>
-			<%= rental.price %>
+			<%= number_with_precision(rental.price, precision: 2) %>
 		</td>
 		<td>
 			<% if rental.complete %>
@@ -155,8 +161,11 @@
 	<% end %>
 </table>
 <% end %>
-
+<% if @task.complete == false %>
 <p>
 	<%= link_to "Add item", new_rental_path(task_id: @task.id), class: "btn btn-primary btn-sm" %>
 	<%= link_to "Cancel", tasks_path, class: "btn btn-warning btn-sm" %>
 </p>
+<% else %>
+<%= link_to "Cancel", tasks_path, class: "btn btn-warning btn-md" %>
+<% end %>

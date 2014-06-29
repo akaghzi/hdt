@@ -5,6 +5,7 @@ class ListItem < ActiveRecord::Base
   belongs_to :unit
   belongs_to :store
   belongs_to :brand
+  belongs_to :task
   
   validates :user_id, :list_type_id, :item_category_id, :unit_id, :store_id, :brand_id, :name, :quantity, presence: true
   validates :quantity, inclusion: {in: 0.1..10000}
