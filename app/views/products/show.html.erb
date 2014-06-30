@@ -1,0 +1,25 @@
+<h3 class="text-muted">
+	<strong>UPC: </strong><%= @product.identifier %>:
+</h3>
+<ul class="list-group">
+	<% JSON.parse(@product.detail).each do |key,value| %>
+	<li class="list-group-item">
+		<strong><%= key.humanize %>: </strong>
+		<% if key == 'nutrition' %>
+		<ul class="dl-horizontal">
+			<% (value).each do |k,v| %>
+			<dt><%= k.humanize.titleize %></dt>
+			<dd><%= v %></dd>
+			<% end %>
+		</ul>
+		<% else %>
+		<%= value %>
+		<% end %>
+	</li>
+	<% end %>
+</ul>
+<h4 class="text-danger">
+	We do not guarantee acuracy of above data, explicit or implied.
+</h4>
+	
+<%= link_to 'Back', products_path , class: "btn btn-warning btn-sm" %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'welcome#index'
   get 'welcome/help'
   get 'welcome/aboutus'
@@ -10,6 +11,10 @@ Rails.application.routes.draw do
 
   resources :task_vendors do
     get 'complete', to: "task_vendors#complete"
+  end
+
+  resources :products do 
+    match 'lookup', to: "products#lookup", via: :get
   end
 
   resources :vendors
@@ -36,8 +41,6 @@ Rails.application.routes.draw do
   resources :units
 
   resources :brands
-
-  resources :items
 
   resources :item_categories
 
