@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140630024946) do
 
   create_table "contacts", force: true do |t|
     t.integer  "ContactReason_id"
+    t.integer  "user_id"
     t.string   "title"
     t.text     "details"
     t.datetime "created_at"
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140630024946) do
   end
 
   add_index "contacts", ["ContactReason_id"], name: "index_contacts_on_ContactReason_id", using: :btree
+  add_index "contacts", ["user_id"], name: "index_contacts_on_user_id", using: :btree
 
   create_table "favorite_items", force: true do |t|
     t.integer  "user_id"

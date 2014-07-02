@@ -19,7 +19,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/new
   def new
-    @contact = Contact.new(ContactReason_id: 1)
+    @contact = Contact.new(ContactReason_id: 1, user_id: current_user.id)
   end
 
   # GET /contacts/1/edit
@@ -33,7 +33,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Contact was successfully created.' }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -80,6 +80,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:ContactReason_id, :title, :details)
+      params.require(:contact).permit(:ContactReason_id, :user_id, :title, :details)
     end
 end

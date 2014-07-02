@@ -1,7 +1,8 @@
 class Contact < ActiveRecord::Base
   belongs_to :ContactReason
+  belongs_to :user
   
-  validates :title, :details, presence: true
+  validates :user_id, :title, :details, presence: true
   
   before_save {|contact|contact.title = title.downcase}
   before_save {|contact|contact.details = details.downcase}

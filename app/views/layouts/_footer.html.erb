@@ -2,11 +2,13 @@
 <ul class="nav nav-pills">
 	<% if user_signed_in? %>
 	<li><%= link_to "Favorite items", favorite_items_path %></li>
-	<li><%= link_to "Products", products_path %></li>
 	<li><a href="<%= stores_path %>">Stores</a></li>
 	<li><a href="<%= brands_path %>">Brands</a></li>
 	<li><%= link_to 'Vendors', vendors_path %></li>
 	<li><%= link_to "Contact Us", new_contact_path %></li>
+	<% if current_user.admin && current_user.approved %>
+	<li><%= link_to "Products", products_path %></li>
+	<% end %>
 	<% else %>
 	<li><%= link_to "About Us", welcome_aboutus_path %></li>
 	<% end %>

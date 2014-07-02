@@ -53,7 +53,7 @@
 <%= link_to 'Add task', new_task_path, class: "btn btn-primary btn-sm" %>
 <%= link_to "Cancel", root_path, class: "btn btn-warning btn-sm"%>
 <h3 class="text-success">
-	Incomplete tasks:
+	Completed tasks:
 </h3>
 <% if @completedtasks.blank? %>
 <p>
@@ -73,9 +73,6 @@
 	<tr>
 		<td>
 			<%= link_to task.name.titleize, task_path(task) %>
-			<% if task.target_date < Date.today %>
-			<i class="text-danger glyphicon glyphicon-fire"></i>
-			<% end %>
 		</td>
 		<td><%= task.updated_at.strftime("%d-%h-%Y") %></td>
 		<td><%= number_with_precision(task.material_cost, precision: 2) %></td>

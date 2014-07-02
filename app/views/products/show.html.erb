@@ -5,7 +5,7 @@
 	<% JSON.parse(@product.detail).each do |key,value| %>
 	<li class="list-group-item">
 		<strong><%= key.humanize %>: </strong>
-		<% if key == 'nutrition' %>
+		<% if key == 'nutrition' && value.present? %>
 		<ul class="dl-horizontal">
 			<% (value).each do |k,v| %>
 			<dt><%= k.humanize.titleize %></dt>
