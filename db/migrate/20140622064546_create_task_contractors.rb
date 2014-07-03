@@ -1,6 +1,6 @@
-class CreateTaskVendors < ActiveRecord::Migration
+class CreateTaskContractors < ActiveRecord::Migration
   def change
-    create_table :task_vendors do |t|
+    create_table :task_contractors do |t|
       t.references :task, index: true
       t.references :vendor, index: true
       t.text :job_detail

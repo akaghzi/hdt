@@ -1,6 +1,6 @@
-class CreateVendors < ActiveRecord::Migration
+class CreateContractors < ActiveRecord::Migration
   def change
-    create_table :vendors do |t|
+    create_table :contractors do |t|
       t.references :user, index: true
       t.string :name
       t.string :phone

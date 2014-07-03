@@ -9,15 +9,15 @@ Rails.application.routes.draw do
     match 'complete', to:  "rentals#complete", via: :get
   end
 
-  resources :task_vendors do
-    get 'complete', to: "task_vendors#complete"
+  resources :task_contractors do
+    get 'complete', to: "task_contractors#complete"
   end
 
   resources :products do 
     match 'lookup', to: "products#lookup", via: :get
   end
 
-  resources :vendors
+  resources :contractors
 
   resources :contacts
   resources :contact_reasons

@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(version: 20140630024946) do
   add_index "contacts", ["ContactReason_id"], name: "index_contacts_on_ContactReason_id", using: :btree
   add_index "contacts", ["user_id"], name: "index_contacts_on_user_id", using: :btree
 
+  create_table "contractors", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "email"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contractors", ["user_id"], name: "index_contractors_on_user_id", using: :btree
+
   create_table "favorite_items", force: true do |t|
     t.integer  "user_id"
     t.integer  "item_category_id"
@@ -64,12 +77,6 @@ ActiveRecord::Schema.define(version: 20140630024946) do
   create_table "item_categories", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "items", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -135,7 +142,7 @@ ActiveRecord::Schema.define(version: 20140630024946) do
     t.datetime "updated_at"
   end
 
-  create_table "task_vendors", force: true do |t|
+  create_table "task_contractors", force: true do |t|
     t.integer  "task_id"
     t.integer  "vendor_id"
     t.text     "job_detail"
@@ -145,8 +152,8 @@ ActiveRecord::Schema.define(version: 20140630024946) do
     t.datetime "updated_at"
   end
 
-  add_index "task_vendors", ["task_id"], name: "index_task_vendors_on_task_id", using: :btree
-  add_index "task_vendors", ["vendor_id"], name: "index_task_vendors_on_vendor_id", using: :btree
+  add_index "task_contractors", ["task_id"], name: "index_task_contractors_on_task_id", using: :btree
+  add_index "task_contractors", ["vendor_id"], name: "index_task_contractors_on_vendor_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.integer  "user_id"
@@ -207,18 +214,5 @@ ActiveRecord::Schema.define(version: 20140630024946) do
   add_index "users", ["store_id"], name: "index_users_on_store_id", using: :btree
   add_index "users", ["unit_id"], name: "index_users_on_unit_id", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
-
-  create_table "vendors", force: true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "phone"
-    t.string   "fax"
-    t.string   "email"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "vendors", ["user_id"], name: "index_vendors_on_user_id", using: :btree
 
 end

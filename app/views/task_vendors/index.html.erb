@@ -1,4 +1,4 @@
-<h1>Listing task_vendors</h1>
+<h1>Listing task_contractors</h1>
 
 <table>
   <thead>
@@ -11,14 +11,14 @@
   </thead>
 
   <tbody>
-    <% @task_vendors.each do |task_vendor| %>
+    <% @task_contractors.each do |task_contractor| %>
       <tr>
-        <td><%= task_vendor.task %></td>
-        <td><%= task_vendor.vendor %></td>
-        <td><%= task_vendor.price %></td>
-        <td><%= link_to 'Show', task_vendor %></td>
-        <td><%= link_to 'Edit', edit_task_vendor_path(task_vendor) %></td>
-        <td><%= link_to 'Destroy', task_vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= task_contractor.task %></td>
+        <td><%= task_contractor.contractor %></td>
+        <td><%= task_contractor.price %></td>
+        <td><%= link_to 'Show', task_contractor %></td>
+        <td><%= link_to 'Edit', edit_task_contractor_path(task_contractor) %></td>
+        <td><%= link_to 'Destroy', task_contractor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Task vendor', new_task_vendor_path %>
+<%= link_to 'New Task contractor', new_task_contractor_path %>

@@ -33,6 +33,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
+        UserMailer.contactus(@contact).deliver
         format.html { redirect_to root_path, notice: 'Contact was successfully created.' }
         format.json { render :show, status: :created, location: @contact }
       else

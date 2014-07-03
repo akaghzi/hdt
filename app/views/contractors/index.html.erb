@@ -6,11 +6,11 @@
 		
 	</div>
 	<div class-"form-inline" role="form">
-		<%= form_tag(@vendor, method: "get", ) do %>
+		<%= form_tag(@contractor, method: "get", ) do %>
 		<div class="form-group">
 			<div class="col-sm-3">
 				<div class="input-group">
-					<%= text_field_tag :search, params[:search], autofocus: true, placeholder: "vendor name", class: "form-control" %>
+					<%= text_field_tag :search, params[:search], autofocus: true, placeholder: "contractor name", class: "form-control" %>
 					<div class="input-group-btn">
 						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 					</div>
@@ -20,8 +20,8 @@
 		<% end %>
 	</div>	
 </div>	
-<% if @vendors.blank? %>
-<p>There are no vendors listed by you.</p>
+<% if @contractors.blank? %>
+<p>There are no contractors listed by you.</p>
 <% else %>
 <table class="table table-striped">
 	<tr>
@@ -31,27 +31,27 @@
 		<td>Description</td>
 		<td>Action</td>
 	</tr>
-	<% @vendors.each do |vendor| %>
+	<% @contractors.each do |contractor| %>
 	<tr>
 		<td>
-			<%= vendor.name.titleize %>
+			<%= contractor.name.titleize %>
 		</td>
 		<td>
-			<%= vendor.phone %>
+			<%= contractor.phone %>
 		</td>
 		<td>
-			<%= vendor.email.downcase %>
+			<%= contractor.email.downcase %>
 		</td>
 		<td>
-			<%= vendor.description %>
+			<%= contractor.description %>
 		</td>
 		<td>
-			<%= link_to "Edit", edit_vendor_path(vendor), class: "btn btn-default btn-xs" %>
+			<%= link_to "Edit", edit_contractor_path(contractor), class: "btn btn-default btn-xs" %>
 		</td>
 	</tr>
 	<% end %>
 </table>
 <% end %>
-<i class="text-danger">Add your favorite vendor here if it is not listed already</i>
-<%= link_to 'Add vendor', new_vendor_path, class: "btn btn-primary btn-sm" %>
+<i class="text-danger">Add your favorite contractor here if it is not listed already</i>
+<%= link_to 'Add contractor', new_contractor_path, class: "btn btn-primary btn-sm" %>
 <%= link_to "Cancel", root_path, class: "btn btn-warning btn-sm"%>
