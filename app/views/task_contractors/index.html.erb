@@ -1,0 +1,29 @@
+<h1>Listing task_contractors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Vendor</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_contractors.each do |task_contractor| %>
+      <tr>
+        <td><%= task_contractor.task %></td>
+        <td><%= task_contractor.contractor %></td>
+        <td><%= task_contractor.price %></td>
+        <td><%= link_to 'Show', task_contractor %></td>
+        <td><%= link_to 'Edit', edit_task_contractor_path(task_contractor) %></td>
+        <td><%= link_to 'Destroy', task_contractor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task contractor', new_task_contractor_path %>
