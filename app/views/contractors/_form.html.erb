@@ -1,10 +1,10 @@
 <div class="form-horizontal" role="form">
-	<%= form_for(@vendor) do |f| %>
-	<% if @vendor.errors.any? %>
+	<%= form_for(@contractor) do |f| %>
+	<% if @contractor.errors.any? %>
 	<div class="alert alert-danger">
-		<h4><%= pluralize(@vendor.errors.count, "error") %> prohibited this vendor from being saved:</h4>
+		<h4><%= pluralize(@contractor.errors.count, "error") %> prohibited this contractor from being saved:</h4>
 		<ul>
-			<% @vendor.errors.full_messages.each do |message| %>
+			<% @contractor.errors.full_messages.each do |message| %>
 			<li><%= message %></li>
 			<% end %>
 		</ul>
@@ -55,7 +55,7 @@
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
-			<%= link_to "Cancel", vendors_path, class: "btn btn-warning btn-sm"%>
+			<%= link_to "Cancel", contractors_path, class: "btn btn-warning btn-sm"%>
 		</div>
 	</div>
 	<% end %>

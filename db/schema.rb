@@ -144,16 +144,16 @@ ActiveRecord::Schema.define(version: 20140630024946) do
 
   create_table "task_contractors", force: true do |t|
     t.integer  "task_id"
-    t.integer  "vendor_id"
+    t.integer  "contractor_id"
     t.text     "job_detail"
     t.integer  "price"
-    t.boolean  "complete",   default: false
+    t.boolean  "complete",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "task_contractors", ["contractor_id"], name: "index_task_contractors_on_contractor_id", using: :btree
   add_index "task_contractors", ["task_id"], name: "index_task_contractors_on_task_id", using: :btree
-  add_index "task_contractors", ["vendor_id"], name: "index_task_contractors_on_vendor_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.integer  "user_id"

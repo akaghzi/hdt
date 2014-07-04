@@ -17,7 +17,7 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
     @materials = ListItem.where(task_id: @task.id)
-    @task_vendors = TaskVendor.where(task_id: @task.id)
+    @task_contractors = TaskContractor.where(task_id: @task.id)
     @rentals = Rental.where(task_id: @task.id)
   end
 
@@ -78,8 +78,8 @@ class TasksController < ApplicationController
       redirect_to task_path(@task), alert: "Some required materials are not purchased as yet"
     else
       # check for incomplete labor work
-      taskvendors = TaskVendor.where(task_id: @task.id, complete: [false,nil]).count
-      if taskvendors >= 1
+      taskcontractors = TaskContractor.where(task_id: @task.id, complete: [false,nil]).count
+      if taskcontractors >= 1
         redirect_to task_path(@task), alert: "Some required labor work is incomplete"
       else
         # check for incomplete rentals
@@ -91,7 +91,7 @@ class TasksController < ApplicationController
     end
     begin
       materialcost = ListItem.where(task_id: @task.id).sum("price")
-      laborcost = TaskVendor.where(task_id: @task.id).sum("price")
+      laborcost = TaskContractor.where(task_id: @task.id).sum("price")
       rentalcost = Rental.where(task_id: @task.id).sum("price")
       @task.update(complete: true, material_cost: materialcost, labor_cost: laborcost, rental_cost: rentalcost)
       redirect_to tasks_path, notice: "Task successfully completed."

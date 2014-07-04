@@ -19,9 +19,8 @@ class TaskContractorsController < ApplicationController
 
   # GET /task_contractors/new
   def new
-    begin
-      @contractors = Contractor.where(user_id: current_user.id).order("name")
-    rescue
+    @contractors = Contractor.where(user_id: current_user.id).order("name")
+    if @contractors.blank?
       redirect_to new_contractor_path(user_id: current_user.id), alert: "There is no contractor listed as yet"
     end
     @task_contractor = TaskContractor.new(task_id: params[:task_id])
