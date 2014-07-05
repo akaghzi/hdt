@@ -69,6 +69,11 @@ class BrandsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_brand
       @brand = Brand.find(params[:id])
+      if current_user.admin && current_user.approved
+        @catalogowner = true
+      else
+        redirect_to root_path, alert: "you are not authorized to access the requested resource."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
