@@ -6,6 +6,8 @@ class TaskContractor < ActiveRecord::Base
   validates :contractor_id , uniqueness: {scope: :task}
   validates :price, presence: true, inclusion: {in: 1..50000}
   
+  scope :completed, -> {where(complete: true)}
+  
   before_save {|task_contractor|task_contractor.job_detail = job_detail.downcase}
   
 end
