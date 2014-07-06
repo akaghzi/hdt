@@ -2,9 +2,9 @@ class Task < ActiveRecord::Base
   belongs_to :user
   
   validates :name, :target_date, :detail, presence: true
-  validate :check_target_date
+  validate :check_target_date, on: :create
   
-  scope :incomplete, -> {where(complete: false)}
+  scope :incomplete, -> {where(complete: [false,nil])}
   scope :completed, -> {where(complete: true)}
   
   before_save {|tasks|tasks.name=name.downcase}

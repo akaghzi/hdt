@@ -125,7 +125,7 @@
 		<!-- <td><%#= list_item.brand.name %></td> -->
 		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to glyph("save"), list_item_complete_path(list_item), data: {confirm: "Are you sure?"}, class: "btn btn-success" %>
+			<%= link_to glyph("ok-sign"), list_item_complete_path(list_item), data: {confirm: "Are you sure?"}, class: "btn btn-success" %>
 			<%= link_to glyph("backward"), list_item_takeoutofbasket_path(list_item), class: "btn btn-warning" %>
 		</td>
 	</tr>

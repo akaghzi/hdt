@@ -71,7 +71,7 @@ class TasksController < ApplicationController
   end
 
   def complete
-    @task = Task.find(params[:task_id])
+    @task = Task.incomplete.find(params[:task_id])
     # check for unpurchased items
     items = ListItem.where(task_id: @task.id, complete: [false,nil]).count
     if items >= 1
@@ -93,13 +93,32 @@ class TasksController < ApplicationController
       materialcost = ListItem.where(task_id: @task.id).sum("price")
       laborcost = TaskContractor.where(task_id: @task.id).sum("price")
       rentalcost = Rental.where(task_id: @task.id).sum("price")
+      # if Rails_env == 'development'
+        # logger.info "++++++++++++++ INFO ONLY ++++++++++++++"
+        # logger.info "material cost: #{materialcost}"
+        # logger.info "labor cost: #{laborcost}"
+        # logger.info "rental cost: #{rentalcost}"
+      # end
+      # logger.info "#{@task.inspect}"
       @task.update(complete: true, material_cost: materialcost, labor_cost: laborcost, rental_cost: rentalcost)
+      # if @task.valid?
+      #   @task.save
+      # else
+      #   @task.errors.messages.each do |msg|
+      #     logger.error "#{msg}"
+      #   end
+      # end
+      # logger.info "task marked complete"
       redirect_to tasks_path, notice: "Task successfully completed."
     rescue
+      logger.error "*****************    ERROR(s)    *******************"
       logger.error "material cost: #{materialcost}"
       logger.error "labor cost: #{laborcost}"
       logger.error "rental cost: #{rentalcost}"
-      redirect_to task_path(@task), alert: "Something went wrong"
+        @task.errors.messages.each do |msg|
+          logger.error "Error: #{msg}"
+        end
+      redirect_to task_path(@task), alert: "Something went wrong contact administrator"
     end
   end
   

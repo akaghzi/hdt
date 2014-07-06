@@ -1,14 +1,14 @@
 <h3 class="text-muted">
-	<%= @task_vendor.task.name.titleize%>
+	<%= @task_contractor.task.name.titleize%>
 </h3>
 <dl class="dl-horizontal">
 	<dt>Vendor</dt>
-	<dd><%= @task_vendor.vendor.name.titleize %>
+	<dd><%= @task_contractor.contractor.name.titleize %>
 	<dt>Phone</dt>
-	<dd><%= @task_vendor.vendor.phone %>
+	<dd><%= @task_contractor.contractor.phone %>
 	<dt>Job detail</dt>
-	<dd><%= @task_vendor.job_detail %>
+	<dd><%= @task_contractor.job_detail %>
 	<dt>Price</dt>
-	<dd><%= @task_vendor.price %>
+	<dd><%= @task_contractor.price %>
 </dl>
-<%= link_to "Back", task_path(@task_vendor.task_id), class: "btn btn-warning btn-sm" %>
+<%= link_to "Back", task_path(@task_contractor.task_id), class: "btn btn-warning btn-sm" %>
