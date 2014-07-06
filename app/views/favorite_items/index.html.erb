@@ -53,15 +53,15 @@
 		<td><%= favorite_item.brand.name %></td>
 		<!-- <td><%#= favorite_item.identifier %></td> -->
 		<td>
-			<%= link_to 'Copy', favorite_item_copyitem_path(favorite_item), class: "btn btn-info btn-xs" %>
-			<%= link_to 'Delete', favorite_item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to glyph("transfer"), favorite_item_copyitem_path(favorite_item), class: "btn btn-info" %>
+			<%= link_to glyph("remove-sign"), favorite_item, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>
 	<% end %>
 </table>
 
 <% end %>
-<%= link_to 'Add item', new_favorite_item_path, class: "btn btn-primary btn-sm", role: "button" %>
+<%= link_to glyph("plus-sign"), new_favorite_item_path, class: "btn btn-success" %>
 <% if @favorite_items.count >= 1 %>
-  <%= link_to 'Copy All', copyallitems_path, class: "btn btn-success btn-sm", role: "button", data: {confirm: "are you sure?"}%>
+  <%= link_to 'Copy All', copyallitems_path, class: "btn btn-info", data: {confirm: "are you sure?"}%>
 <% end %>

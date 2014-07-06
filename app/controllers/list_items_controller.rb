@@ -41,15 +41,17 @@ class ListItemsController < ApplicationController
   # POST /lists.json
   def create
     @list_item = ListItem.new(list_item_params)
-
+    logger.info "++++++++++ creating list items ++++++++++++++"
     respond_to do |format|
       if @list_item.save
+        logger.info "++++++++++ list item saved ++++++++++++++"
         if @list_item.task_id
           format.html { redirect_to task_path(@list_item.task_id), notice: 'List item was successfully added.' }
         end
         format.html { redirect_to list_items_path, notice: 'List item was successfully added.' }
         format.json { render :show, status: :created, location: @list_item }
       else
+        logger.info "++++++++++ list item NOT saved ++++++++++++++"
         format.html { render :new }
         format.json { render json: @list_item.errors, status: :unprocessable_entity }
       end

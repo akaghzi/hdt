@@ -66,8 +66,8 @@
 		<!-- <td><%#= list_item.brand.name %></td> -->
 		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to 'Basket', list_item_putinbasket_path(list_item), class: "btn btn-info btn-xs", role: "button" %>
-			<%= link_to 'Delete', list_item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to glyph("shopping-cart"), list_item_putinbasket_path(list_item), class: "btn btn-info" %>
+			<%= link_to glyph("remove-sign"), list_item, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>
 	<% @totalprice = @totalprice + list_item.price %>
@@ -84,7 +84,7 @@
 </table>
 
 <% end %>
-<%= link_to 'Add item', new_list_item_path, class: "btn btn-primary btn-sm", role: "button" %>
+<%= link_to glyph("plus-sign"), new_list_item_path, class: "btn btn-success" %>
 <h4 class="text-success">
 	In basket items:
 </h4>
@@ -125,8 +125,8 @@
 		<!-- <td><%#= list_item.brand.name %></td> -->
 		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to 'Complete', list_item_complete_path(list_item), data: {confirm: "Are you sure?"}, class: "btn btn-success btn-xs" %>
-			<%= link_to 'Unbasket', list_item_takeoutofbasket_path(list_item), class: "btn btn-warning btn-xs" %>
+			<%= link_to glyph("save"), list_item_complete_path(list_item), data: {confirm: "Are you sure?"}, class: "btn btn-success" %>
+			<%= link_to glyph("backward"), list_item_takeoutofbasket_path(list_item), class: "btn btn-warning" %>
 		</td>
 	</tr>
 	<% @totalprice = @totalprice + list_item.price %>
@@ -183,7 +183,7 @@
 		<!-- <td><%#= list_item.brand.name %></td> -->
 		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to 'Fix data', edit_list_item_path(list_item), class: "btn btn-default btn-xs" %>
+			<%= link_to glyph("pencil"), edit_list_item_path(list_item), class: "btn btn-default" %>
 		</td>
 	</tr>
 	<% @totalprice = @totalprice + list_item.price %>

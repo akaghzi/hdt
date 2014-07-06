@@ -74,9 +74,17 @@
 		</div>
 	</div>
 	<div class="form-group">
+		<div class="col-sm-2 control-label">
+			<%= f.label :store_id %>
+		</div>
+		<div class="col-sm-4">
+			<%= f.collection_select :store_id, Store.order("name"),:id, :name, {prompt: "select an option"}, {class: "form-control"} %>
+		</div>
+	</div>
+	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
-			<%= link_to "Cancel", favorite_items_path, class: "btn btn-warning btn-sm"%>
+			<%= f.submit "Submit", class: "btn btn-success" %>
+			<%= link_to "Cancel", favorite_items_path, class: "btn btn-warning" %>
 		</div>
 	</div>
 	<% end %>	

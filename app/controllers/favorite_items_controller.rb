@@ -67,9 +67,13 @@ class FavoriteItemsController < ApplicationController
   end
 
   def copyitem
+    logger.info "++++ try to find the fav item ++++++++"
     f = FavoriteItem.find(params[:favorite_item_id])
+    logger.info "++++ tried finding the fav item ++++++++"
     if f.imported_at.nil? || f.imported_at >= Time.now-4.hour
-      ListItem.create(
+      logger.info "++++ checked #{f.imported_at} ++++++++"
+      
+      listitem = ListItem.new(
       user_id:          current_user.id,
       item_category_id: f.item_category_id, 
       unit_id:          f.unit_id, 
@@ -78,16 +82,31 @@ class FavoriteItemsController < ApplicationController
       identifier:       f.identifier, 
       price:            f.price,
       quantity:         f.quantity,
-      store_id:         current_user.store_id,
+      store_id:         f.store_id,
       list_type_id:     1,
       inbasket:         false,
       complete:         false,
       favorite:         true)
+      logger.info "++++++++++ list item object created ++++++++++++++"
       
+      if listitem.valid?
+        logger.info "++++++++++ list item is valid ++++++++++++++"
+        
+        listitem.save
+        logger.info "++++++++++ list item saved finally ++++++++++++++"
+      else
+        logger.error "************* ERROR(s) ****************"
+        listitem.errors.messages.each do |msg|
+          logger.error "************      #{msg}     ************"
+        end
+      end
+            
       f.update(imported_at: Time.now)
+      logger.info "++++ updated fav item ++++++++"
       
       redirect_to favorite_items_path, notice: "item copied to wish list"
     else
+      logger.info "++++ fav item import time is null or less than 4 hours ++++++++"
       redirect_to favorite_items_path, alert: "item already copied to wish list"
     end
   end
@@ -127,7 +146,7 @@ class FavoriteItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def favorite_item_params
-    params.require(:favorite_item).permit(:user_id, :item_category_id, :unit_id, :brand_id, :name, :identifier, 
-    :price, :quantity, :imported_at)
+    params.require(:favorite_item).permit(:user_id, :item_category_id, :unit_id, :brand_id, :store_id, :name, 
+                                          :identifier, :price, :quantity, :imported_at)
   end
 end

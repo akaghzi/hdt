@@ -50,8 +50,8 @@
 	<% end %>
 </table>
 <% end %>
-<%= link_to 'Add task', new_task_path, class: "btn btn-primary btn-sm" %>
-<%= link_to "Cancel", root_path, class: "btn btn-warning btn-sm"%>
+<%= link_to glyph("plus-sign"), new_task_path, class: "btn btn-success" %>
+<%= link_to glyph("arrow-left"), root_path, class: "btn btn-warning"%>
 <h3 class="text-success">
 	Completed tasks:
 </h3>
