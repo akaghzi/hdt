@@ -3,6 +3,8 @@ class WelcomeController < ApplicationController
   def index
     if user_signed_in?
       @totalwishlistitems = ListItem.unbasketed.where(user_id: current_user.id).count
+      @totalbasketedlistitems = ListItem.basketed.where(user_id: current_user.id).count
+      @totalcompletedlistitems = ListItem.completed.where(user_id: current_user.id).count
       @totaltaskitems = Task.incomplete.where(user_id: current_user.id).count
       @totalspending = ListItem.completed.where(user_id: current_user.id).sum("price")
     end
