@@ -27,9 +27,9 @@
 <table class="table table-striped">
 	<tr>
 		<th>Name</th>
-		<th>Unit</th>
+		<!-- <th>Unit</th> -->
 		<th>Quantity</th>
-		<th>Price</th>
+		<!-- <th>Price</th> -->
 		<!-- <th>List type</th> -->
 		<th>Item category</th>
 		<th>Brand</th>
@@ -39,22 +39,22 @@
 	<% @favorite_items.each do |favorite_item| %>
 	<tr>
 		<td><%= link_to favorite_item.name, edit_favorite_item_path(favorite_item), class: "link" %></td>
-		<td><%= favorite_item.unit.name %></td>
+		<!-- <td><%#= favorite_item.unit.name %></td> -->
 		<td><%= favorite_item.quantity %></td>
-		<td>
-			<% if favorite_item.price.nil? %>
-			<span class="badge">?</span>
-			<% else %>
-			<%= favorite_item.price %>
-			<% end %>
-		</td>
+		<!-- <td> -->
+			<%# if favorite_item.price.nil? %>
+			<!-- <span class="badge">?</span> -->
+			<%# else %>
+			<%#= favorite_item.price %>
+			<%# end %>
+		<!-- </td> -->
 		<!-- <td><%#= favorite_item.list_type.name %></td> -->
 		<td><%= favorite_item.item_category.name %></td>
 		<td><%= favorite_item.brand.name %></td>
 		<!-- <td><%#= favorite_item.identifier %></td> -->
 		<td>
-			<%= link_to glyph("transfer"), favorite_item_copyitem_path(favorite_item), class: "btn btn-info" %>
-			<%= link_to glyph("remove-sign"), favorite_item, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to glyph("transfer"), favorite_item_copyitem_path(favorite_item), class: "btn btn-info btn-sm" %>
+			<%= link_to glyph("remove-sign"), favorite_item, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>
 	<% end %>

@@ -30,11 +30,11 @@
 <table class="table table-striped">
 	<tr>
 		<th>Name</th>
-		<th>Unit</th>
-		<th>Quantity</th>
+		<!-- <th>Unit</th> -->
+		<th>Qty</th>
 		<th>Price</th>
 		<!-- <th>List type</th> -->
-		<th>Item category</th>
+		<!-- <th>Category</th> -->
 		<th>Store</th>
 		<!-- <th>Brand</th> -->
 		<!-- <th>Identifier</th> -->
@@ -51,7 +51,7 @@
 					<%= link_to glyph(:wrench), task_path(list_item.task_id), class: "text-danger" %>
 			<% end %>
 		</td>
-		<td><%= list_item.unit.name %></td>
+		<!-- <td><%#= list_item.unit.name %></td> -->
 		<td><%= list_item.quantity %></td>
 		<td>
 			<% if list_item.price.nil? %>
@@ -61,23 +61,23 @@
 			<% end %>
 		</td>
 		<!-- <td><%#= list_item.list_type.name %></td> -->
-		<td><%= list_item.item_category.name %></td>
+		<!-- <td><%#= list_item.item_category.name %></td> -->
 		<td><%= list_item.store.name %></td>
 		<!-- <td><%#= list_item.brand.name %></td> -->
 		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to glyph("shopping-cart"), list_item_putinbasket_path(list_item), class: "btn btn-info" %>
-			<%= link_to glyph("remove-sign"), list_item, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to glyph("shopping-cart"), list_item_putinbasket_path(list_item), class: "btn btn-info btn-xs" %>
+			<%= link_to glyph("remove-sign"), list_item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>
 	<% @totalprice = @totalprice + list_item.price %>
 	<% end %>
 	<tr>
-		<td></td>
+		<!-- <td></td> -->
 		<td></td>
 		<td><strong>Total</strong></td>
 		<td><strong><%= @totalprice %></strong></td>
-		<td></td>
+		<!-- <td></td> -->
 		<td></td>
 		<td></td>
 	</tr>
@@ -93,14 +93,14 @@
 	There are no items in the basket.
 </p>
 <% else %>
-<table class="table table-responsive table-striped">
+<table class="table table-striped">
 	<tr>
 		<th>Name</th>
-		<th>Unit</th>
-		<th>Quantity</th>
+		<!-- <th>Unit</th> -->
+		<th>Qty</th>
 		<th>Price</th>
 		<!-- <th>List type</th> -->
-		<th>Item category</th>
+		<!-- <th>Category</th> -->
 		<th>Store</th>
 		<!-- <th>Brand</th> -->
 		<!-- <th>Identifier</th> -->
@@ -110,7 +110,7 @@
 	<% @basketedlists.each do |list_item| %>
 	<tr>
 		<td><%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %></td>
-		<td><%= list_item.unit.name %></td>
+		<!-- <td><%#= list_item.unit.name %></td> -->
 		<td><%= list_item.quantity %></td>
 		<td>
 			<% if list_item.price.nil? %>
@@ -120,24 +120,24 @@
 			<% end %>
 		</td>
 		<!-- <td><%#= list_item.list_type.name %></td> -->
-		<td><%= list_item.item_category.name %></td>
+		<!-- <td><%#= list_item.item_category.name %></td> -->
 		<td><%= list_item.store.name %></td>
 		<!-- <td><%#= list_item.brand.name %></td> -->
 		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to glyph("ok-sign"), list_item_complete_path(list_item), data: {confirm: "Are you sure?"}, class: "btn btn-success" %>
-			<%= link_to glyph("backward"), list_item_takeoutofbasket_path(list_item), class: "btn btn-warning" %>
+			<%= link_to glyph("ok-sign"), list_item_complete_path(list_item), data: {confirm: "Are you sure?"}, class: "btn btn-success btn-xs" %>
+			<%= link_to glyph("backward"), list_item_takeoutofbasket_path(list_item), class: "btn btn-warning btn-xs" %>
 		</td>
 	</tr>
 	<% @totalprice = @totalprice + list_item.price %>
 	<% end %>
 	<tr>
-		<td></td>
+		<!-- <td></td> -->
 		<td></td>
 		<td><strong>Total</strong></td>
 		<td><strong><%= @totalprice %></strong></td>
 		<td></td>
-		<td></td>
+		<!-- <td></td> -->
 		<td></td>
 	</tr>
 </table>
@@ -150,14 +150,14 @@
 	There are no items in the completed purchases list.
 </p>
 <% else %>
-<table class="table table-responsive table-striped">
+<table class="table table-striped">
 	<tr>
 		<th>Name</th>
-		<th>Unit</th>
-		<th>Quantity</th>
+		<!-- <th>Unit</th> -->
+		<th>Qty</th>
 		<th>Price</th>
 		<!-- <th>List type</th> -->
-		<th>Item category</th>
+		<!-- <th>Category</th> -->
 		<th>Store</th>
 		<!-- <th>Brand</th> -->
 		<!-- <th>Identifier</th> -->
@@ -167,7 +167,7 @@
 	<% @completedlists.each do |list_item| %>
 	<tr>
 		<td><%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %></td>
-		<td><%= list_item.unit.name %></td>
+		<!-- <td><%#= list_item.unit.name %></td> -->
 		<td><%= list_item.quantity %></td>
 		<td>
 			<% if list_item.price.nil? %>
@@ -178,22 +178,22 @@
 			<% end %>
 		</td>
 		<!-- <td><%#= list_item.list_type.name %></td> -->
-		<td><%= list_item.item_category.name %></td>
+		<!-- <td><%#= list_item.item_category.name %></td> -->
 		<td><%= list_item.store.name %></td>
 		<!-- <td><%#= list_item.brand.name %></td> -->
 		<!-- <td><%#= list_item.identifier %></td> -->
 		<td>
-			<%= link_to glyph("pencil"), edit_list_item_path(list_item), class: "btn btn-default" %>
+			<%= link_to glyph("pencil"), edit_list_item_path(list_item), class: "btn btn-default btn-xs" %>
 		</td>
 	</tr>
 	<% @totalprice = @totalprice + list_item.price %>
 	<% end %>
 	<tr>
-		<td></td>
+		<!-- <td></td> -->
 		<td></td>
 		<td><strong>Total</strong></td>
 		<td><strong><%= @totalprice %></strong></td>
-		<td></td>
+		<!-- <td></td> -->
 		<td></td>
 		<td></td>
 	</tr>
