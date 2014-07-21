@@ -20,9 +20,9 @@
 		<% end %>
 	</div>	
 </div>	
-<h3 class="text-info">
+<h4 class="text-info">
 	Incomplete tasks:
-</h3>
+</h4>
 <% if @incompletetasks.blank? %>
 <p>
 	There are no tasks defined as yet.
@@ -51,9 +51,9 @@
 </table>
 <% end %>
 <%= link_to glyph("plus-sign"), new_task_path, class: "btn btn-success" %>
-<h3 class="text-success">
+<h4 class="text-success">
 	Completed tasks:
-</h3>
+</h4>
 <% if @completedtasks.blank? %>
 <p>
 	There are no completed tasks yet.
