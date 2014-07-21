@@ -17,5 +17,4 @@
 
 # production related configurations
 /config/secrets.yml
-/config/initializers/devise.rb
 /config/environments/production.rb
