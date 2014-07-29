@@ -70,7 +70,7 @@
 			<%= link_to glyph("remove-sign"), list_item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>
-	<% @totalprice = @totalprice + list_item.price %>
+	<% @totalprice = @totalprice + (list_item.price || 0.00) %>
 	<% end %>
 	<tr>
 		<!-- <td></td> -->
@@ -129,7 +129,7 @@
 			<%= link_to glyph("backward"), list_item_takeoutofbasket_path(list_item), class: "btn btn-warning btn-xs" %>
 		</td>
 	</tr>
-	<% @totalprice = @totalprice + list_item.price %>
+	<% @totalprice = @totalprice + (list_item.price || 0.00)%>
 	<% end %>
 	<tr>
 		<!-- <td></td> -->
@@ -186,7 +186,7 @@
 			<%= link_to glyph("pencil"), edit_list_item_path(list_item), class: "btn btn-default btn-xs" %>
 		</td>
 	</tr>
-	<% @totalprice = @totalprice + list_item.price %>
+	<% @totalprice = @totalprice + (list_item.price||0.00) %>
 	<% end %>
 	<tr>
 		<!-- <td></td> -->

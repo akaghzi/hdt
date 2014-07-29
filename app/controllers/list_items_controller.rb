@@ -87,7 +87,7 @@ class ListItemsController < ApplicationController
   
   def putinbasket
     begin
-      list_item = ListItem.find_by(id: params[:list_item_id], user_id: current_user.id, inbasket: false)
+      list_item = ListItem.unbasketed.find_by(id: params[:list_item_id], user_id: current_user.id)
     rescue
       logger.error "******** Error **********"
       logger.error "list_item: #{list_item}"
