@@ -21,17 +21,16 @@
 		<% end %>
 	</div>	
 </div>	
-<% if @incompletetasks.blank? %>
-<p>
-	There are no tasks defined as yet.
-</p>
-<% else %>
 <div class="panel panel-primary">
 	<!-- Default panel contents -->
 	<div class="panel-heading">Incomplete:</div>
 	<div class="panel-body">
 	</div>
-
+<% if @incompletetasks.blank? %>
+<p>
+	There are no tasks defined as yet.
+</p>
+<% else %>
 	<!-- Table -->
 	<table class="table">
 		<tr>
@@ -59,16 +58,16 @@
 <table class="table table-striped">
 </table>
 <% end %>
-<% if @completedtasks.blank? %>
-<p>
-	There are no completed tasks yet.
-</p>
-<% else %>
 <div class="panel panel-success">
 	<!-- Default panel contents -->
 	<div class="panel-heading">Incomplete:</div>
 	<div class="panel-body">
 	</div>
+<% if @completedtasks.blank? %>
+<p>
+	There are no completed tasks yet.
+</p>
+<% else %>
 
 <table class="table table-striped">
 	<tr>
