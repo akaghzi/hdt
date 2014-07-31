@@ -1,41 +1,47 @@
 <% if user_signed_in? %>
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-			<%= link_to "Shopping", list_items_path, class: "link"%>
-		</h3>
-  </div>
-  <div class="panel-body">
-    <p>
-			<%= "Wishlist: #{@totalwishlistitems}" %>
-		</p>
-  </div>
+<div class="col-sm-4">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<%= link_to "Shopping", list_items_path, class: "link"%>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<p>
+				<%= "Wishlist: #{@totalwishlistitems}" %>
+			</p>
+		</div>
+	</div>
 </div>
-<div class="panel panel-success">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-			<%= link_to "Tasks", tasks_path, class: "link"%>
-		</h3>
-  </div>
-  <div class="panel-body">
-		<p>
-			<%= "Tasks: #{@totalincompletetaskitems}" %>
-		</p>
-  </div>
-</div>
-<div class="panel panel-danger">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-			<%= link_to "Reports", last30days_path, class: "link"%>
-		</h3>
-  </div>
-  <div class="panel-body">
-		<p>
-			<%= "Purchases: #{@totalspendingpurchases} in last 30 days" %>
-		</p>
-  </div>
+<div class="col-sm-4">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<%= link_to "Tasks", tasks_path, class: "link"%>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<p>
+				<%= "Tasks: #{@totalincompletetaskitems}" %>
+			</p>
+		</div>
+	</div>
 </div>
 
+<div class="col-sm-4">
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<%= link_to "Reports", last30days_path, class: "link"%>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<p>
+				<%= "Purchases: #{@totalspendingpurchases}" %>
+			</p>
+		</div>
+	</div>
+</div>
 <% else %>
 <div class="jumbotron">
 	<h1>
