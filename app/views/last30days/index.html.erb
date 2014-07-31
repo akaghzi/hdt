@@ -1,3 +1,60 @@
+<div class="panel panel-info">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+		<h4>
+			Purchases by store
+		</h4>
+	</div>
+	<div class="panel-body">
+	</div>
+	<% if @last30daysbystore.blank? %>
+	<p>
+		No record found.
+	</p>
+	<% else %>
+	<table class="table table-striped">
+		<tr>
+			<th>Store</th>
+			<th>Total</th>
+		</tr>
+		<% @last30daysbystore.each do | store| %>
+		<tr>
+			<td><%= store.store.name %></td>
+			<td><%= store.totalprice %></td>
+		</tr>
+		<% end %>	
+	</table>	
+	<% end %>
+</div>
+<div class="panel panel-success">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+		<h4>
+			Purchases by category
+		</h4>
+	</div>
+	<div class="panel-body">
+	</div>
+	<% if @last30daysbycategory.blank? %>
+	<p>
+		No record found.
+	</p>
+	<% else %>
+	<table class="table table-striped">
+		<tr>
+			<th>Category</th>
+			<th>Total</th>
+		</tr>
+		<% @last30daysbycategory.each do | category| %>
+		<tr>
+			<td><%= category.item_category.name %></td>
+			<td><%= category.totalprice %></td>
+		</tr>
+		<% end %>	
+	</table>
+	<% end %>
+</div>
+
 <h4 class="text-muted">
 	Purchases - last 30 days:
 </h4>
@@ -28,40 +85,9 @@
 <div class="col-sm-4">
 	<div class="text-info">
 		<h4>
-			Summary by store:
-		</h4>
-	</div>
-	<table class="table table-striped">
-		<tr>
-			<th>Store</th>
-			<th>Total</th>
-		</tr>
-		<% @last30daysbystore.each do | store| %>
-		<tr>
-			<td><%= store.store.name %></td>
-			<td><%= store.totalprice %></td>
-		</tr>
-		<% end %>	
-	</table>
-</div>
-<div class="col-sm-4">
-	<div class="text-info">
-		<h4>
 			Summary by category:
 		</h4>
 	</div>
-	<table class="table table-striped">
-		<tr>
-			<th>Category</th>
-			<th>Total</th>
-		</tr>
-		<% @last30daysbycategory.each do | category| %>
-		<tr>
-			<td><%= category.item_category.name %></td>
-			<td><%= category.totalprice %></td>
-		</tr>
-		<% end %>	
-	</table>
 </div>
 <div class="col-sm-4">
 	<div class="text-info">
