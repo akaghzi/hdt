@@ -22,7 +22,11 @@
 </div>
 <div class="panel panel-info">
 	<!-- Default panel contents -->
-	<div class="panel-heading">Incomplete:</div>
+	<div class="panel-heading">
+	<h3 class="panel-title">
+		Incomplete:
+	</h3>
+	</div>
 	<div class="panel-body">
 	</div>
 		<% if @unbasketedlists.blank? %>
@@ -89,7 +93,11 @@
 </div>
 <div class="panel panel-warning">
 	<!-- Default panel contents -->
-	<div class="panel-heading">In Basket:</div>
+	<div class="panel-heading">
+		<h3 class="panel-title">
+		In Basket:
+	</h3>
+</div>
 	<div class="panel-body">
 	</div>
 <% if @basketedlists.blank? %>
@@ -150,7 +158,11 @@
 <% else %>
 <div class="panel panel-success">
 	<!-- Default panel contents -->
-	<div class="panel-heading">Complete:</div>
+	<div class="panel-heading">
+		<h3 class="panel-title">
+		Complete:
+	</h3>
+</div>
 	<div class="panel-body">
 	</div>
 <% if @completedlists.blank? %>
