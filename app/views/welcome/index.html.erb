@@ -1,77 +1,50 @@
 <% if user_signed_in? %>
-<div class="row jumbotron text-muted text-center">
-	<p class="text-info">
-		<strong>Welcome <%= current_user.full_name %></strong>
-	</p>
-	<div class="well col-sm-4">
-			<p class="label label-primary">
-				Shopping
-			</p>
-			<p>
-				<%= "Items in wishlist: #{@totalwishlistitems}" %>
-			</p>
-			<p>
-				<%= "Items in basket: #{@totalbasketedlistitems}" %>
-			</p>
-			<p>
-				<%= "Items purchased [30 days]: #{@totalcompletedlistitems}" %>
-			</p>
-	</div>
-	<div class="well col-sm-4">
-		<p class="label label-primary">
-			Tasks
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+			<%= link_to "Shopping", list_items_path, class: "link"%>
+		</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+			<%= "Wishlist: #{@totalwishlistitems}" %>
 		</p>
-		<p>
-			<%= "Incomplete tasks: #{@totalincompletetaskitems}" %>
-		</p>
-		<p>
-			<%= "Completed tasks: #{@totalcompletedtaskitems}" %>
-		</p>
-	</div>
-	<div class="well col-sm-4">
-			<p class="label label-primary">
-				History [30 days]
-			</p>
-			<p>
-				<%= "Purchases: #{@totalspendingpurchases}" %>
-			</p>
-			<p>
-				<%= "Labor cost: #{@totalspendinglabor}" %>
-			</p>
-			<p>
-				<%= "Equipment rental cost: #{@totalspendingrental}" %>
-			</p>
-	</div>	
+  </div>
 </div>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+			<%= link_to "Tasks", tasks_path, class: "link"%>
+		</h3>
+  </div>
+  <div class="panel-body">
+		<p>
+			<%= "Tasks: #{@totalincompletetaskitems}" %>
+		</p>
+  </div>
+</div>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+			<%= link_to "Reports", last30days_path, class: "link"%>
+		</h3>
+  </div>
+  <div class="panel-body">
+		<p>
+			<%= "Purchases: #{@totalspendingpurchases} in last 30 days" %>
+		</p>
+  </div>
+</div>
+
 <% else %>
-<div class="jumbotron text-muted text-center">
-	<div class="row">
+<div class="jumbotron">
+	<h1>
+		Lets do it!
+	</h1>
 	<p>
-		Never let your honey forget about the things that are important
-	</p>
-	<div class=col-sm-4>
-		<p>
-			Shopping
-		</p>
-		<%= link_to image_tag("shopping-guy.jpg", class: "img-responsive img-circle", alt: "shopping-guy.jpg"), list_items_path %>
-	</div>
-	<div class=col-sm-4>
-		<p>
-			Tasks
-		</p>
-		<%= link_to image_tag("todolist.png", class: "img-responsive img-rounded", alt: "todolist.png"), tasks_path %>
-	</div>
-	<div class=col-sm-4>
-		<p>
-			History
-		</p>
-		<%= link_to image_tag("history.jpg", class: "img-responsive img-circle", alt: "history.jpg"), last30days_path %>
-	</div>
-</div>
-	<div class="row lead">
 		<%= link_to "Signin", new_user_session_path, class: "btn btn-primary btn-lg" %>
 		Have not signed up as yet, 
 		<%= link_to "Signup", new_user_registration_path, class: "link" %>
-	</div>	
+	</p>
 </div>
 <% end %>
