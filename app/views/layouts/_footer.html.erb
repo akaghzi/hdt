@@ -6,6 +6,7 @@
 	<li><a href="<%= brands_path %>">Brands</a></li>
 	<li><%= link_to 'Contractors', contractors_path %></li>
 	<li><%= link_to "Contact Us", new_contact_path %></li>
+
 	<% if current_user.admin && current_user.approved %>
 	<li><%= link_to "Products", products_path %></li>
 	<% end %>
@@ -13,6 +14,9 @@
 	<li><%= link_to "About Us", welcome_aboutus_path %></li>
 	<% end %>
 	<li><%= link_to "Help", welcome_help_path %></li>
+	<% if user_signed_in? %>
+	<li><%= link_to glyph("off"), destroy_user_session_path, method: :delete, data: {confirm: "are you sure?"}, class: "text-danger pull-right" %></li>
+	<% end %>
 </ul>
 <hr />
 <p class="text-muted pull-right">

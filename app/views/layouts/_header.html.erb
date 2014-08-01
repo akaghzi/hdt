@@ -2,10 +2,25 @@
 	<%= menu_group do %>
 				<%= menu_item "Shopping", list_items_path %>
 				<%= menu_item "Tasks", tasks_path %>
-				<%= menu_item "History", last30days_path %>
-		<% if user_signed_in? && current_user.admin && current_user.approved %>
-			<%= drop_down "Catalog" do %>
-				<%= menu_item "Categories", categories_path %>
+				<%= menu_item "Reports", last30days_path %>
+				<%#= menu_item glyph("shopping-cart"), list_items_path %>
+				<%#= menu_item glyph("list"), tasks_path %>
+				<%#= menu_item glyph("calendar"), last30days_path %>
+	<% end %> <!-- menu_group -->
+		<% if user_signed_in? %>
+	<%= menu_group pull: "right" do %>
+			<%#= drop_down glyph("user") do %>
+				<%= menu_item "Profile", edit_user_registration_path %>
+			 <%# end %> <!--drop_down -->
+		<%# else %>
+			<%#= menu_item glyph("user"), new_user_session_path %>		
+		<% end %> <!--if -->
+	<% end %> <!--menu_group -->
+<% end %> <!--nav_bar-->
+
+		<%# if user_signed_in? && current_user.admin && current_user.approved %>
+			<%#= drop_down "Catalog" do %>
+				<%#= menu_item "Categories", categories_path %>
 				<%#= menu_item "Provinces", provinces_path %>
 				<%#= menu_item "Roles", roles_path %>
 				<%#= menu_item "Priorities", priorities_path %>
@@ -13,18 +28,6 @@
 				<%#= menu_item "Cities", cities_path %>
 				<%#= menu_item "Systems", systems_path %>
 				<%#= menu_item "Subsystems", subsystems_path %>
-			 <% end %> <!--drop_down -->
+			 <%# end %> <!--drop_down -->
 		    <%#= menu_item "Buildings", buildings_path %>
-		<% end %><!--if-->
-	<% end %> <!-- menu_group -->
-	<%= menu_group pull: "right" do %>
-		<% if user_signed_in? %>
-			<%= drop_down glyph("user") do %>
-				<%= menu_item "Profile", edit_user_registration_path %>
-				<%= menu_item "Signoff", destroy_user_session_path, method: :delete, data: {confirm: "are you sure?"} %>
-			 <% end %> <!--drop_down -->
-		<% else %>
-			<%= menu_item glyph("user"), new_user_session_path %>		
-		<% end %> <!--if -->
-	<% end %> <!--menu_group -->
-<% end %> <!--nav_bar-->
+		<%# end %><!--if-->
