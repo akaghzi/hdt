@@ -1,121 +1,127 @@
-<h3 class="text-muted">Last 30 days:</h3>
-<!-- ***********  BY STORE ***************** -->
-<div class="col-sm-4">
-	<div class="panel panel-info">
-		<!-- Default panel contents -->
-		<div class="panel-heading">
-			<h3 class="panel-title">
-				Purchases by store
-			</h3>
-		</div>
-		<div class="panel-body">
-		</div>
-		<% if @last30daysbystore.blank? %>
-		<p>
-			No record found.
-		</p>
-		<% else %>
-		<table class="table table-striped">
-			<tr>
-				<th>Store</th>
-				<th>Total</th>
-			</tr>
-			<% @last30daysbystore.each do | store| %>
-			<tr>
-				<td><%= store.store.name.titleize %></td>
-				<td><%= store.totalprice %></td>
-			</tr>
-			<% @totalprice = @totalprice + store.totalprice %>
-			<% end %>	
-		</table>	
-		<% end %>
-		<div class="panel-footer">
-			<h4 class="text-right">
-				<span class="label label-info">
-				Total <%= @totalprice %>
-				<% @totalprice = 0.00 %>
-			</span>
-			</h4>		
+<div class="row">
+	<div class="col-sm-12">
+		<h3 class="text-muted">
+			Reports - Last 30 days:
+		</h3>
+	</div>
+	<!-- ***********  BY STORE ***************** -->
+	<div class="col-sm-4">
+		<div class="panel panel-info">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					Purchases by store
+				</h3>
+			</div>
+			<% if @last30daysbystore.blank? %>
+			<div class="panel-body">
+				<p>
+					No record found.
+				</p>
+			</div>
+			<% else %>
+			<table class="table table-striped">
+				<tr>
+					<th>Store</th>
+					<th>Total</th>
+				</tr>
+				<% @last30daysbystore.each do | store| %>
+				<tr>
+					<td><%= store.store.name.titleize %></td>
+					<td><%= store.totalprice %></td>
+				</tr>
+				<% @totalprice = @totalprice + store.totalprice %>
+				<% end %>	
+			</table>	
+			<% end %>
+			<div class="panel-footer">
+				<h4 class="text-right">
+					<span class="label label-info">
+						Total <%= @totalprice %>
+						<% @totalprice = 0.00 %>
+					</span>
+				</h4>		
+			</div>
 		</div>
 	</div>
-</div>
-<!-- ************ BY CATEGORY *************** -->
-<div class="col-sm-4">
-	<div class="panel panel-danger">
-		<!-- Default panel contents -->
-		<div class="panel-heading">
-			<h3 class="panel-title">
-				Purchases by category
-			</h3>
-		</div>
-		<div class="panel-body">
-		</div>
-		<% if @last30daysbycategory.blank? %>
-		<p>
-			No record found.
-		</p>
-		<% else %>
-		<table class="table table-striped">
-			<tr>
-				<th>Category</th>
-				<th>Total</th>
-			</tr>
-			<% @last30daysbycategory.each do | category| %>
-			<tr>
-				<td><%= category.item_category.name.titleize %></td>
-				<td><%= category.totalprice %></td>
-			</tr>
-			<% @totalprice = @totalprice + category.totalprice %>
-			<% end %>	
-		</table>
-		<% end %>
-		<div class="panel-footer">
-			<h4 class="text-right">
-				<span class="label label-danger">
-				Total <%= @totalprice %>
-				<% @totalprice = 0.00 %>
-			</span>
-			</h4>		
-		</div>
-	</div>
-</div>
-<!-- ************ BY BRAND ************** -->
-<div class="col-sm-4">
-	<div class="panel panel-success">
-		<!-- Default panel contents -->
-		<div class="panel-heading">
-			<h3 class="panel-title">
-				Purchases by brand
-			</h3>
-		</div>
-		<div class="panel-body">
-		</div>
-		<% if @last30daysbybrand.blank? %>
-		<p>
-			No record found.
-		</p>
-		<% else %>
-		<table class="table table-striped">
-			<tr>
-				<th>Brand</th>
-				<th>Total</th>
-			</tr>
-			<% @last30daysbybrand.each do | brand| %>
-			<tr>
-				<td><%= brand.brand.name.titleize %></td>
-				<td><%= brand.totalprice %></td>
-			</tr>
-			<% @totalprice = @totalprice + brand.totalprice %>
-			<% end %>	
-		</table>	
-		<% end %>
-		<div class="panel-footer">
-			<h4 class="text-right">
-				<span class="label label-success">
-				Total <%= @totalprice %>
-				<% @totalprice = 0.00 %>
-			</span>
-			</h4>		
+	<!-- ************ BY CATEGORY *************** -->
+	<div class="col-sm-4">
+		<div class="panel panel-success">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					Purchases by category
+				</h3>
+			</div>
+			<% if @last30daysbycategory.blank? %>
+			<div class="panel-body">
+				<p>
+					No record found.
+				</p>
+			</div>
+			<% else %>
+			<table class="table table-striped">
+				<tr>
+					<th>Category</th>
+					<th>Total</th>
+				</tr>
+				<% @last30daysbycategory.each do | category| %>
+				<tr>
+					<td><%= category.item_category.name.titleize %></td>
+					<td><%= category.totalprice %></td>
+				</tr>
+				<% @totalprice = @totalprice + category.totalprice %>
+				<% end %>	
+			</table>
+			<% end %>
+			<div class="panel-footer">
+				<h4 class="text-right">
+					<span class="label label-danger">
+						Total <%= @totalprice %>
+						<% @totalprice = 0.00 %>
+					</span>
+				</h4>		
+			</div>
 		</div>
 	</div>
-</div>
+	<!-- ************ BY BRAND ************** -->
+	<div class="col-sm-4">
+		<div class="panel panel-danger">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					Purchases by brand
+				</h3>
+			</div>
+			<% if @last30daysbybrand.blank? %>
+			<div class="panel-body">
+				<p>
+					No record found.
+				</p>
+			</div>
+			<% else %>
+			<table class="table table-striped">
+				<tr>
+					<th>Brand</th>
+					<th>Total</th>
+				</tr>
+				<% @last30daysbybrand.each do | brand| %>
+				<tr>
+					<td><%= brand.brand.name.titleize %></td>
+					<td><%= brand.totalprice %></td>
+				</tr>
+				<% @totalprice = @totalprice + brand.totalprice %>
+				<% end %>	
+			</table>	
+			<% end %>
+			<div class="panel-footer">
+				<h4 class="text-right">
+					<span class="label label-success">
+						Total <%= @totalprice %>
+						<% @totalprice = 0.00 %>
+					</span>
+				</h4>		
+			</div>
+		</div>
+	</div>
+</div>	
