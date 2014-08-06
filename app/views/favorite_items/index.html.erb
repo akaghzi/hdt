@@ -20,49 +20,60 @@
 		<% end %>
 	</div>	
 </div>	
-<% if @favorite_items.blank? %>
-<p>
-	There are no items in the favorite items' list.
-</p>
-<% else %>
-<table class="table table-condensed">
-	<tr>
-		<th>Name</th>
-		<!-- <th>Unit</th> -->
-		<th>Qty</th>
-		<!-- <th>Price</th> -->
-		<!-- <th>List type</th> -->
-		<th>Category</th>
-		<th>Brand</th>
-		<!-- <th>UPCode</th> -->
-		<th>Action</th>
-	</tr>
-	<% @favorite_items.each do |favorite_item| %>
-	<tr>
-		<td><%= link_to favorite_item.name, edit_favorite_item_path(favorite_item), class: "link" %></td>
-		<!-- <td><%#= favorite_item.unit.name %></td> -->
-		<td><%= favorite_item.quantity %></td>
-		<!-- <td> -->
-			<%# if favorite_item.price.nil? %>
-			<!-- <span class="badge">?</span> -->
-			<%# else %>
-			<%#= favorite_item.price %>
-			<%# end %>
-		<!-- </td> -->
-		<!-- <td><%#= favorite_item.list_type.name %></td> -->
-		<td><%= favorite_item.item_category.name %></td>
-		<td><%= favorite_item.brand.name %></td>
-		<!-- <td><%#= favorite_item.identifier %></td> -->
-		<td>
-			<%= link_to glyph("transfer"), favorite_item_copyitem_path(favorite_item), class: "btn btn-info btn-sm" %>
-			<%= link_to glyph("remove-sign"), favorite_item, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
-		</td>
-	</tr>
-	<% end %>
-</table>
-
-<% end %>
-<%= link_to glyph("plus-sign"), new_favorite_item_path, class: "btn btn-success" %>
-<% if @favorite_items.count >= 1 %>
-  <%= link_to 'Copy All', copyallitems_path, class: "btn btn-info", data: {confirm: "are you sure?"}%>
-<% end %>
+<div class="panel panel-info">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			Latest 10 items:
+		</h3>
+	</div>
+	<% if @favorite_items.blank? %>
+	<div class="panel-body">
+		<p>Empty.
+			<%= link_to glyph("plus-sign"), new_favorite_item_path, class: "btn btn-success" %>
+		</p>
+	</div>
+	<% else %>
+	<table class="table table-condensed">
+		<tr>
+			<th>Name</th>
+			<!-- <th>Unit</th> -->
+			<th>Qty</th>
+			<!-- <th>Price</th> -->
+			<!-- <th>List type</th> -->
+			<th>Category</th>
+			<th>Brand</th>
+			<!-- <th>UPCode</th> -->
+			<th>Action</th>
+		</tr>
+		<% @favorite_items.each do |favorite_item| %>
+		<tr>
+			<td><%= link_to favorite_item.name, edit_favorite_item_path(favorite_item) %></td>
+			<!-- <td><%#= favorite_item.unit.name %></td> -->
+			<td><%= favorite_item.quantity %></td>
+			<!-- <td> -->
+				<%# if favorite_item.price.nil? %>
+				<!-- <span class="badge">?</span> -->
+				<%# else %>
+				<%#= favorite_item.price %>
+				<%# end %>
+				<!-- </td> -->
+				<!-- <td><%#= favorite_item.list_type.name %></td> -->
+				<td><%= favorite_item.item_category.name %></td>
+				<td><%= favorite_item.brand.name %></td>
+				<!-- <td><%#= favorite_item.identifier %></td> -->
+				<td>
+					<%= link_to glyph("transfer"), favorite_item_copyitem_path(favorite_item), class: "btn btn-info btn-sm" %>
+					<%= link_to glyph("remove-sign"), favorite_item, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+		<% end %>
+		<div class="panel-footer">		
+			<% if @favorite_items.count >= 1 %>
+			<%= link_to glyph("plus-sign"), new_favorite_item_path, class: "btn btn-success" %>
+			<%= link_to 'Copy All', copyallitems_path, class: "btn btn-info", data: {confirm: "are you sure?"}%>
+			<% end %>
+		</div>
+	</div>

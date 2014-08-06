@@ -3,7 +3,6 @@
 		<h3 class="text-muted">
 			Contractors:
 		</h3>
-		
 	</div>
 	<div class-"form-inline" role="form">
 		<%= form_tag(@contractor, method: "get", ) do %>
@@ -21,38 +20,34 @@
 		<% end %>
 	</div>	
 </div>	
-<% if @contractors.blank? %>
-<p>There are no contractors listed by you.</p>
-<% else %>
-<table class="table table-condensed">
-	<tr>
-		<td>Name</td>
-		<td>Phone</td>
-		<td>Email</td>
-		<td>Description</td>
-		<td>Action</td>
-	</tr>
-	<% @contractors.each do |contractor| %>
-	<tr>
-		<td>
-			<%= contractor.name.titleize %>
-		</td>
-		<td>
-			<%= contractor.phone %>
-		</td>
-		<td>
-			<%= contractor.email.downcase %>
-		</td>
-		<td>
-			<%= contractor.description %>
-		</td>
-		<td>
-			<%= link_to "Edit", edit_contractor_path(contractor), class: "btn btn-default btn-xs" %>
-		</td>
-	</tr>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			Latest 10 contractors:
+		</h3>
+	</div>
+	<% if @contractors.blank? %>
+	<div class="panel-body">
+		<p>
+			Product not found in our database, please add it if you like.
+		</p>
+	</div>
+	<% else %>
+	<table class="table table-condensed">
+		<tr>
+			<th>Name</th>
+		</tr>
+		<% @contractors.each do |contractor| %>
+		<tr>
+			<td>
+				<%= contractor.name %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
 	<% end %>
-</table>
-<% end %>
-<i class="text-info">Add your favorite contractor here if it is not listed already</i>
-<%= link_to glyph("plus-sign"), new_contractor_path, class: "btn btn-success" %>
-
+	<div class="panel-footer">
+		<i class="text-danger">Add your favorite contractor here if it is not listed already</i>
+		<%= link_to glyph("plus"), new_contractor_path, class: "btn btn-success" %>
+	</div>
+</div>

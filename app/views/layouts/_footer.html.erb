@@ -6,33 +6,34 @@
 	<li><a href="<%= brands_path %>">Brands</a></li>
 	<li><%= link_to 'Contractors', contractors_path %></li>
 	<li><%= link_to "Contact Us", new_contact_path %></li>
+	<li class="pull-right"><%= link_to "Signout", destroy_user_session_path, method: :delete, data: {confirm: "are you sure?"}, class: "text-danger" %></li>
 
-	<% if current_user.admin && current_user.approved %>
-	<li><%= link_to "Products", products_path %></li>
-	<% end %>
 	<% else %>
 	<li><%= link_to "About Us", welcome_aboutus_path %></li>
 	<% end %>
 	<li><%= link_to "Help", welcome_help_path %></li>
 	<% if user_signed_in? %>
-	<li class="pull-right"><%= link_to "Signout", destroy_user_session_path, method: :delete, data: {confirm: "are you sure?"}, class: "text-danger" %></li>
+	<% if current_user.admin && current_user.approved %>
+	<li><%= link_to "Products", products_path %></li>
+	<% end %>
 	<% end %>
 </ul>
 <hr />
 <p class="text-muted pull-right">
-	Clear Edge Techonolgies Inc.<br />
+	Clear Edge Techonolgies Inc.<br>
 	<!-- 810-1001 13 Avenue South West, <br />
-	Calgary Alberta, Canada T2R0L5<br />
-	Phone: +1(403)274-9657<br /> -->
-	Email: <a href="mailto:info@honey-do-this.net">info@honey-do-this.net</a></p>
-<p>
-	<% if Rails.env == 'development' && user_signed_in? %>
-ID: <%= current_user.id %><br />
-fname: <%= current_user.first_name %><br />
-lname: <%= current_user.last_name %><br />
-email: <%= current_user.email %><br />
-admin: <%= current_user.admin %><br />
-approved: <%= current_user.approved %><br />
-Last login: <%= current_user.last_sign_in_at.strftime("%d-%h-%Y %H:%M:%S") %>	
-</p>
-<% end %>
+		Calgary Alberta, Canada T2R0L5<br />
+		Phone: +1(403)274-9657<br /> -->
+		Email: <a href="mailto:info@honey-do-this.net">info@honey-do-this.net</a>
+	</p>
+	<p>
+		<% if Rails.env == 'development' && user_signed_in? %>
+		ID: <%= current_user.id %><br />
+		fname: <%= current_user.first_name %><br />
+		lname: <%= current_user.last_name %><br />
+		email: <%= current_user.email %><br />
+		admin: <%= current_user.admin %><br />
+		approved: <%= current_user.approved %><br />
+		Last login: <%= current_user.last_sign_in_at.strftime("%d-%h-%Y %H:%M:%S") %>	
+	</p>
+	<% end %>

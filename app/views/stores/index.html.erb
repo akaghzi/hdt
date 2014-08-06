@@ -3,7 +3,6 @@
 		<h3 class="text-muted">
 			Stores:
 		</h3>
-		
 	</div>
 	<div class-"form-inline" role="form">
 		<%= form_tag(@store, method: "get", ) do %>
@@ -22,16 +21,34 @@
 	</div>	
 </div>	
 	
-<table class="table table-striped">
-	<% @stores.each do |store| %>
-	<tr>
-		<td>
-			<%= store.name.titleize %>
-		</td>
-	</tr>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			Latest 10 stores:
+		</h3>
+	</div>
+	<% if @stores.blank? %>
+	<div class="panel-body">
+		<p>
+			Product not found in our database, please add it if you like.
+		</p>
+	</div>
+	<% else %>
+	<table class="table table-condensed">
+		<tr>
+			<th>Name</th>
+		</tr>
+		<% @stores.each do |store| %>
+		<tr>
+			<td>
+				<%= store.name %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
 	<% end %>
-</table>
-<p>
-<i class="text-info">Add your favorite store here if it is not listed already</i>
-<%= link_to glyph("plus-sign"), new_store_path, class: "btn btn-success" %>
-</p>
+	<div class="panel-footer">
+		<i class="text-danger">Add your favorite store here if it is not listed already</i>
+		<%= link_to glyph("plus"), new_store_path, class: "btn btn-success" %>
+	</div>
+</div>
