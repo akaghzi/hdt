@@ -1,4 +1,4 @@
-class Last30daysController < ApplicationController
+class ReportsController < ApplicationController
   def index
     @totalprice = 0.00
     # @last30daysbyitem = ListItem.completed.where(user_id: current_user.id).select("name, sum(price) as totalprice").group("name").order("totalprice desc")

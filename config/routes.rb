@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/help'
   get 'welcome/aboutus'
-  get 'last30days', to: "last30days#index"
+  get 'reports', to: "reports#index"
 
   resources :rentals do
     match 'complete', to:  "rentals#complete", via: :get
@@ -45,5 +45,8 @@ Rails.application.routes.draw do
   resources :item_categories
 
   resources :list_types
+  
+  get 'ndb/index'
+  get 'ndb/oneoff'
 
 end

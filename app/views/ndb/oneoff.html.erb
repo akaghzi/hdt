@@ -1,0 +1,98 @@
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			One off Item:
+		</h3>
+	</div>
+	<div class="panel-body">
+		<table class="table table-condensed">
+			<tr>
+				<th>Long Description</th>
+				<td><%= @fd_desc.long_desc %></td>
+			</tr>
+			<tr>
+				<th>NDB#</th>
+				<td><%= @fd_desc.ndb_no %></td>
+			</tr>
+			<tr>
+				<th>Food Group</th>
+				<td><%= @fd_desc.fd_group.fdgrp_desc %></td>
+			</tr>
+			<tr>
+				<th>Short Description</th>
+				<td><%= @fd_desc.short_dest %></td>
+			</tr>
+			<tr>
+				<th>Common Name</th>
+				<td><%= @fd_desc.comname %></td>
+			</tr>
+			<tr>
+				<th>Manufacturer Name</th>
+				<td><%= @fd_desc.manufacname %></td>
+			</tr>
+			<tr>
+				<th>Survey</th>
+				<td><%= @fd_desc.survey %></td>
+			</tr>
+			<tr>
+				<th>Ref Description</th>
+				<td><%= @fd_desc.ref_desc %></td>
+			</tr>
+			<tr>
+				<th>Refuse</th>
+				<td><%= @fd_desc.refuse %></td>
+			</tr>
+			<tr>
+				<th>Scientific Name</th>
+				<td><%= @fd_desc.sciname %></td>
+			</tr>
+			<tr>
+				<th>N Factor</th>
+				<td><%= @fd_desc.n_factor %></td>
+			</tr>
+			<tr>
+				<th>Pro Factor</th>
+				<td><%= @fd_desc.pro_factor %></td>
+			</tr>
+			<tr>
+				<th>Fat Factor</th>
+				<td><%= @fd_desc.fat_factor %></td>
+			</tr>
+			<tr>
+				<th>CHO Factor</th>
+				<td><%= @fd_desc.cho_factor %></td>
+			</tr>
+		</table>
+	</div>
+	<p>Nutrition:</p>
+	<table class="table table-stripped">
+		<% @fd_desc.nut_datas.each do |fd|%>
+		<tr>
+			<th><%= fd.nutr_def.nutrdesc %></th>
+		  <td><%= fd.nutr_def.units %></td>
+		  <td><%= fd.nutr_val %></td>
+		  <td><%= fd.src_cd.srccd_desc %></td>
+		</tr>
+		<% end %>
+	</table>
+	<p>
+		<h3>Weight information:</h3>
+		<% @fd_desc.weights.each do |weight| %>
+		<%= weight.msre_desc %> = 
+		<%= weight.gm_weight %> gram<br>
+		<% end %>
+	</p>
+	<p>Footnote(s):</p>
+	<table class="table table-stripped">
+		<% @fd_desc.footnotes.each do |fn|%>
+		<tr>
+			<th><%= fn.footnt_no %></th>
+			<!-- <td><%#= fn.nutr_def.nutrdesc %> -->
+		  <td><%= fn.footnt_txt %></td>
+		</tr>
+		<% end %>
+	</table>
+	
+	<div class="panel-footer">
+	</div>
+</div>

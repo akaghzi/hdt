@@ -1,0 +1,2 @@
+module NdbHelper
+end
