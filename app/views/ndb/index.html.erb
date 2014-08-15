@@ -1,410 +1,48 @@
 <div class="row">
 	<div class="col-sm-2">
 		<h3 class="text-muted">
-			Weight:
+			Foods:
 		</h3>
 	</div>
-	<!-- <div class-"form-inline" role="form">
-		<%#= form_tag(@weight, method: "get", ) do %>
+	<div class-"form-inline" role="form">
+		<%= form_tag(@fd_desc, method: "get", ) do %>
 		<div class="form-group">
 			<div class="col-sm-4">
 				<div class="input-group">
-					<%= text_field_tag :search, params[:search], autofocus: true, placeholder: "weight name", class: "form-control" %>
+					<%= text_field_tag :search, params[:search], autofocus: true, placeholder: "food name", class: "form-control" %>
 					<div class="input-group-btn">
 						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-						<%#= link_to glyph("plus-sign"), new_weight_path, class: "btn btn-success" %>
 					</div>
 				</div>
-			</div>
-		</div>
-		<%# end %>
-	</div>	 -->
+			</div>				
+		</div>                  
+		<% end %>
+	</div>	
 </div>	
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">
-			Latest 10 weights:
-		</h3>
-	</div>
-	<% if @weights.blank? %>
-	<div class="panel-body">
-		<p>
-			Product not found in our database, please add it if you like.
-		</p>
-	</div>
-	<% else %>
-	<table class="table table-condensed">
-		<tr>
-			<th>NDB#</th>
-			<th>Seq</th>
-			<th>Amount</th>
-			<th>MSRE_Desc</th>
-			<th>Gm_Weight</th>
-			<th>Num_Data_Pts</th>
-			<th>Std_Dev</th>
-		</tr>
-		<% @weights.each do |weight| %>
-		<tr>
-			<td>
-				<%= weight.ndb_no %>
-			</td>
-			<td>
-				<%= weight.seq %>
-			</td>
-			<td>
-				<%= weight.amount %>
-			</td>
-			<td>
-				<%= weight.msre_desc %>
-			</td>
-			<td>
-				<%= weight.gm_weight %>
-			</td>
-			<td>
-				<%= weight.num_data_pts %>
-			</td>
-			<td>
-				<%= weight.std_dev %>
-			</td>
-		</tr>
-		<% end %>
-	</table>
-	<% end %>
-	<div class="panel-footer">
-	</div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Latest 10 src cd:
-		</h3>
-	</div>
-	<% if @src_cds.blank? %>
-	<div class="panel-body">
-		<p>
-			Product not found in our database, please add it if you like.
-		</p>
-	</div>
-	<% else %>
-	<table class="table table-condensed">
-		<tr>
-			<th>Src_cd</th>
-			<th>Srccd_Desc</th>
-		</tr>
-		<% @src_cds.each do |src_cd| %>
-		<tr>
-			<td>
-				<%= src_cd.src_cd %>
-			</td>
-			<td>
-				<%= src_cd.srccd_desc %>
-			</td>
-		</tr>
-		<% end %>
-	</table>
-	<% end %>
-	<div class="panel-footer">
-	</div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Latest 10 Fd_Group:
-		</h3>
-	</div>
-	<% if @fd_groups.blank? %>
-	<div class="panel-body">
-		<p>
-			Product not found in our database, please add it if you like.
-		</p>
-	</div>
-	<% else %>
-	<table class="table table-condensed">
-		<tr>
-			<th>Group Cd</th>
-			<th>Grpcd_Desc</th>
-		</tr>
-		<% @fd_groups.each do |fd_group| %>
-		<tr>
-			<td>
-				<%= fd_group.fdgrp_cd %>
-			</td>
-			<td>
-				<%= fd_group.fdgrp_desc %>
-			</td>
-		</tr>
-		<% end %>
-	</table>
-	<% end %>
-	<div class="panel-footer">
-	</div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Latest 10 Nut_data:
-		</h3>
-	</div>
-	<% if @nut_datas.blank? %>
-	<div class="panel-body">
-		<p>
-			Product not found in our database, please add it if you like.
-		</p>
-	</div>
-	<% else %>
-	<table class="table table-condensed">
-		<tr>
-			<th>NDB#</th>
-			<th>NUTR#</th>
-			<th>NUTR Value</th>
-			<th>Num Data PTS</th>
-			<th>Std Error</th>
-			<th>Src_cd</th>
-			<th>deriv_cd</th>
-			<th>Ref_Ndb_No</th>
-			<th>Add_Nutr_Mark</th>
-			<th>Num_Studies</th>
-			<th>Min</th>
-			<th>Max</th>
-			<th>DF</th>
-			<th>Low_EB</th>
-			<th>Up_EB</th>
-			<th>Stat_CMT</th>
-			<th>AddMod_Date</th>
-			<th>CC</th>
-		</tr>
-		<% @nut_datas.each do |nut_data| %>
-		<tr>
-			<td><%= nut_data.ndb_no %></td>
-			<td><%= nut_data.nutr_no %></td>
-			<td><%= nut_data.nutr_val %></td>
-			<td><%= nut_data.num_data_pts %></td>
-			<td><%= nut_data.std_error %></td>
-			<td><%= nut_data.src_cd %></td>
-			<td><%= nut_data.deriv_cd %></td>
-			<td><%= nut_data.ref_ndb_no %></td>
-			<td><%= nut_data.add_nutr_mark %></td>
-			<td><%= nut_data.num_studies %></td>
-			<td><%= nut_data.min %></td>
-			<td><%= nut_data.max %></td>
-			<td><%= nut_data.df %></td>
-			<td><%= nut_data.low_eb %></td>
-			<td><%= nut_data.up_eb %></td>
-			<td><%= nut_data.stat_cmt %></td>
-			<td><%= nut_data.addmod_date %></td>
-			<td><%= nut_data.cc %></td>
-		</tr>
-		<% end %>
-	</table>
-	<% end %>
-	<div class="panel-footer">
-	</div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Latest 10 Fd_Desc:
+			Food Description:
 		</h3>
 	</div>
 	<% if @fd_descs.blank? %>
 	<div class="panel-body">
 		<p>
-			Product not found in our database, please add it if you like.
+			Food item not found.
 		</p>
 	</div>
 	<% else %>
 	<table class="table table-condensed">
 		<tr>
 			<th>NDB#</th>
-			<th>Food_Group_Cd</th>
-			<th>Long_Desc</th>
-			<th>Short_Desc</th>
-			<th>Common_Name</th>
-			<th>ManufactureName</th>
-			<th>Survey</th>
-			<th>Ref_Desc</th>
-			<th>Refuse</th>
-			<th>Sci_Name</th>
-			<th>N_Factor</th>
-			<th>Pro_Factor</th>
-			<th>Fat_Factor</th>
-			<th>CHO_Factor</th>
+			<th>Food Group</th>
+			<th>Long Description</th>
 		</tr>
 		<% @fd_descs.each do |fd_desc| %>
 		<tr>
-			<td><%= fd_desc.ndb_no %></td>
-			<td><%= fd_desc.fdgrp_cd %></td>
-			<td><%= fd_desc.long_desc %></td>
-			<td><%= fd_desc.short_dest %></td>
-			<td><%= fd_desc.comname %></td>
-			<td><%= fd_desc.manufacname %></td>
-			<td><%= fd_desc.survey %></td>
-			<td><%= fd_desc.ref_desc %></td>
-			<td><%= fd_desc.refuse %></td>
-			<td><%= fd_desc.sciname %></td>
-			<td><%= fd_desc.n_factor %></td>
-			<td><%= fd_desc.pro_factor %></td>
-			<td><%= fd_desc.fat_factor %></td>
-			<td><%= fd_desc.cho_factor %></td>
-		</tr>
-		<% end %>
-	</table>
-	<% end %>
-	<div class="panel-footer">
-	</div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Latest 10 LanguaL:
-		</h3>
-	</div>
-	<% if @languals.blank? %>
-	<div class="panel-body">
-		<p>
-			Product not found in our database, please add it if you like.
-		</p>
-	</div>
-	<% else %>
-	<table class="table table-condensed">
-		<tr>
-			<th>NDB#</th>
-			<th>Factor Code</th>
-		</tr>
-		<% @languals.each do |langual| %>
-		<tr>
-			<td><%= langual.ndb_no %></td>
-			<td><%= langual.factor_code %></td>
-		</tr>
-		<% end %>
-	</table>
-	<% end %>
-	<div class="panel-footer">
-	</div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Latest 10 Lang Desc:
-		</h3>
-	</div>
-	<% if @langdescs.blank? %>
-	<div class="panel-body">
-		<p>
-			Product not found in our database, please add it if you like.
-		</p>
-	</div>
-	<% else %>
-	<table class="table table-condensed">
-		<tr>
-			<th>Factor Code</th>
-			<th>Description</th>
-		</tr>
-		<% @langdescs.each do |langdesc| %>
-		<tr>
-			<td><%= langdesc.factor_code %></td>
-			<td><%= langdesc.description %></td>
-		</tr>
-		<% end %>
-	</table>
-	<% end %>
-	<div class="panel-footer">
-	</div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Latest 10 Nutrition Description:
-		</h3>
-	</div>
-	<% if @nutr_defs.blank? %>
-	<div class="panel-body">
-		<p>
-			Product not found in our database, please add it if you like.
-		</p>
-	</div>
-	<% else %>
-	<table class="table table-condensed">
-		<tr>
-			<th>Nutr No</th>
-			<th>Units</th>
-			<th>Tagname</th>
-			<th>Nutr Desc</th>
-			<th>Num_dec</th>
-			<th>SR Order</th>
-		</tr>
-		<% @nutr_defs.each do |nutr_def| %>
-		<tr>
-			<td><%= nutr_def.nutr_no %></td>
-			<td><%= nutr_def.units %></td>
-			<td><%= nutr_def.tagname %></td>
-			<td><%= nutr_def.nutrdesc %></td>
-			<td><%= nutr_def.num_dec %></td>
-			<td><%= nutr_def.sr_order %></td>
-		</tr>
-		<% end %>
-	</table>
-	<% end %>
-	<div class="panel-footer">
-	</div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Latest 10 Deriv CD:
-		</h3>
-	</div>
-	<% if @deriv_cds.blank? %>
-	<div class="panel-body">
-		<p>
-			Product not found in our database, please add it if you like.
-		</p>
-	</div>
-	<% else %>
-	<table class="table table-condensed">
-		<tr>
-			<th>Deriv CD</th>
-			<th>Deriv Desc</th>
-		</tr>
-		<% @deriv_cds.each do |deriv_cd| %>
-		<tr>
-			<td><%= deriv_cd.deriv_cd %></td>
-			<td><%= deriv_cd.deriv_desc %></td>
-		</tr>
-		<% end %>
-	</table>
-	<% end %>
-	<div class="panel-footer">
-	</div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Latest 10 Footnote:
-		</h3>
-	</div>
-	<% if @footnotes.blank? %>
-	<div class="panel-body">
-		<p>
-			Product not found in our database, please add it if you like.
-		</p>
-	</div>
-	<% else %>
-	<table class="table table-condensed">
-		<tr>
-			<th>NDB#</th>
-			<th>Footnote No</th>
-			<th>Footnote Type</th>
-			<th>Nutr No</th>
-			<th>Footnote Text</th>
-		</tr>
-		<% @footnotes.each do |footnote| %>
-		<tr>
-			<td><%= footnote.ndb_no %></td>
-			<td><%= footnote.footnt_no %></td>
-			<td><%= footnote.footnt_typ %></td>
-			<td><%= footnote.nutr_no %></td>
-			<td><%= footnote.footnt_txt %></td>
+			<td><%= link_to fd_desc.ndb_no, ndb_food_path(fd_desc.ndb_no) %></td>
+			<td><%= fd_desc.fd_group.fdgrp_desc %></td>
+			<td><%= fd_desc.long_desc.capitalize %></td>
 		</tr>
 		<% end %>
 	</table>

@@ -1,14 +1,14 @@
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">
-			One off Item:
+			Food Description:
 		</h3>
 	</div>
 	<div class="panel-body">
 		<table class="table table-condensed">
 			<tr>
 				<th>Long Description</th>
-				<td><%= @fd_desc.long_desc %></td>
+				<td><%= @fd_desc.long_desc.capitalize %></td>
 			</tr>
 			<tr>
 				<th>NDB#</th>
@@ -18,9 +18,19 @@
 				<th>Food Group</th>
 				<td><%= @fd_desc.fd_group.fdgrp_desc %></td>
 			</tr>
+			<% if @fd_desc.languals.count > 0 %>
+			<tr>
+				<th>LanguaL</th>
+				<td>
+					<% @fd_desc.languals.each do|langual| %>
+					<%= langual.langdesc.description.capitalize %><br>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
 			<tr>
 				<th>Short Description</th>
-				<td><%= @fd_desc.short_dest %></td>
+				<td><%= @fd_desc.short_dest.capitalize %></td>
 			</tr>
 			<tr>
 				<th>Common Name</th>
@@ -66,9 +76,10 @@
 	</div>
 	<p>Nutrition:</p>
 	<table class="table table-stripped">
-		<% @fd_desc.nut_datas.each do |fd|%>
+		<% @fd_desc.nut_datas.hasval.each do |fd|%>
 		<tr>
-			<th><%= fd.nutr_def.nutrdesc %></th>
+			<th><%= fd.nutr_no %></th>
+			<td><%= fd.nutr_def.nutrdesc %></td>
 		  <td><%= fd.nutr_def.units %></td>
 		  <td><%= fd.nutr_val %></td>
 		  <td><%= fd.src_cd.srccd_desc %></td>
@@ -87,7 +98,7 @@
 		<% @fd_desc.footnotes.each do |fn|%>
 		<tr>
 			<th><%= fn.footnt_no %></th>
-			<!-- <td><%#= fn.nutr_def.nutrdesc %> -->
+			<!-- <td><%#= fn.fd_desc.long_desc %> -->
 		  <td><%= fn.footnt_txt %></td>
 		</tr>
 		<% end %>

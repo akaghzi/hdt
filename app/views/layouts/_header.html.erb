@@ -6,6 +6,11 @@
 				<%#= menu_item glyph("shopping-cart"), list_items_path %>
 				<%#= menu_item glyph("list"), tasks_path %>
 				<%#= menu_item glyph("calendar"), last30days_path %>
+				<% if user_signed_in? && current_user.admin && current_user.approved %>
+					<%= drop_down "NDB" do %>
+						<%= menu_item "index", ndb_index_path %>
+					 <% end %> <!--drop_down -->
+				<% end %><!--if-->
 	<% end %> <!-- menu_group -->
 		<% if user_signed_in? %>
 	<%= menu_group pull: "right" do %>
@@ -18,16 +23,3 @@
 	<% end %> <!--menu_group -->
 <% end %> <!--nav_bar-->
 
-		<%# if user_signed_in? && current_user.admin && current_user.approved %>
-			<%#= drop_down "Catalog" do %>
-				<%#= menu_item "Categories", categories_path %>
-				<%#= menu_item "Provinces", provinces_path %>
-				<%#= menu_item "Roles", roles_path %>
-				<%#= menu_item "Priorities", priorities_path %>
-				<%#= menu_item "Companies", companies_path %>
-				<%#= menu_item "Cities", cities_path %>
-				<%#= menu_item "Systems", systems_path %>
-				<%#= menu_item "Subsystems", subsystems_path %>
-			 <%# end %> <!--drop_down -->
-		    <%#= menu_item "Buildings", buildings_path %>
-		<%# end %><!--if-->

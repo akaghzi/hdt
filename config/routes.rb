@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   root 'welcome#index'
-  get 'welcome/help'
-  get 'welcome/aboutus'
+  get 'help', to: "welcome#help"
+  get 'aboutus', to: "welcome#aboutus"
   get 'reports', to: "reports#index"
 
   resources :rentals do
@@ -47,6 +47,9 @@ Rails.application.routes.draw do
   resources :list_types
   
   get 'ndb/index'
-  get 'ndb/oneoff'
+  
+  resources :ndb do
+    get 'food', to: "ndb#show", via: :get
+  end
 
 end

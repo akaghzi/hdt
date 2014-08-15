@@ -1,17 +1,22 @@
 class NdbController < ApplicationController
+  before_action :set_brand, only: [:show, :edit, :update, :destroy]
+  
   def index
-    @weights = Weight.limit(10)
-    @src_cds = SrcCd.limit(10)
-    @fd_groups = FdGroup.limit(10)
-    @nut_datas = NutData.limit(10)
-    @fd_descs = FdDesc.limit(10)
-    @languals = Langual.limit(10)
-    @langdescs = Langdesc.limit(10)
-    @nutr_defs = NutrDef.limit(10)
-    @deriv_cds = Deriv_cd.limit(10)
-    @footnotes = Footnote.limit(10)
+    if params[:search]
+      @fd_descs = FdDesc.search(params[:search])
+    else
+      @fd_descs = FdDesc.order("long_desc desc").limit(10)
+    end
   end
-  def oneoff
-    @fd_desc = FdDesc.find("02048")
+  
+  def show
+    # @fd_desc = FdDesc.find(params[:ndb_no])
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_brand
+      @fd_desc = FdDesc.find(params[:ndb_id])
+    end
+    
 end
