@@ -1,6 +1,7 @@
 <%= nav_bar fixed: "top", inverse: false, brand: glyph("home"), brand_link: root_path, responsive: true do %>
 	<%= menu_group do %>
-				<%= menu_item "Shopping", list_items_path %>
+				<%= menu_item "Shopping", list_items_path, class: "visible-lg" %>
+				<%=menu_item "Shop", list_items_path, class: "visible-sm"%>
 				<%= menu_item "Tasks", tasks_path %>
 				<%= menu_item "Reports", reports_path %>
 				<%#= menu_item glyph("shopping-cart"), list_items_path %>
