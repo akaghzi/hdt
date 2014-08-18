@@ -1,0 +1,73 @@
+<div class="panel panel-info">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			Incomplete:
+		</h3>
+	</div>
+	<% if @unbasketedlists.blank? %>
+	<div class="panel-body">
+		<p>Empty.
+			<%= link_to glyph("plus-sign"), new_list_item_path, class: "btn btn-success" %>
+		</p>
+	</div>
+	<% else %>
+	<table class="table table-condensed">
+		<tr>
+			<th>Name</th>
+			<th class="hidden-phone">Unit</th>
+			<th>Qty</th>
+			<th>Price</th>
+			<!-- <th>List type</th> -->
+			<th class="hidden-phone">Category</th>
+			<th>Store</th>
+			<th class="hidden-phone">Brand</th>
+			<!-- <th>Identifier</th> -->
+			<th>Action</th>
+		</tr>
+		<% @unbasketedlists.each do |list_item| %>
+		<tr>
+			<td>
+				<%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %>
+				<% if list_item.favorite %>
+				<i class="text-danger glyphicon glyphicon-heart"></i>
+				<% end %>
+				<% if list_item.task_id %>
+				<%= link_to glyph(:wrench), task_path(list_item.task_id), class: "text-danger" %>
+				<% end %>
+			</td>
+			<td class="hidden-phone"><%= list_item.unit.name %></td>
+			<td><%= list_item.quantity %></td>
+			<td>
+				<% if list_item.price.nil? %>
+				<span class="badge">?</span>
+				<% else %>
+				<%= list_item.price %>
+				<% end %>
+			</td>
+			<!-- <td><%#= list_item.list_type.name %></td> -->
+			<td class="hidden-phone"><%= list_item.item_category.name %></td>
+			<td><%= list_item.store.name %></td>
+			<td class="hidden-phone"><%= list_item.brand.name %></td>
+			<!-- <td><%#= list_item.identifier %></td> -->
+			<td>
+				<%= link_to glyph("shopping-cart"), list_item_putinbasket_path(list_item), class: "btn btn-info btn-xs" %>
+				<%= link_to glyph("remove-sign"), list_item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
+			</td>
+		</tr>
+		<% @totalprice = @totalprice + (list_item.price || 0.00) %>
+		<% end %>
+		<tr>
+			<!-- <td></td> -->
+			<td></td>
+			<td><strong>Total</strong></td>
+			<td><strong><%= @totalprice %></strong></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	<% end %>
+</div>

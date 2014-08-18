@@ -1,0 +1,64 @@
+<div class="panel panel-success">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			Complete:
+		</h3>
+	</div>
+	<% if @completedlists.blank? %>
+	<div class="panel-body">
+	<p>
+		Empty.
+	</p>
+	</div>
+	<% else %>
+	<table class="table table-condensed">
+		<tr>
+			<th>Name</th>
+			<!-- <th>Unit</th> -->
+			<th>Qty</th>
+			<th>Price</th>
+			<!-- <th>List type</th> -->
+			<!-- <th>Category</th> -->
+			<th>Store</th>
+			<!-- <th>Brand</th> -->
+			<!-- <th>Identifier</th> -->
+			<th>Action</th>
+		</tr>
+		<% @totalprice = 0.00 %>
+		<% @completedlists.each do |list_item| %>
+		<tr>
+			<td><%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %></td>
+			<!-- <td><%#= list_item.unit.name %></td> -->
+			<td><%= list_item.quantity %></td>
+			<td>
+				<% if list_item.price.nil? %>
+				<!-- <i class="text-danger glyphicon glyphicon-question-sign"></i> -->
+				<span class="badge">?</span>
+				<% else %>
+				<%= list_item.price %>
+				<% end %>
+			</td>
+			<!-- <td><%#= list_item.list_type.name %></td> -->
+			<!-- <td><%#= list_item.item_category.name %></td> -->
+			<td><%= list_item.store.name %></td>
+			<!-- <td><%#= list_item.brand.name %></td> -->
+			<!-- <td><%#= list_item.identifier %></td> -->
+			<td>
+				<%= link_to glyph("pencil"), edit_list_item_path(list_item), class: "btn btn-default btn-xs" %>
+			</td>
+		</tr>
+		<% @totalprice = @totalprice + (list_item.price||0.00) %>
+		<% end %>
+		<tr>
+			<!-- <td></td> -->
+			<td></td>
+			<td><strong>Total</strong></td>
+			<td><strong><%= @totalprice %></strong></td>
+			<!-- <td></td> -->
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	<% end %>
+</div>
