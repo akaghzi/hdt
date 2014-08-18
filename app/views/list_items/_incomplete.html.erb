@@ -15,13 +15,13 @@
 	<table class="table table-condensed">
 		<tr>
 			<th>Name</th>
-			<th class="hidden-sm">Unit</th>
+			<th class="visible-lg">Unit</th>
 			<th>Qty</th>
 			<th>Price</th>
 			<!-- <th>List type</th> -->
-			<th class="hidden-sm">Category</th>
+			<th class="visible-lg">Category</th>
 			<th>Store</th>
-			<th class="hidden-sm">Brand</th>
+			<th class="visible-lg">Brand</th>
 			<!-- <th>Identifier</th> -->
 			<th>Action</th>
 		</tr>
@@ -36,7 +36,7 @@
 				<%= link_to glyph(:wrench), task_path(list_item.task_id), class: "text-danger" %>
 				<% end %>
 			</td>
-			<td class="hidden-sm"><%= list_item.unit.name %></td>
+			<td class="visible-lg"><%= list_item.unit.name %></td>
 			<td><%= list_item.quantity %></td>
 			<td>
 				<% if list_item.price.nil? %>
@@ -46,9 +46,9 @@
 				<% end %>
 			</td>
 			<!-- <td><%#= list_item.list_type.name %></td> -->
-			<td class="hidden-sm"><%= list_item.item_category.name %></td>
+			<td class="visible-lg"><%= list_item.item_category.name %></td>
 			<td><%= list_item.store.name %></td>
-			<td class="hidden-sm"><%= list_item.brand.name %></td>
+			<td class="visible-lg"><%= list_item.brand.name %></td>
 			<!-- <td><%#= list_item.identifier %></td> -->
 			<td>
 				<%= link_to glyph("shopping-cart"), list_item_putinbasket_path(list_item), class: "btn btn-info btn-xs" %>
