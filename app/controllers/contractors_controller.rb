@@ -32,7 +32,7 @@ class ContractorsController < ApplicationController
 
     respond_to do |format|
       if @contractor.save
-        format.html { redirect_to contractors_path, notice: 'Contractor was successfully created.' }
+        format.html { redirect_to contractors_path}#, notice: 'Contractor was successfully created.' }
         format.json { render :show, status: :created, location: @contractor }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class ContractorsController < ApplicationController
   def update
     respond_to do |format|
       if @contractor.update(contractor_params)
-        format.html { redirect_to contractors_path, notice: 'Contractor was successfully updated.' }
+        format.html { redirect_to contractors_path}#, notice: 'Contractor was successfully updated.' }
         format.json { render :show, status: :ok, location: @contractor }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class ContractorsController < ApplicationController
   def destroy
     @contractor.destroy
     respond_to do |format|
-      format.html { redirect_to contractors_url, notice: 'Contractor was successfully destroyed.' }
+      format.html { redirect_to contractors_url}#, notice: 'Contractor was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

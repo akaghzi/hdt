@@ -40,7 +40,7 @@ class TaskContractorsController < ApplicationController
     respond_to do |format|
       if @task_contractor.save
         # logger.debug "************* task contractor create 2 **********"
-        format.html { redirect_to task_path(@task_contractor.task_id), notice: 'Task contractor was successfully created.' }
+        format.html { redirect_to task_path(@task_contractor.task_id)#, notice: 'Task contractor was successfully created.' }
         format.json { render :show, status: :created, location: @task_contractor }
       else
         # logger.debug "************* task contractor create 3 **********"
@@ -58,7 +58,7 @@ class TaskContractorsController < ApplicationController
   def update
     respond_to do |format|
       if @task_contractor.update(task_contractor_params)
-        format.html { redirect_to task_path(@task_contractor.task_id), notice: 'Task contractor was successfully updated.' }
+        format.html { redirect_to task_path(@task_contractor.task_id)#, notice: 'Task contractor was successfully updated.' }
         format.json { render :show, status: :ok, location: @task_contractor }
       else
         format.html { render :edit }
@@ -73,7 +73,7 @@ class TaskContractorsController < ApplicationController
     task = @task_contractor.task_id
     @task_contractor.destroy
     respond_to do |format|
-      format.html { redirect_to task_path(task), notice: 'Task contractor was successfully destroyed.' }
+      format.html { redirect_to task_path(task)#, notice: 'Task contractor was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

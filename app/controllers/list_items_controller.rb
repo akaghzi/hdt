@@ -46,9 +46,9 @@ class ListItemsController < ApplicationController
       if @list_item.save
         logger.info "++++++++++ list item saved ++++++++++++++"
         if @list_item.task_id
-          format.html { redirect_to task_path(@list_item.task_id), notice: 'List item was successfully added.' }
+          format.html { redirect_to task_path(@list_item.task_id)}#, notice: 'List item was successfully added.' }
         end
-        format.html { redirect_to list_items_path, notice: 'List item was successfully added.' }
+        format.html { redirect_to list_items_path}#, notice: 'List item was successfully added.' }
         format.json { render :show, status: :created, location: @list_item }
       else
         logger.info "++++++++++ list item NOT saved ++++++++++++++"
@@ -64,9 +64,9 @@ class ListItemsController < ApplicationController
     respond_to do |format|
       if @list_item.update(list_item_params)
           if @list_item.task_id
-            format.html { redirect_to task_path(@list_item.task_id), notice: 'List item was successfully updated.' }
+            format.html { redirect_to task_path(@list_item.task_id)}#, notice: 'List item was successfully updated.' }
           end
-        format.html { redirect_to list_items_path, notice: 'List item was successfully updated.' }
+        format.html { redirect_to list_items_path}#, notice: 'List item was successfully updated.' }
         format.json { render :show, status: :ok, location: @list_item }
       else
         format.html { render :edit }
@@ -80,7 +80,7 @@ class ListItemsController < ApplicationController
   def destroy
     @list_item.destroy
     respond_to do |format|
-      format.html { redirect_to list_items_url, notice: 'ListItem was successfully destroyed.' }
+      format.html { redirect_to list_items_url}#, notice: 'ListItem was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -94,7 +94,7 @@ class ListItemsController < ApplicationController
       logger.error "******** Error **********"
     end
     list_item.update(inbasket: true)
-    redirect_to list_items_path, notice: "Item successfully tranferred to basket"
+    redirect_to list_items_path#, notice: "Item successfully tranferred to basket"
   end
 
   def takeoutofbasket
@@ -106,7 +106,7 @@ class ListItemsController < ApplicationController
       logger.error "******** Error **********"
     end
     list_item.update(inbasket: false)
-    redirect_to list_items_path, alert: "Item successfully removed to basket"
+    redirect_to list_items_path#, alert: "Item successfully removed to basket"
   end
 
   def complete
@@ -122,7 +122,7 @@ class ListItemsController < ApplicationController
       redirect_to list_items_path, alert: "No valid price entered for item marked complete"
     else
       list_item.update(inbasket: nil, complete: true)
-      redirect_to list_items_path, notice: "Item successfully paid for and removed from basket"
+      redirect_to list_items_path#, notice: "Item successfully paid for and removed from basket"
     end
   end
   
@@ -136,8 +136,7 @@ class ListItemsController < ApplicationController
       logger.error "list_item: #{@list_item}"
       logger.error "******** Error **********"
       redirect_to root_path, alert: "You do not have access to requested resource"
-    end
-    
+    end    
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
