@@ -82,7 +82,7 @@
 			<%= task_contractor.contractor.name.titleize %>
 		</td>
 		<td><%= task_contractor.contractor.phone %></td>
-		<td><%= task_contractor.job_detail %></td>
+		<td><%= task_contractor.job_detail.capitalize %></td>
 		<td>
 			<%= number_with_precision(task_contractor.price, precision: 2) %>
 		</td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630024946) do
+ActiveRecord::Schema.define(version: 20140819210452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,29 @@ ActiveRecord::Schema.define(version: 20140630024946) do
 
   add_index "contractors", ["user_id"], name: "index_contractors_on_user_id", using: :btree
 
+  create_table "data_src", id: false, force: true do |t|
+    t.string "datasrc_id",  limit: 6
+    t.string "authors"
+    t.string "title"
+    t.string "year",        limit: 4
+    t.string "journal"
+    t.string "vol_city"
+    t.string "issue_state", limit: 5
+    t.string "start_page",  limit: 5
+    t.string "end_page",    limit: 5
+  end
+
+  create_table "datsrcln", id: false, force: true do |t|
+    t.string "ndb_no",     limit: 5
+    t.string "nutr_no",    limit: 3
+    t.string "datasrc_id"
+  end
+
+  create_table "deriv_cd", id: false, force: true do |t|
+    t.string "deriv_cd",   limit: 4
+    t.string "deriv_desc"
+  end
+
   create_table "favorite_items", force: true do |t|
     t.integer  "user_id"
     t.integer  "item_category_id"
@@ -74,11 +97,53 @@ ActiveRecord::Schema.define(version: 20140630024946) do
   add_index "favorite_items", ["unit_id"], name: "index_favorite_items_on_unit_id", using: :btree
   add_index "favorite_items", ["user_id"], name: "index_favorite_items_on_user_id", using: :btree
 
+  create_table "fd_desc", id: false, force: true do |t|
+    t.string  "ndb_no",      limit: 5
+    t.string  "fdgrp_cd",    limit: 4
+    t.string  "long_desc"
+    t.string  "short_dest"
+    t.string  "comname"
+    t.string  "manufacname"
+    t.string  "survey",      limit: 1
+    t.string  "ref_desc"
+    t.decimal "refuse"
+    t.string  "sciname"
+    t.decimal "n_factor"
+    t.decimal "pro_factor"
+    t.decimal "fat_factor"
+    t.decimal "cho_factor"
+  end
+
+  add_index "fd_desc", ["ndb_no"], name: "fddescndbno", using: :btree
+
+  create_table "fd_group", id: false, force: true do |t|
+    t.string "fdgrp_cd",   limit: 4
+    t.string "fdgrp_desc"
+  end
+
+  create_table "footnote", id: false, force: true do |t|
+    t.string "ndb_no",     limit: 5
+    t.string "footnt_no",  limit: 4
+    t.string "footnt_typ", limit: 1
+    t.string "nutr_no",    limit: 3
+    t.string "footnt_txt"
+  end
+
   create_table "item_categories", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "langdesc", id: false, force: true do |t|
+    t.string "factor_code", limit: 5
+    t.string "description"
+  end
+
+  create_table "langual", id: false, force: true do |t|
+    t.string "ndb_no",      limit: 5
+    t.string "factor_code", limit: 5
   end
 
   create_table "list_items", force: true do |t|
@@ -115,6 +180,38 @@ ActiveRecord::Schema.define(version: 20140630024946) do
     t.datetime "updated_at"
   end
 
+  create_table "nut_data", id: false, force: true do |t|
+    t.string  "ndb_no",        limit: 5
+    t.string  "nutr_no",       limit: 3
+    t.decimal "nutr_val"
+    t.decimal "num_data_pts"
+    t.decimal "std_error"
+    t.string  "src_cd",        limit: 2
+    t.string  "deriv_cd",      limit: 4
+    t.string  "ref_ndb_no",    limit: 5
+    t.string  "add_nutr_mark", limit: 1
+    t.decimal "num_studies"
+    t.decimal "min"
+    t.decimal "max"
+    t.decimal "df"
+    t.decimal "low_eb"
+    t.decimal "up_eb"
+    t.string  "stat_cmt"
+    t.string  "addmod_date"
+    t.string  "cc",            limit: 1
+  end
+
+  add_index "nut_data", ["nutr_val"], name: "nutdataval", using: :btree
+
+  create_table "nutr_def", id: false, force: true do |t|
+    t.string  "nutr_no",  limit: 3
+    t.string  "units",    limit: 7
+    t.string  "tagname"
+    t.string  "nutrdesc"
+    t.string  "num_dec",  limit: 1
+    t.decimal "sr_order"
+  end
+
   create_table "products", force: true do |t|
     t.string   "identifier"
     t.text     "detail"
@@ -135,6 +232,11 @@ ActiveRecord::Schema.define(version: 20140630024946) do
 
   add_index "rentals", ["store_id"], name: "index_rentals_on_store_id", using: :btree
   add_index "rentals", ["task_id"], name: "index_rentals_on_task_id", using: :btree
+
+  create_table "src_cd", id: false, force: true do |t|
+    t.string "src_cd",     limit: 2
+    t.string "srccd_desc"
+  end
 
   create_table "stores", force: true do |t|
     t.string   "name"
@@ -214,5 +316,15 @@ ActiveRecord::Schema.define(version: 20140630024946) do
   add_index "users", ["store_id"], name: "index_users_on_store_id", using: :btree
   add_index "users", ["unit_id"], name: "index_users_on_unit_id", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "weight", id: false, force: true do |t|
+    t.string  "ndb_no",       limit: 5
+    t.string  "seq",          limit: 2
+    t.decimal "amount"
+    t.string  "msre_desc"
+    t.decimal "gm_weight"
+    t.decimal "num_data_pts"
+    t.decimal "std_dev"
+  end
 
 end
