@@ -52,7 +52,7 @@
 			<!-- <td><%#= list_item.identifier %></td> -->
 			<td>
 				<%= link_to glyph("shopping-cart"), list_item_putinbasket_path(list_item), class: "btn btn-info btn-xs" %>
-				<%= link_to glyph("remove-sign"), list_item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
+				<%= link_to glyph("trash"), list_item, class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
 			</td>
 		</tr>
 		<% @totalprice = @totalprice + (list_item.price || 0.00) %>
