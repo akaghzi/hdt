@@ -1,109 +1,116 @@
-<div class="panel panel-info">
+<div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">
-			Food Description:
+			Food: <%= link_to glyph("plus"), "#", class: "btn btn-success" %>
 		</h3>
 	</div>
 	<div class="panel-body">
-		<table class="table table-condensed">
-			<tr>
-				<th>Long Description</th>
-				<td><%= @fd_desc.long_desc.capitalize %></td>
-			</tr>
-			<tr>
-				<th>NDB#</th>
-				<td><%= @fd_desc.ndb_no %></td>
-			</tr>
-			<tr>
-				<th>Food Group</th>
-				<td><%= @fd_desc.fd_group.fdgrp_desc %></td>
-			</tr>
-			<% if @fd_desc.languals.count > 0 %>
-			<tr>
-				<th>LanguaL</th>
-				<td>
-					<% @fd_desc.languals.each do|langual| %>
-					<%= langual.langdesc.description.capitalize %><br>
+		<div class="row">
+			<div class="col-sm-4">
+				<h4>Description:</h4>
+				<table class="table table-condensed">
+					<tr>
+						<td>Long Description</td>
+						<td><%= @fd_desc.long_desc.capitalize %></td>
+					</tr>
+					<tr>
+						<td>NDB#</td>
+						<td><%= @fd_desc.ndb_no %></td>
+					</tr>
+					<tr>
+						<td>Food Group</td>
+						<td><%= @fd_desc.fd_group.fdgrp_desc %></td>
+					</tr>
+					<% if @fd_desc.languals.count > 0 %>
+					<tr>
+						<td>LanguaL</td>
+						<td>
+							<% @fd_desc.languals.each do|langual| %>
+							<%= langual.langdesc.description.capitalize %><br>
+							<% end %>
+						</td>
+					</tr>
 					<% end %>
-				</td>
-			</tr>
-			<% end %>
-			<tr>
-				<th>Short Description</th>
-				<td><%= @fd_desc.short_dest.capitalize %></td>
-			</tr>
-			<tr>
-				<th>Common Name</th>
-				<td><%= @fd_desc.comname %></td>
-			</tr>
-			<tr>
-				<th>Manufacturer Name</th>
-				<td><%= @fd_desc.manufacname %></td>
-			</tr>
-			<tr>
-				<th>Survey</th>
-				<td><%= @fd_desc.survey %></td>
-			</tr>
-			<tr>
-				<th>Ref Description</th>
-				<td><%= @fd_desc.ref_desc %></td>
-			</tr>
-			<tr>
-				<th>Refuse</th>
-				<td><%= @fd_desc.refuse %></td>
-			</tr>
-			<tr>
-				<th>Scientific Name</th>
-				<td><%= @fd_desc.sciname %></td>
-			</tr>
-			<tr>
-				<th>N Factor</th>
-				<td><%= @fd_desc.n_factor %></td>
-			</tr>
-			<tr>
-				<th>Pro Factor</th>
-				<td><%= @fd_desc.pro_factor %></td>
-			</tr>
-			<tr>
-				<th>Fat Factor</th>
-				<td><%= @fd_desc.fat_factor %></td>
-			</tr>
-			<tr>
-				<th>CHO Factor</th>
-				<td><%= @fd_desc.cho_factor %></td>
-			</tr>
-		</table>
+					<tr>
+						<td>Short Description</td>
+						<td><%= @fd_desc.short_dest.capitalize %></td>
+					</tr>
+					<tr>
+						<td>Common Name</td>
+						<td><%= @fd_desc.comname %></td>
+					</tr>
+					<tr>
+						<td>Manufacturer Name</td>
+						<td><%= @fd_desc.manufacname %></td>
+					</tr>
+					<tr>
+						<td>Survey</td>
+						<td><%= @fd_desc.survey %></td>
+					</tr>
+					<tr>
+						<td>Ref Description</td>
+						<td><%= @fd_desc.ref_desc %></td>
+					</tr>
+					<tr>
+						<td>Refuse</td>
+						<td><%= @fd_desc.refuse %></td>
+					</tr>
+					<tr>
+						<td>Scientific Name</td>
+						<td><%= @fd_desc.sciname %></td>
+					</tr>
+					<tr>
+						<td>N Factor</td>
+						<td><%= @fd_desc.n_factor %></td>
+					</tr>
+					<tr>
+						<td>Pro Factor</td>
+						<td><%= @fd_desc.pro_factor %></td>
+					</tr>
+					<tr>
+						<td>Fat Factor</td>
+						<td><%= @fd_desc.fat_factor %></td>
+					</tr>
+					<tr>
+						<td>CHO Factor</td>
+						<td><%= @fd_desc.cho_factor %></td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-sm-4">
+				<h4>Nutrition:</h4>
+				<table class="table table-stripped">
+					<% @fd_desc.nut_datas.hasval.each do |fd|%>
+					<tr>
+						<!-- <td><%= fd.nutr_no %></td> -->
+						<td><%= fd.nutr_def.nutrdesc %></td>
+						<td><%= fd.nutr_def.units %></td>
+						<td><%= fd.nutr_val %></td>
+						<!-- <td><%= fd.src_cd.srccd_desc %></td> -->
+					</tr>
+					<% end %>
+				</table>
+			</div>
+		</div>
 	</div>
-	<p>Nutrition:</p>
-	<table class="table table-stripped">
-		<% @fd_desc.nut_datas.hasval.each do |fd|%>
-		<tr>
-			<th><%= fd.nutr_no %></th>
-			<td><%= fd.nutr_def.nutrdesc %></td>
-		  <td><%= fd.nutr_def.units %></td>
-		  <td><%= fd.nutr_val %></td>
-		  <td><%= fd.src_cd.srccd_desc %></td>
-		</tr>
-		<% end %>
-	</table>
-	<p>
-		<h3>Weight information:</h3>
-		<% @fd_desc.weights.each do |weight| %>
-		<%= weight.msre_desc %> = 
-		<%= weight.gm_weight %> gram<br>
-		<% end %>
-	</p>
-	<p>Footnote(s):</p>
-	<table class="table table-stripped">
-		<% @fd_desc.footnotes.each do |fn|%>
-		<tr>
-			<th><%= fn.footnt_no %></th>
-			<!-- <td><%#= fn.fd_desc.long_desc %> -->
-		  <td><%= fn.footnt_txt %></td>
-		</tr>
-		<% end %>
-	</table>
-	
 	<div class="panel-footer">
+		<p>
+			<h4>Weight information:</h4>
+			<% @fd_desc.weights.each do |weight| %>
+			<%= weight.msre_desc %> = 
+			<%= weight.gm_weight %> gram<br>
+			<% end %>
+		</p>
+		<p>Footnote(s):</p>
+		<table class="table table-stripped">
+			<% @fd_desc.footnotes.each do |fn|%>
+			<tr>
+				<td><%= fn.footnt_no %></td>
+				<!-- <td><%#= fn.fd_desc.long_desc %> -->
+					<td><%= fn.footnt_txt %></td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
 	</div>
 </div>

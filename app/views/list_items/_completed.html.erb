@@ -15,13 +15,13 @@
 	<table class="table table-condensed">
 		<tr>
 			<th>Name</th>
-			<th>Unit</th>
+			<th class="visible-lg">Unit</th>
 			<th>Qty</th>
 			<th>Price</th>
 			<!-- <th>List type</th> -->
-			<th>Category</th>
+			<th class="visible-lg">Category</th>
 			<th>Store</th>
-			<th>Brand</th>
+			<th class="visible-lg">Brand</th>
 			<!-- <th>Identifier</th> -->
 			<th>Action</th>
 		</tr>
@@ -29,7 +29,7 @@
 		<% @completedlists.each do |list_item| %>
 		<tr>
 			<td><%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %></td>
-			<td><%= list_item.unit.name %></td>
+			<td class="visible-lg"><%= list_item.unit.name %></td>
 			<td><%= list_item.quantity %></td>
 			<td>
 				<% if list_item.price.nil? %>
@@ -40,9 +40,9 @@
 				<% end %>
 			</td>
 			<!-- <td><%#= list_item.list_type.name %></td> -->
-			<td><%= list_item.item_category.name %></td>
+			<td class="visible-lg"><%= list_item.item_category.name %></td>
 			<td><%= list_item.store.name %></td>
-			<td><%= list_item.brand.name %></td>
+			<td class="visible-lg"><%= list_item.brand.name %></td>
 			<!-- <td><%#= list_item.identifier %></td> -->
 			<td>
 				<%= link_to glyph("pencil"), edit_list_item_path(list_item), class: "btn btn-default btn-xs" %>
