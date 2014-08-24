@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   
   resources :ndb do
     get 'food', to: "ndb#show", via: :get
+    match 'copyitem', to: "ndb#copyitem", via: :get
   end
 
 end
