@@ -104,10 +104,10 @@ class FavoriteItemsController < ApplicationController
       f.update(imported_at: Time.now)
       logger.info "++++ updated fav item ++++++++"
       
-      redirect_to favorite_items_path, notice: "item copied to wish list"
+      redirect_to favorite_items_path, notice: "item copied to shopping list"
     else
       logger.info "++++ fav item import time is null or less than 4 hours ++++++++"
-      redirect_to favorite_items_path, alert: "item already copied to wish list"
+      redirect_to favorite_items_path, alert: "item already copied to shopping list"
     end
   end
   
@@ -135,7 +135,7 @@ class FavoriteItemsController < ApplicationController
         fcount = fcount + 1
       end
     end
-    redirect_to list_items_path, notice: "#{fcount} favorite items copied to wish list"
+    redirect_to list_items_path, notice: "#{fcount} favorite items copied to shopping list"
   end
   
   private

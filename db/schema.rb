@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819210452) do
+ActiveRecord::Schema.define(version: 20140905015928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,11 +163,15 @@ ActiveRecord::Schema.define(version: 20140819210452) do
     t.boolean  "complete",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ndb_no"
+    t.decimal  "kcal"
+    t.string   "fdgrp_cd"
   end
 
   add_index "list_items", ["brand_id"], name: "index_list_items_on_brand_id", using: :btree
   add_index "list_items", ["item_category_id"], name: "index_list_items_on_item_category_id", using: :btree
   add_index "list_items", ["list_type_id"], name: "index_list_items_on_list_type_id", using: :btree
+  add_index "list_items", ["ndb_no"], name: "index_list_items_on_ndb_no", using: :btree
   add_index "list_items", ["store_id"], name: "index_list_items_on_store_id", using: :btree
   add_index "list_items", ["task_id"], name: "index_list_items_on_task_id", using: :btree
   add_index "list_items", ["unit_id"], name: "index_list_items_on_unit_id", using: :btree

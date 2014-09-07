@@ -23,6 +23,11 @@ class ListItemsController < ApplicationController
 
   # GET /lists/new
   def new
+    # if params[:search]
+    #   @fd_descs = FdDesc.search(params[:search])
+    # else
+    #   @fd_descs = FdDesc.order("long_desc desc").limit(10)
+    # end
     @list_item = ListItem.new(user_id: current_user.id, 
                               store_id: current_user.store_id, 
                               brand_id: current_user.brand_id, 

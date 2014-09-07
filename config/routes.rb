@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'help', to: "welcome#help"
   get 'aboutus', to: "welcome#aboutus"
   get 'reports', to: "reports#index"
+  get 'foodreport', to: "report#foodreport"
 
   resources :rentals do
     match 'complete', to:  "rentals#complete", via: :get

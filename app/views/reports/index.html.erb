@@ -124,4 +124,44 @@
 			</div>
 		</div>
 	</div>
+	<!-- ************ BY CALORIES *********** -->
+	<div class="col-sm-4">
+		<div class="panel panel-info">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					Purchases by calories
+				</h3>
+			</div>
+			<% if @last30dayscalories.blank? %>
+			<div class="panel-body">
+				<p>
+					No record found.
+				</p>
+			</div>
+			<% else %>
+			<table class="table table-striped">
+				<tr>
+					<th>Food group</th>
+					<th>Total Cal.</th>
+				</tr>
+				<% @last30dayscalories.each do | cal| %>
+				<tr>
+					<td><%= cal.fd_group.fdgrp_desc %></td>
+					<td><%= cal.totalcal %><%#= store.totalprice %></td>
+				</tr>
+				<% @totalprice = @totalprice + cal.totalcal %>
+				<% end %>	
+			</table>	
+			<% end %>
+			<div class="panel-footer">
+				<h4 class="text-right">
+					<span class="label label-info">
+						Total <%= @totalprice %>
+						<% @totalprice = 0.00 %>
+					</span>
+				</h4>		
+			</div>
+		</div>
+	</div>
 </div>	

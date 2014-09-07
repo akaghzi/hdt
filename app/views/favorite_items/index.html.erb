@@ -72,7 +72,12 @@
 		<% end %>
 		<div class="panel-footer">		
 			<% if @favorite_items.count >= 1 %>
-			<%= link_to glyph("plus-sign"), new_favorite_item_path, class: "btn btn-success" %>
+			<span class="visible-lg">
+			  <%= link_to "Add", new_favorite_item_path, class: "btn btn-success" %>
+			</spen>
+			<span class="visible-xs">
+			  <%= link_to glyph("plus-sign"), new_favorite_item_path, class: "btn btn-success" %>
+		  </span>
 			<%= link_to 'Copy All', copyallitems_path, class: "btn btn-info", data: {confirm: "are you sure?"}%>
 			<% end %>
 		</div>

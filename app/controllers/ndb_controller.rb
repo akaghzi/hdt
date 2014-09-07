@@ -1,5 +1,5 @@
 class NdbController < ApplicationController
-  before_action :set_brand, only: [:show, :edit, :update, :destroy]
+  before_action :set_ndb, only: [:show ]
   
   def index
     if params[:search]
@@ -18,14 +18,15 @@ class NdbController < ApplicationController
     listitem = ListItem.new(
     user_id:          current_user.id,
     item_category_id: current_user.item_category_id || 19, 
-    unit_id:          current_user.unit_id || 2, 
-    brand_id:         current_user.brand_id || 1, 
+    unit_id:          4, 
+    brand_id:         1, 
     name:             f.long_desc, 
     identifier:       f.ndb_no, 
     price:            1,
     quantity:         1,
     store_id:         current_user.store_id || 1,
     list_type_id:     1,
+    ndb_no:           f.ndb_no, 
     inbasket:         false,
     complete:         false,
     favorite:         false)
@@ -49,7 +50,7 @@ class NdbController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_brand
+    def set_ndb
       @fd_desc = FdDesc.find(params[:ndb_id])
     end
     
