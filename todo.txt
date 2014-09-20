@@ -9,5 +9,6 @@ add check incomplete item when adding food or favorite items
 add pantry
 add receipes
 add search food by nutrient
+add datepicker-jquery
 
 done:

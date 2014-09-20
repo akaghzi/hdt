@@ -4,6 +4,7 @@
 	<li><%= link_to "Favorite items", favorite_items_path %></li>
 	<li><a href="<%= stores_path %>">Stores</a></li>
 	<li><a href="<%= brands_path %>">Brands</a></li>
+	<li><%= link_to "Food", ndb_index_path %></li>
 	<li><%= link_to 'Contractors', contractors_path %></li>
 	<li><%= link_to "Contact Us", new_contact_path %></li>
 	<li class="pull-right"><%= link_to "Signout", destroy_user_session_path, method: :delete, data: {confirm: "are you sure?"}, class: "text-danger" %></li>

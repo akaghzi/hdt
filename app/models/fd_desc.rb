@@ -13,4 +13,8 @@ class FdDesc < ActiveRecord::Base
     where("lower(long_desc) like ?","%#{query}%".downcase)
   end
   
+  def self.tsearch(term)
+    where("lower(long_desc) like ?","#{term}%".downcase)
+  end
+  
 end
