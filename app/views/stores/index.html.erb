@@ -30,7 +30,7 @@
 	<% if @stores.blank? %>
 	<div class="panel-body">
 		<p>
-			Product not found in our database, please add it if you like.
+			Store not found in our database, please add it if you like.
 		</p>
 	</div>
 	<% else %>
@@ -49,6 +49,6 @@
 	<% end %>
 	<div class="panel-footer">
 		<i class="text-danger">Add your favorite store here if it is not listed already</i>
-		<%= link_to glyph("plus"), new_store_path, class: "btn btn-success" %>
+		<%= link_to glyph("plus-sign"), new_store_path, class: "btn btn-success" %>
 	</div>
 </div>

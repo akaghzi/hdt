@@ -44,3 +44,4 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => "bootstrap3"
 # gem 'paypal-express'
 gem 'jquery-ui-rails'
+gem 'rack-mini-profiler', group: :development

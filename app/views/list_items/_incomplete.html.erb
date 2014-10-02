@@ -28,7 +28,7 @@
 		<% @unbasketedlists.each do |list_item| %>
 		<tr>
 			<td>
-				<%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %>
+				<%= link_to list_item.name.capitalize, edit_list_item_path(list_item), class: "link" %>
 				<% if list_item.favorite %>
 				<i class="text-danger glyphicon glyphicon-heart"></i>
 				<% end %>

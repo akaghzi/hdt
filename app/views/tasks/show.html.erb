@@ -8,7 +8,7 @@
 	<dt>Target Date</dt>
 	<dd><%= @task.target_date.strftime("%d-%h-%Y") %></dd>
 	<dt>Details</dt>
-	<dd><%= @task.detail %></dd>
+	<dd><%= @task.detail.capitalize %></dd>
 </dl>
 <h4 class="text-info">
 	Needed material:
@@ -82,7 +82,7 @@
 			<%= task_contractor.contractor.name.titleize %>
 		</td>
 		<td><%= task_contractor.contractor.phone %></td>
-		<td><%= task_contractor.job_detail.capitalize %></td>
+		<td><%= task_contractor.job_detail.titleize %></td>
 		<td>
 			<%= number_with_precision(task_contractor.price, precision: 2) %>
 		</td>

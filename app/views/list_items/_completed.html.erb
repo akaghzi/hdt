@@ -28,7 +28,7 @@
 		<% @totalprice = 0.00 %>
 		<% @completedlists.each do |list_item| %>
 		<tr>
-			<td><%= link_to list_item.name, edit_list_item_path(list_item), class: "link" %></td>
+			<td><%= link_to list_item.name.capitalize, edit_list_item_path(list_item), class: "link" %></td>
 			<td class="visible-lg"><%= list_item.unit.name %></td>
 			<td><%= list_item.quantity %></td>
 			<td>

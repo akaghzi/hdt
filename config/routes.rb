@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get 'reports', to: "reports#index"
   get 'foodreport', to: "report#foodreport"
   get 'suggest_terms', to: "suggest_terms#index"
+  get 'list_items_terms', to: "suggest_terms#li_terms"
+  get 'favorite_items_terms', to: "suggest_terms#fi_terms"
+  get 'task_terms', to: "suggest_terms#ti_terms"
 
   resources :rentals do
     match 'complete', to:  "rentals#complete", via: :get
@@ -20,7 +23,6 @@ Rails.application.routes.draw do
   end
 
   resources :contractors
-
   resources :contacts
   resources :contact_reasons
   devise_for :users
@@ -31,11 +33,12 @@ Rails.application.routes.draw do
     get 'takeoutofbasket', to: "list_items#takeoutofbasket"
     get 'complete', to: "list_items#complete"
   end
+  
   resources :favorite_items do
     get 'copyitem', to: "favorite_items#copyitem"
   end
   match 'copyallitems', to: "favorite_items#copyallitems", via: :get
-
+  
   resources :tasks do
     match 'complete', to: "tasks#complete", via: :get
   end
@@ -47,9 +50,7 @@ Rails.application.routes.draw do
   resources :item_categories
 
   resources :list_types
-  
-  get 'ndb/index'
-  
+    
   resources :ndb do
     get 'food', to: "ndb#show", via: :get
     match 'copyitem', to: "ndb#copyitem", via: :get

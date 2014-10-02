@@ -1,7 +1,7 @@
 to do:
 add "delete" step for incomplete tasks.
 add "delete" step for contractors.
-add food search and track the calories in reports
+add track the calories in reports
 add contents information
 add upc search
 add desktop visible columns for favorite items
@@ -12,3 +12,4 @@ add search food by nutrient
 add datepicker-jquery
 
 done:
+add food search

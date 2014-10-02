@@ -19,5 +19,9 @@ class Task < ActiveRecord::Base
   def self.search(query)
     where("name like ?","%#{query}%".downcase)
   end
+
+  def self.tsearch(query)
+    where("name like ?","#{query}%".downcase)
+  end
   
 end

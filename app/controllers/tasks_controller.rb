@@ -4,9 +4,9 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    if params[:search]
-      @incompletetasks = Task.incomplete.where(user_id: current_user.id).search(params[:search]).order("name")
-      @completedtasks = Task.completed.where(user_id: current_user.id).search(params[:search]).order("name")
+    if params[:tisearch]
+      @incompletetasks = Task.incomplete.where(user_id: current_user.id).search(params[:tisearch]).order("name")
+      @completedtasks = Task.completed.where(user_id: current_user.id).search(params[:tisearch]).order("name")
     else
       @incompletetasks = Task.incomplete.where(user_id: current_user.id).order("name")
       @completedtasks = Task.completed.where(user_id: current_user.id).order("name")

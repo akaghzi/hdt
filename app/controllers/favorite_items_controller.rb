@@ -4,8 +4,8 @@ class FavoriteItemsController < ApplicationController
   # GET /favorite_items
   # GET /favorite_items.json
   def index
-    if params[:search]
-      @favorite_items = FavoriteItem.where(user_id: current_user.id).search(params[:search]).order("name")
+    if params[:fisearch]
+      @favorite_items = FavoriteItem.where(user_id: current_user.id).search(params[:fisearch]).order("name")
     else
       @favorite_items = FavoriteItem.where(user_id: current_user.id).order("name")
     end
