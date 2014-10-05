@@ -4,8 +4,8 @@ class NdbController < ApplicationController
   def index
     if params[:search]
       @fd_descs = FdDesc.search(params[:search])
-    else
-      @fd_descs = FdDesc.order("long_desc desc").limit(10)
+    # else
+    #   @fd_descs = FdDesc.order("long_desc desc").limit(10)
     end
   end
   
